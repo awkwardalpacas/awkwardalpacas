@@ -1,3 +1,5 @@
+![Corgi](/lunchcorgi.jpg)
+
 # awkwardalpacas
  ## Stack ##
  > Mongo, Express, Angular, Node
