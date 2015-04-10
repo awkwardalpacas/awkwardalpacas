@@ -1,21 +1,14 @@
 <div id='container'>
-<!-- Your code here -->
-  <div class='navigation'>
-    <ul>
-    <li> 
-      <a href="#/links">Links</a>
-    </li>
-    <li>
-      <a href="#/shorten">Shorten</a>
-    </li>
-    </ul>
-  </div>
+  <!-- do we want a navigation bar here? -->
   <div ng-controller = "EventsController">
-  <form name="eventForm" ng-submit="addEvent()">
-  <input type= "text" ng-model = "event.url">
-  <button onclick="submit">Submit</button>
-  <h1 ng-if="invalid">This link is not valid.
-  </h1>
-  </form>
+	  <form name="eventForm" ng-submit="addEvent()">
+		  <input type= "text" ng-model = "event.location">
+		  <input type= "date" ng-model = "event.date">
+		  <input type= "time" ng-model = "event.time">
+		  <button onclick="submit">Submit</button>
+		  <h1 ng-if="invalid">
+		  	Please fill in all of the fields.
+		  </h1>
+	  </form>
   </div>
 </div>
