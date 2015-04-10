@@ -3,16 +3,24 @@
 angular.module('myApp.view1', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
-  $routeProvider.when('/view1', {
-    templateUrl: 'view1/view1.html',
-    controller: 'View1Ctrl'
+  $routeProvider.when('/signup', {
+    templateUrl: 'signup/signup.html',
+    controller: 'SignUpCtrl'
   });
 }])
 
-.controller('View1Ctrl', [function($scope) {
+.controller('SignUpCtrl', [function($scope) {
+  $scope.user = {};
 
   $scope.signup = function() {
-    // User
+    Users.signup($scope.user)
+      .then(function(token){
+        $window.localStorage.setItem('com.myApp', token);
+        $location.path('/links');
+      })
+      .catch(function(error){
+        console.log(error);
+      });
   };
 
 }]);
