@@ -9,39 +9,19 @@ autoIncrement.initialize(connection);  // required to get the tables to auto-inc
 
 
 var UserSchema = new Schema({
-    userID : {
-    type : Number,
-    },
-    name : {
-    type : String
-    },
-    password : {
-        type : Number
-    },
-    eventID: {
-    	type : Number
-    }
+    userID : Number,
+    name : String,
+    password : Number,
+    eventIDs: []
 });
 
 var EventSchema = new Schema ({
-	eventID = {
-		type : Number
-	},
-	description = {
-		type : String
-	},
-	location = {
-		type : String
-	},
-	location = {
-		type : String
-	},
-	creatorID = {
-		type : Number
-	},
-	attendeeID = {
-		type : Number
-	}
+	eventID : Number,
+	description : String,
+	location : String,
+	time : String, 
+	creatorID : Number,
+	attendeeIDs : []
 });
 
 userSchema.plugin(autoIncrement.plugin, 'userID');  // extends the UserSchema to include the auto-increment
