@@ -47,7 +47,7 @@ var EventSchema = new Schema ({
 userSchema.plugin(autoIncrement.plugin, 'userID');  // extends the UserSchema to include the auto-increment
 var User = db.model('User', UserSchema);
 
-EventSchema.plugin(autoIncrement.plugin, 'eventid');  // extends the EventSchema to include the auto-increment
+EventSchema.plugin(autoIncrement.plugin, 'eventID');  // extends the EventSchema to include the auto-increment
 var Event = db.model('Event', EventSchema)
 
 exports.User = mongoose.model('users', UserSchema);
