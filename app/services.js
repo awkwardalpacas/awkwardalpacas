@@ -29,7 +29,7 @@ angular.module('lunchCorgi.services', [])
       url: '/api/signup',
       data: user
     }).then(function (resp) {
-      return resp.statusCode;
+      return resp.data.token;
     });
   }
 
