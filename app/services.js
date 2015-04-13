@@ -22,3 +22,18 @@ angular.module('lunchCorgi.services', [])
 	}
 
 })
+.factory('Users', function($http){
+  var signup = function(user){
+    return $http({
+      method: 'POST',
+      url: '/api/signup',
+      data: user
+    }).then(function (resp) {
+      return resp.data.token;
+    });
+  }
+
+  return {
+    signup: signup
+  }
+})
