@@ -3,23 +3,23 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     autoIncrement = require('mongoose-auto-increment');
 
-var db = mongoose.createConnection("mongodb://localhost:8000/db");
+var db = mongoose.createConnection("mongodb://localhost:8000/corgi"); //connects to database called corgi
 
 autoIncrement.initialize(connection);  // required to get the tables to auto-increment for each new record (user or event)
 
 
 var UserSchema = new Schema({
-    userID : Number,
+    userID : { type: Number, ref: 'userID'},
     name : String,
-    password : Number,
+    password : String,
     eventIDs: []
 });
 
 var EventSchema = new Schema ({
-	eventID : Number,
+	eventID : { type: Number, ref: 'eventID'},
 	description : String,
 	location : String,
-	time : String, 
+	datetime: Date,
 	creatorID : Number,
 	attendeeIDs : []
 });
