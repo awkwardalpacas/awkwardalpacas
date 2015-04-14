@@ -17,8 +17,9 @@ angular.module('lunchCorgi.services', [])
       .toArray()
 
     events.forEach(function(ev) {
-      // this makes the time into a friendly, localized string.  Instead of showing milliseconds, it shows "8:00 P.M."
-      ev.time = ev.time.toLocaleTimeString()
+      // this makes the time and date into a friendly, localized string.  Instead of showing milliseconds, it shows "8:00 P.M."
+      ev.time = ev.datetime.toLocaleTimeString()
+      ev.date = ev.datetime.toLocaleDateString()
       // MongoDB doesn't have a join query, so we have to use the event's creatorID to do a lookup on the user collection.
       // That lookup returns a single object, and we use its name property.
       ev.creator = db.users.find({ userID: ev.creatorID }).name
