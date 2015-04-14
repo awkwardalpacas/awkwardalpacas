@@ -1,7 +1,21 @@
 angular.module('lunchCorgi.services', [])
 
 .factory('Events', function($http) { //when routes are created, we might not use the $http stuff - TBD
-	var getEvents = function() {};
+	
+  // need to figure out how this will point to the correct MongoDB path.  
+  // this function finds events with time greater than now (that's what Date.now is)...
+  var getEvents = function(pageNum) {
+    return db.events.find({ time: { $gt: Date.now() } })
+      // then sorts time by ascending so we can get the events happening next...
+      .sort({ time: 1 })
+      // then limits the response to only ten.
+      .limit( 10 )
+      // If there is an argument passed from events.js, it's to specify the "page," 
+      // so we might skip over some events to look at the next ten, for example.
+      .skip ( 10*pageNum )
+      // Results are returned as an array for use in angular ng-repeat in the template.
+      .toArray()
+  };
 
 	var addEvent = function(event) {
 	    return $http({

@@ -21,4 +21,17 @@ angular.module('lunchCorgi.events', [])
 					$scope.invalid = true
 				}			
 	}
+
+	// first page of events is page number 0; when more events are viewed, the page number is increased
+	$scope.pageNumber = 0
+
+	// eventsList is an array used in the template (with ng-repeat) to populate the list of events.
+	$scope.eventsList = {}
+
+	$scope.viewAllEvents = function() {
+		$scope.eventsList = Events.getEvents($scope.pageNumber)
+		$scope.pageNumber++
+	}
+
+	$scope.viewAllEvents()
 })
