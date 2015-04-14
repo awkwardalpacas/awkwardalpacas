@@ -7,18 +7,24 @@ module.exports = function (app, express) {
   var userRouter = express.Router();
   var linkRouter = express.Router();
   var router = express.Router();
-  app.use(morgan('dev'));
+  // app.use(morgan('dev'));
   app.use(bodyParser.urlencoded({extended: true}));
   app.use(bodyParser.json());
-  app.use(express.static(__dirname + '..'));
+ 
   
-  app.use('/api/users', userRouter); // use user router for all user request
+  // app.use('/api/users', userRouter); // use user router for all user request
 
+<<<<<<< HEAD
+  // // authentication middleware used to decode token and made available on the request
+  // //app.use('/api/links', helpers.decode);
+  // app.use('/api/links', linkRouter); // user link router for link request
+=======
   // authentication middleware used to decode token and made available on the request
   //app.use('/api/links', helpers.decode);
   app.use('/api/links', linkRouter); // user link router for link request
   // app.use(helpers.errorLogger);
   // app.use(helpers.errorHandler);
+>>>>>>> dcbab7feab8987735e190df2e25daa68bfec6e3e
 
   // inject our routers into their respective route files
   // require('../signup/signup.js')(signupRouter);
