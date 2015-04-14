@@ -29,9 +29,24 @@ angular.module('lunchCorgi.events', [])
 	$scope.eventsList = {}
 
 	$scope.viewAllEvents = function() {
-		$scope.eventsList = Events.getEvents($scope.pageNumber)
-		$scope.pageNumber++
+		Events.getEvents($scope.pageNumber)
+		.then(function(data) {
+			$scope.eventsList = data
+		})
 	}
 
+	$scope.nextPage = function() {
+		$scope.pageNumber++
+		$scope.viewAllEvents()
+	}
+	
+	$scope.prevPage = function() {
+		// only go back a page if the page number is greater than 0
+		if ($scope.pageNumber > 0) {
+			$scope.pageNumber--
+			$scope.viewAllEvents()
+		}
+	}
+	
 	$scope.viewAllEvents()
 })

@@ -5,7 +5,7 @@ angular.module('lunchCorgi.services', [])
   // need to figure out how this will point to the correct MongoDB path.  
   // this function finds events with time greater than now (that's what Date.now is)...
   var getEvents = function(pageNum) {
-    return db.events.find({ time: { $gt: Date.now() } })
+    var events = db.events.find({ time: { $gt: Date.now() } })
       // then sorts time by ascending so we can get the events happening next...
       .sort({ time: 1 })
       // then limits the response to only ten.
@@ -15,6 +15,16 @@ angular.module('lunchCorgi.services', [])
       .skip ( 10*pageNum )
       // Results are returned as an array for use in angular ng-repeat in the template.
       .toArray()
+
+    events.forEach(function(ev) {
+      // this makes the time into a friendly, localized string.  Instead of showing milliseconds, it shows "8:00 P.M."
+      ev.time = ev.time.toLocaleTimeString()
+      // MongoDB doesn't have a join query, so we have to use the event's creatorID to do a lookup on the user collection.
+      // That lookup returns a single object, and we use its name property.
+      ev.creator = db.users.find({ userID: ev.creatorID }).name
+    })
+
+    return events
   };
 
 	var addEvent = function(event) {
