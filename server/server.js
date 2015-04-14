@@ -10,7 +10,6 @@ app.get("/", function (req, res) {
   res.redirect('index.html');
 });
 
-
 require('./middleware.js')(app, express);
 
 app.listen(port);
