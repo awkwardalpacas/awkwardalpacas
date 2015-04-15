@@ -1,5 +1,6 @@
 var express = require('express');
 var mongoose = require('mongoose');
+var path = require('path');
 
 var app = express();
 // var port = /*process.env.PORT || */ 8000; //dynamic port assignment for deployment purposes
@@ -8,7 +9,7 @@ app.use(express.static(__dirname + '/../client/app'));
 // app.use(express.static('client')); 
 
 app.get("/", function (req, res) {
-  res.sendfile('index.html');
+  res.sendfile(path.resolve('/../client/app/index.html'));
   // res.redirect('index.html');
   // res.redirect('../client/app/index.html');
   // res.redirect('/../client/app/index.html');
