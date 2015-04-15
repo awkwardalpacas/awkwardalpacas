@@ -21,11 +21,11 @@ module.exports = {
 	    bcrypt.hash(user.password, salt, function(err, hash) {
 	        // Store hash in user object. 
 	        user.password = hash
+			db.users.save(user)
+			signin(user)
 		    });
 		});
-		db.users.save(user)
 
-		signin(user)
 	}
 
 	// this will be used to view events that a user has already joined
