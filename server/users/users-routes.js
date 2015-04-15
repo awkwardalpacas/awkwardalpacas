@@ -11,5 +11,8 @@ module.exports = function (myApp) {
 // what do we want to happen for POST and GET in the users section
   app.route('/') 
     .get(userController.userEvents)  // signin, but then maybe get events created and/or attended by user??
-    .post(userController.newUser);  // signup
+    // .post(userController.newUser);  // signup - changed this to a post to the /signup path - AG
+
+  app.post('/signin', userController.signin);
+  app.post('/signup', userController.signup);
 };
