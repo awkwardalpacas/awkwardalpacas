@@ -2,15 +2,15 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="bower_components/html5-boilerplate/css/normalize.css">
-  <link rel="stylesheet" href="bower_components/html5-boilerplate/css/main.css">
+  <link rel="stylesheet" href="../../bower_components/html5-boilerplate/css/normalize.css">
+  <link rel="stylesheet" href="../../bower_components/html5-boilerplate/css/main.css">
   <style>
 /* comment this until the page is actually working - saf - 04/14/2015
       [ng-cloak] {
       display: none;
     }*/
   </style>
-  <script src="bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
+  <script src="../../bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
   <script>
     // include angular loader, which allows the files to load in any order
     //@@NG_LOADER_START@@
@@ -29,8 +29,8 @@
 
     // load all of the dependencies asynchronously.
     $script([
-      'bower_components/angular/angular.js',
-      'bower_components/angular-route/angular-route.js',
+      '../../bower_components/angular/angular.js',
+      '../../bower_components/angular-route/angular-route.js',
       'app.js',
       'users/auth.js',
       'events/events.js',
@@ -43,7 +43,9 @@
     });
   </script>
   <title>LunchCorgi App</title>
-  <link rel="stylesheet" href="app.css">
+
+  <link rel="stylesheet" href="../styles/app.css">
+
 </head>
 <body > <!-- ng-cloak removed from body tag until the page is actually working - saf - 04/15/2015 -->
   <ul class="menu">
