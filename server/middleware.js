@@ -21,7 +21,7 @@ module.exports = function (app, express) {
   // app.use(helpers.errorHandler);
 
   // inject our routers into their respective route files
-  require('../users/userRoutes.js')(userRouter);
-  require('../links/eventsRoutes.js')(linkRouter);
+  // require('../signup/signup.js')(signupRouter);
+  // require('../events/events.js')(eventRouter);
 };
 

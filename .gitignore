@@ -1,4 +1,5 @@
 .DS_Store
+app/.DS_store
 .AppleDouble
 .LSOverride
 azure.err
@@ -25,7 +26,7 @@ client/lib
 .floo
 .floobit
 .floo
-.flooignore
+.flooignore 
 
 
 
