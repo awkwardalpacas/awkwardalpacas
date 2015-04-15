@@ -1,4 +1,4 @@
-![lunchcorgi](/lunchcorgi.jpg)
+![lunchcorgi](/client/assets/lunchcorgi.jpg)
 
 # awkwardalpacas
  ## Stack ##
