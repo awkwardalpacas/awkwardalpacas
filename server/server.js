@@ -5,11 +5,12 @@ var path = require('path');
 var app = express();
 // var port = /*process.env.PORT || */ 8000; //dynamic port assignment for deployment purposes
 var __
-app.use(express.static(__dirname + '/../client/app')); 
+app.use(express.static(__dirname + '/..')); 
 // app.use(express.static('client')); 
 
 app.get("/", function (req, res) {
-  res.sendfile(path.resolve('/../client/app/index.html'));
+  res.sendFile('index.html', {root: __dirname + '/../client/app'});
+
   // res.redirect('index.html');
   // res.redirect('../client/app/index.html');
   // res.redirect('/../client/app/index.html');
@@ -28,5 +29,6 @@ var server = app.listen(3000, function () {
   var port = server.address().port;
 
   console.log('Example app listening at http://%s:%s', host, port);
+  // console.log(root.process.env.PWD)
 
 });
