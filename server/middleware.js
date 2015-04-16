@@ -5,8 +5,8 @@ var morgan = require('morgan');
 module.exports = function (app, express) {
   // Express 4 allows us to use multiple routers with their own configurations
   var userRouter = express.Router();
-  var linkRouter = express.Router();
-  var router = express.Router();
+  var eventsRouter = express.Router();
+
   app.use(morgan('dev'));
   app.use(bodyParser.urlencoded({extended: true}));
   app.use(bodyParser.json());
@@ -21,7 +21,7 @@ module.exports = function (app, express) {
   // app.use(helpers.errorHandler);
 
   // inject our routers into their respective route files
-  // require('../signup/signup.js')(signupRouter);
-  // require('../events/events.js')(eventRouter);
+  require('./users/users-routes.js')(userRouter);
+  require('./events/events-routes.js')(eventsRouter);
 };
 

@@ -9,15 +9,19 @@ var lunchCorgi = angular.module('lunchCorgi', [
   ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.
+      when('/', {
+        templateUrl: 'index.html',
+        controller: 'EventsController'
+    }).
       when('/signup', {
         templateUrl: 'users/signup.html',
         controller: 'SignUpCtrl'
     }).
-      when('/events', {
-        templateUrl: 'events/addEvent.html',
-        controller: 'EventsController'
+      when('/signin', {
+        templateUrl: 'users/signin.html',
+        controller: 'SigninController'
     }).otherwise({
-        redirectTo: '/signin'
+        redirectTo: '/'
     });
 }]);
 
