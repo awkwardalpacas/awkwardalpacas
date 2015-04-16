@@ -1,32 +1,70 @@
 var mongoose = require('mongoose');
-var db = mongoose.createConnection("mongodb://localhost/corgi"); //connects to database called corgi
-var bcrypt = require('bcrypt')
+// var db = mongoose.createConnection("mongodb://localhost/corgi"); //connects to database called corgi
+// var bcrypt = require('bcrypt');
+var bcrypt = require('bcrypt-nodejs');
+var Q = require('q');
+var jwt  = require('jwt-simple');
+var User = require('./users.js');
 
 module.exports = {
 	signin: function(req, res) {
-		var user = db.users.find({ name: req.data.user.username })
-		bcrypt.compare(user.password, req.data.user.password, function(err, res) {
-			if (err) throw err;
-			console.log('logged in')
+	  var username = req.data.username,
+        password = req.data.password;
 
-			// Need to figure out what to do about sessions here.  Probably will use express-sessions, or jwt.encode to generate token.
-			// res.json({token: token})
-		})
+    var findUser = Q.nbind(User.findOne, User);
+    findUser({username: username})
+      .then(function (user) {
+        if (!user) {
+          next(new Error('User does not exist'));
+        } else {
+          return user.comparePasswords(password)
+            .then(function(foundUser) {
+              if (foundUser) {
+                var token = jwt.encode(user, 'secret');
+                res.json({token: token});
+              } else {
+                return next(new Error('No user'));
+              }
+            });
+        }
+      })
+      .fail(function (error) {
+        next(error);
+      });
 	},
 
-	signup: function(req, res) {
-		var user = req.data.user 
+	signup: function(req, res) {  //looks in req.data.user to get user password and name
+		// var user = req.data.user 
+		var username  = req.data.username,
+        password  = req.data.password,
+        create,
+        newUser;
 
-		// auto-generate salt and hash password
-		bcrypt.genSalt(10, function(err, salt) {
-	    bcrypt.hash(user.password, salt, function(err, hash) {
-	        // Store hash in user object. 
-	        user.password = hash
-					db.users.save(user)
-					signin(user)
-		    });
-		});
+	    var findOne = Q.nbind(User.findOne, User);
 
+    // check to see if user already exists
+    findOne({username: username})
+      .then(function(user) {
+        if (user) {
+          next(new Error('User already exist!'));
+        } else {
+          // make a new user if not one
+          create = Q.nbind(User.create, User);
+          newUser = {
+            username: username,
+            password: password
+          };
+          return create(newUser);
+        }
+      })
+      .then(function (user) {
+        // create token to send back for auth
+        var token = jwt.encode(user, 'secret');
+        res.json({token: token});
+      })
+      .fail(function (error) {
+        // next(error);
+      });
 	},
 
 	// this will be used to view events that a user has already joined

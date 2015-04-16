@@ -15,7 +15,7 @@ angular.module('lunchCorgi.signup', ['ngRoute'])
   $scope.signup = function() {
     Users.signup($scope.user)
       .then(function(token){
-        $window.localStorage.setItem('com.myApp', token);
+        $window.localStorage.setItem('com.corgi', token);
         $location.path('/');
       })
       .catch(function(error){
