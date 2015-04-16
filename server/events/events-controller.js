@@ -1,4 +1,5 @@
-var db = mongoose.createConnection("mongodb://localhost:8000/corgi"); //connects to database called corgi
+var mongoose = require('mongoose');
+var db = mongoose.createConnection("mongodb://localhost/corgi"); //connects to database called corgi
 
 module.exports = {
 	allEvents: function(req, res) {
