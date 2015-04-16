@@ -3,11 +3,11 @@
     <li class = 'event' ng-repeat="event in eventsList | orderBy:'time'">
       <!-- <img src='./assets/redirect_icon.png'/> -->
       <div class='eventInfo'>
-        <div class='creator'>{{event.creatorID}}</div>
+        <div class='creator'>{{event.creator}}</div>
         <div class='description'>{{event.description}}</div>
         <div class='location'>{{event.location}}</div>
-        <div class='date'>{{event.datetime}}</div>
-        <!-- datetime stored as one object, needs divided before display - TODO: consider a library - saf - 04/16/2015 -->
+        <div class='date'>{{event.date}}</div>
+        <div class='time'>{{event.time}}</div>
 
         <!-- <a href='{{link.base_url}}/api/links/{{link.code}}'>{{link.base_url}}/{{link.code}}</a> -->
       </div>
@@ -18,16 +18,3 @@
 </div>
 
 
-<!--
-COPIED FROM EVENT SCHEMA (server/events.js) FOR CONVENIENCE
-
-var EventSchema = new Schema ({
-  eventID : { type: Number, ref: 'eventID'},
-  description : String,
-  location : String,
-  datetime: Date,
-  creatorID : Number,
-  attendeeIDs : []
-});
-
--->
