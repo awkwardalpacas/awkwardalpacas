@@ -16,6 +16,19 @@ angular.module('lunchCorgi.services', [])
 
   };
 
+  var joinEvent = function(event) {
+      return $http({
+        method: 'POST',
+        url: '/api/events', 
+        data: {event: event.attendeeIDs.push(userID)}
+      })
+      .then(function (resp) {
+        //probably superfluous, but maybe handy for debugging for now - 04/16/2015 - saf
+        alert("You were added to event ", event.description)
+        return resp.statusCode; 
+      });
+  }  
+
   var addEvent = function(event) {
       return $http({
         method: 'POST',
@@ -30,6 +43,7 @@ angular.module('lunchCorgi.services', [])
   // return all of our methods as an object, so we can use them in our controllers
   return {
     getEvents : getEvents,
+    joinEvent: joinEvent,
     addEvent : addEvent
   }
 
