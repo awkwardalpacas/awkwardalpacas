@@ -14,11 +14,11 @@ config(['$routeProvider', function($routeProvider) {
         controller: 'EventsController'
     }).
       when('/signup', {
-        templateUrl: 'users/signup.html',
+        templateUrl: 'client/app/users/signup.html',
         controller: 'SignUpCtrl'
     }).
       when('/signin', {
-        templateUrl: 'users/signin.html',
+        templateUrl: 'client/app/users/signin.html',
         controller: 'SignUpCtrl'
     }).otherwise({
         redirectTo: '/'
