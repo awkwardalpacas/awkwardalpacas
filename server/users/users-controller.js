@@ -1,3 +1,4 @@
+var mongoose = require('mongoose');
 var db = mongoose.createConnection("mongodb://localhost:8000/corgi"); //connects to database called corgi
 var bcrypt = require('bcrypt')
 
@@ -26,7 +27,7 @@ module.exports = {
 		    });
 		});
 
-	}
+	},
 
 	// this will be used to view events that a user has already joined
 	userEvents: function(req, res) {
