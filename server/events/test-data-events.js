@@ -18,7 +18,7 @@ hash is $2a$10$mihH2NO2fSKmhZCQdr5OFOJ7eY6W5QlLSxAn.O7sj2z0OuecefsZ2
 
 
 conn = new Mongo();
-db = conn.getDB("mydb");
+db = conn.getDB("corgi");
 
 db.corgievent.insert(
 	{

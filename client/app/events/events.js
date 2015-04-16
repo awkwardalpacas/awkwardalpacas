@@ -9,9 +9,9 @@ angular.module('lunchCorgi.events', [])
 
 	$scope.addEvent = function() {
 		// check that all fields in the events.html form are filled out
-		if ($scope.event.location !== "" &&
-				$scope.event.date !== "" &&
-				$scope.event.time !== "" ) {
+		if ($scope.event.description !== "" &&
+				$scope.event.location !== "" &&
+				$scope.event.datetime !== "" &&) {
 					$scope.invalid = false
 					Events.addEvent($scope.event)
 					.then(function(newEvent) {
@@ -21,6 +21,19 @@ angular.module('lunchCorgi.events', [])
 					$scope.invalid = true
 				}			
 	}
+/*
+COPIED FROM EVENT SCHEMA (server/events.js) FOR CONVENIENCE
+
+var EventSchema = new Schema ({
+	eventID : { type: Number, ref: 'eventID'},
+	description : String,
+	location : String,
+	datetime: Date,
+	creatorID : Number,
+	attendeeIDs : []
+});
+
+*/
 
 	// first page of events is page number 0; when more events are viewed, the page number is increased
 	$scope.pageNumber = 0
