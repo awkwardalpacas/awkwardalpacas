@@ -19,7 +19,7 @@ config(['$routeProvider', function($routeProvider) {
     }).
       when('/signin', {
         templateUrl: 'users/signin.html',
-        controller: 'SigninController'
+        controller: 'SignUpCtrl'
     }).otherwise({
         redirectTo: '/'
     });
