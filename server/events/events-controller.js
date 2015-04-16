@@ -1,9 +1,34 @@
 var mongoose = require('mongoose');
-var db = mongoose.createConnection("mongodb://localhost/corgi"); //connects to database called corgi
+var mongo = require('mongodb').MongoClient
+// mongoose.connect("mongodb://localhost:27017/corgi"); //connects to database called corgi
+// var db = mongoose.connection
+// db.once('open', function() {
+//   console.log('open')
+//   console.log(db.collections)
+// })
+
+// var db = connect('localhost:27017/corgi')
+// var db = new mongo.getDB('corgi')
+var Cevents = {}
+var Cusers = {}
+mongo.connect('mongodb://localhost:27017/corgi', function(err, db) {
+  if (err) throw err;
+  Cevents = db.collection('corgievent');
+  Cusers = db.collection('corgiuser');
+  console.log(db.collection('corgievent').find().toArray(function(err, items) {}))
+  // console.log('events',Cevents.find().toArray())
+  // console.log('users',Cusers.find().toArray())
+})
+
+// var mongo = require('mongodb'); 
+// var db= new mongo.Db( 'corgi', new mongo.Server( 'localhost', 27017, {}), {}); 
 
 module.exports = {
 	allEvents: function(req, res) {
-    var events = db.corgievent.find({ datetime: { $gt: Date.now() } })
+    // console.log('db',DB)
+    console.log('event',Cevents)
+    console.log('user',Cusers)
+    var events = Cevents.find({ datetime: { $gt: Date.now() } })
       // then sorts time by ascending so we can get the events happening next...
       .sort({ datetime: 1 })
       // then limits the response to only ten.
@@ -12,7 +37,9 @@ module.exports = {
       // so we might skip over some events to look at the next ten, for example.
       .skip ( 10*req.data.pageNum )
       // Results are returned as an array for use in angular ng-repeat in the template.
-      .toArray()
+      .toArray(
+        // function() {console.log('stuff')}
+        )
 
     events.forEach(function(ev) {
       // this makes the time and date into a friendly, localized string.  Instead of showing milliseconds, it shows "8:00 P.M."
@@ -20,7 +47,7 @@ module.exports = {
       ev.date = ev.datetime.toLocaleDateString()
       // MongoDB doesn't have a join query, so we have to use the event's creatorID to do a lookup on the user collection.
       // That lookup returns a single object, and we use its name property.
-      ev.creator = db.corgiuser.find({ userID: ev.creatorID }).name
+      ev.creator = Cusers.find({ userID: ev.creatorID }).name
     })
 
     res.json(events)
@@ -28,7 +55,7 @@ module.exports = {
 
 	newEvent: function(req, res) {
 		// save event object passed in with http request from services.js
-		db.corgievent.save(req.data.event)
+		Cevents.save(req.data.event)
 	}
 
 
