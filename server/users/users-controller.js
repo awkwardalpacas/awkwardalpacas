@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var db = mongoose.createConnection("mongodb://localhost:8000/corgi"); //connects to database called corgi
+var db = mongoose.createConnection("mongodb://localhost/corgi"); //connects to database called corgi
 var bcrypt = require('bcrypt')
 
 module.exports = {
