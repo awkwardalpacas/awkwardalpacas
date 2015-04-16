@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('lunchcorgi.signup', ['ngRoute'])
+angular.module('lunchCorgi.signup', ['ngRoute'])
 
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/signup', {
