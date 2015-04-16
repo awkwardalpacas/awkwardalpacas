@@ -1,22 +1,24 @@
 var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
-    autoIncrement = require('mongoose-auto-increment');
+    autoIncrement = require('mongoose-auto-increment'),
+    bcrypt = require('bcrypt-nodejs'),
+    Q = require('q');
 
 var db = mongoose.createConnection("mongodb://localhost/corgi"); //connects to database called corgi
 
-autoIncrement.initialize(connection);  // required to get the tables to auto-increment for each new record (user or event)
-
+autoIncrement.initialize(db);  // required to get the tables to auto-increment for each new record (user or event)
 
 var UserSchema = new Schema({
     userID : { type: Number, ref: 'userID'},
     name : String,
     password : String,
-    eventIDs: []
+    eventIDs: [],
+    salt: String
 });
 
-userSchema.plugin(autoIncrement.plugin, 'userID');  // extends the UserSchema to include the auto-increment
-var User = db.model('User', UserSchema);
+UserSchema.plugin(autoIncrement.plugin, 'userID');  // extends the UserSchema to include the auto-increment
 
+var User = db.model('User', UserSchema);
 
 UserSchema.methods.comparePasswords = function (candidatePassword) {
   var defer = Q.defer();
@@ -31,7 +33,7 @@ UserSchema.methods.comparePasswords = function (candidatePassword) {
   return defer.promise;
 };
 
-UserSchema.pre('save', function (next) {
+UserSchema.pre('save', function (next) {  ///pre??
   var user = this;
 
   // only hash the password if it has been modified (or is new)
@@ -40,7 +42,7 @@ UserSchema.pre('save', function (next) {
   }
 
   // generate a salt
-  bcrypt.genSalt(SALT_WORK_FACTOR, function(err, salt) {
+  bcrypt.genSalt(10, function(err, salt) { //hard coded SALT_WORK_FACTOR to 10
     if (err) {
       return next(err);
     }
@@ -58,8 +60,6 @@ UserSchema.pre('save', function (next) {
     });
   });
 });
-
-module.exports = mongoose.model('users', UserSchema);
 
 
 exports.User = mongoose.model('users', UserSchema);
