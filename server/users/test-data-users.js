@@ -1,3 +1,4 @@
+
 /*
 pwd is joe for all
 hash is $2a$10$mihH2NO2fSKmhZCQdr5OFOJ7eY6W5QlLSxAn.O7sj2z0OuecefsZ2
@@ -10,13 +11,13 @@ hash is $2a$10$mihH2NO2fSKmhZCQdr5OFOJ7eY6W5QlLSxAn.O7sj2z0OuecefsZ2
 5. save this document to /data/db/scripts
 6. type or paste the following into the mongo terminal:
 	a. "use corgi"  <--- this sets the database or creates if it doesn't exist
-	b. "load("/data/db/scripts/corgievents.js")"  <--- this loads the events data into a corgievents table (collection)
-	c. "load("/data/db/scripts/corgiusers.js")"  <---this loads the events data into a corgiuser table (collection)
+	b. "load("/data/db/scripts/test-data-events.js")"  <--- this loads the events data into a corgievents table (collection)
+	c. "load("/data/db/scripts/test-data-users.js")"  <---this loads the events data into a corgiuser table (collection)
 	d. rejoice in a full database
 */
 
 conn = new Mongo();
-db = conn.getDB("mydb");
+db = conn.getDB("corgi");
 
 db.corgiuser.insert([
 	{

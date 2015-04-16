@@ -2,9 +2,9 @@ var db = mongoose.createConnection("mongodb://localhost:8000/corgi"); //connects
 
 module.exports = {
 	allEvents: function(req, res) {
-    var events = db.events.find({ time: { $gt: Date.now() } })
+    var events = db.corgievent.find({ datetime: { $gt: Date.now() } })
       // then sorts time by ascending so we can get the events happening next...
-      .sort({ time: 1 })
+      .sort({ datetime: 1 })
       // then limits the response to only ten.
       .limit( 10 )
       // If there is an argument passed from events.js, it's to specify the "page," 
@@ -19,7 +19,7 @@ module.exports = {
       ev.date = ev.datetime.toLocaleDateString()
       // MongoDB doesn't have a join query, so we have to use the event's creatorID to do a lookup on the user collection.
       // That lookup returns a single object, and we use its name property.
-      ev.creator = db.users.find({ userID: ev.creatorID }).name
+      ev.creator = db.corgiuser.find({ userID: ev.creatorID }).name
     })
 
     res.json(events)
@@ -27,8 +27,9 @@ module.exports = {
 
 	newEvent: function(req, res) {
 		// save event object passed in with http request from services.js
-		db.events.save(req.data.event)
+		db.corgievent.save(req.data.event)
 	}
 
 
 }
+
