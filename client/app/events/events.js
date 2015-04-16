@@ -13,18 +13,6 @@ angular.module('lunchCorgi.events', [])
 	// add joinEvent function in Services.js
 	}
 
-  $scope.getLinks = function(){
-  	Links.getLinks($scope.data)
-  	  .then(function(data){
-  	  	$scope.data['links'] = data;
-  	  	console.log("links data is ", data);
-  	  })
-  	  .catch(function(error){
-  	  	console.error(error);
-  	  });
-  };	
-  $scope.getLinks();
-
 	$scope.addEvent = function() {
 		// check that all fields in the events.html form are filled out
 		if ($scope.event.description !== "" &&
