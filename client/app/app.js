@@ -10,7 +10,7 @@ var lunchCorgi = angular.module('lunchCorgi', [
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.
       when('/', {
-        templateUrl: 'index.html',
+        templateUrl: 'client/app/events/eventsPage.html',
         controller: 'EventsController'
     }).
       when('/signup', {
