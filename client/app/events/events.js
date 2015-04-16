@@ -11,7 +11,7 @@ angular.module('lunchCorgi.events', [])
 		// check that all fields in the events.html form are filled out
 		if ($scope.event.description !== "" &&
 				$scope.event.location !== "" &&
-				$scope.event.datetime !== "" &&) {
+				$scope.event.datetime !== "" ) {
 					$scope.invalid = false
 					Events.addEvent($scope.event)
 					.then(function(newEvent) {
