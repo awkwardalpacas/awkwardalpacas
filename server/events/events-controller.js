@@ -9,19 +9,15 @@ var mongo = require('mongodb').MongoClient
 
 // var db = connect('localhost:27017/corgi')
 // var db = new mongo.getDB('corgi')
-var Cevents = {}
-var Cusers = {}
+var Cevents;
+var Cusers;
+var db;
 mongo.connect('mongodb://localhost:27017/corgi', function(err, db) {
   if (err) throw err;
   Cevents = db.collection('corgievent');
   Cusers = db.collection('corgiuser');
-  console.log(db.collection('corgievent').find().toArray(function(err, items) {}))
-  // console.log('events',Cevents.find().toArray())
-  // console.log('users',Cusers.find().toArray())
+  db.collection('corgievent').find().toArray(function(err, items) {console.log(items)})
 })
-
-// var mongo = require('mongodb'); 
-// var db= new mongo.Db( 'corgi', new mongo.Server( 'localhost', 27017, {}), {}); 
 
 module.exports = {
 	allEvents: function(req, res) {
