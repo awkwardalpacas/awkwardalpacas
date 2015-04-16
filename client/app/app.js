@@ -1,11 +1,11 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-var lunchCorgi = angular.module('lunchcorgi', [
+var lunchCorgi = angular.module('lunchCorgi', [
   'ngRoute',
   'lunchCorgi.services',
   'lunchCorgi.events',
-  'lunchcorgi.signup'
+  'lunchCorgi.signup'
   ]).
 config(['$routeProvider', function($routeProvider) {
   $routeProvider.
