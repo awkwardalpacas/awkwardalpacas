@@ -1,5 +1,13 @@
 var mongoose = require('mongoose');
-var db = mongoose.createConnection("mongodb://localhost/corgi"); //connects to database called corgi
+var mongo = require('mongodb').MongoClient
+mongo.connect('mongodb://localhost:27017/corgi', function(err, db) {
+  if (err) throw err;
+  // when the connection occurs, we store the connection 'object' (or whatever it is) in a global variable so we can use it elsewhere.
+  DB = db
+
+  // I added some console logs throughout this file to make it easier to debug; remove them whenever you want.
+  console.log('connected')
+})
 var bcrypt = require('bcrypt')
 
 // need to adjust this to match the connection, etc. in the events-controller file
@@ -25,8 +33,9 @@ module.exports = {
 	    bcrypt.hash(user.password, salt, function(err, hash) {
 	        // Store hash in user object. 
 	        user.password = hash
-					db.users.save(user)
-					signin(user)
+					   DB.collection('users').insert(user)
+          console.log(DB);
+					// signin(user)
 		    });
 		});
 
