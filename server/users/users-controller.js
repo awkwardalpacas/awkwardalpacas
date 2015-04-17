@@ -36,9 +36,8 @@ module.exports = {
 	},
 
 	signup: function(req, res) {  //looks in req.data.user to get user password and name
-		// var user = req.data.user 
-		var username  = req.data.username,
-        password  = req.data.password,
+		var username  = req.body.username,
+        password  = req.body.password,
         create,
         newUser;
 

@@ -56,7 +56,7 @@ angular.module('lunchCorgi.services', [])
   var signup = function(user){
     return $http({
       method: 'POST',
-      url: '/api/signup',
+      url: '/api/users/signup',
       data: user
     }).then(function (resp) {
       return resp.data.token;
@@ -66,7 +66,7 @@ angular.module('lunchCorgi.services', [])
   var signin = function(user) {
     return $http({
       method: 'POST',
-      url: '/api/signin',
+      url: '/api/users/signin',
       data: user
     }).then(function (resp) {
       return resp.data.token;
