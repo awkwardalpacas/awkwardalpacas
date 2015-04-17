@@ -2,7 +2,7 @@
 
 angular.module('lunchCorgi.signup', ['ngRoute'])
 
-.controller('SignUpCtrl', [function($scope, Users) {
+.controller('SignUpCtrl', function ($scope, Users) {
   $scope.user = {};
 
   $scope.signin = function () {
@@ -27,4 +27,4 @@ angular.module('lunchCorgi.signup', ['ngRoute'])
       });
   };
 
-}]);
+});
