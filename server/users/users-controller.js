@@ -6,8 +6,8 @@ var bcrypt = require('bcrypt')
 
 module.exports = {
 	signin: function(req, res) {
-		var user = db.users.find({ name: req.data.user.username })
-		bcrypt.compare(user.password, req.data.user.password, function(err, res) {
+		var user = db.users.find({ name: req.body.username })
+		bcrypt.compare(user.password, req.body.password, function(err, res) {
 			if (err) throw err;
 			console.log('logged in')
 
@@ -17,8 +17,9 @@ module.exports = {
 	},
 
 	signup: function(req, res) {
-		var user = req.data.user 
-
+    // console.log(req);
+		var user = req.body 
+    console.log(user);
 		// auto-generate salt and hash password
 		bcrypt.genSalt(10, function(err, salt) {
 	    bcrypt.hash(user.password, salt, function(err, hash) {
