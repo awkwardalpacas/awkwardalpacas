@@ -49,9 +49,17 @@ module.exports = {
 
         // here we push to the events array, which is returned in res.json.
         events.push(doc)
-        if (events.length === 10) { //this only makes sense if we're always returning 10 items.  you can do a fancy version with the cursor.count method.
-          res.json(events)
-        }
+        console.log('pushed')
+        getEvents.count(function(err, count) {
+          console.log('count',count)
+          if (events.length === count) { //this only makes sense if we're always returning 10 items.  you can do a fancy version with the cursor.count method.
+            res.json(events)
+            console.log('check passed')
+            // res.end(JSON.stringify(events))
+            // res.end('done')
+          }
+          
+        })
       })
     })
 	},
