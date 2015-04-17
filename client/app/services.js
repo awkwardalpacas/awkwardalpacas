@@ -7,7 +7,7 @@ angular.module('lunchCorgi.services', [])
   var getEvents = function(pageNum) {
     return $http({
       method: 'GET',
-      url: '/api/events'
+      url: '/api/events',
       // data: {pageNum: pageNum} //commenting this out for now, but it might be implemented later
     })
     .then(function(resp) {
