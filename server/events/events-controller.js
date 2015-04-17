@@ -8,14 +8,16 @@ var DB;
 // http://mongodb.github.io/node-mongodb-native/2.0/api/
 mongo.connect('mongodb://localhost:27017/corgi', function(err, db) {
   if (err) throw err;
-
   // when the connection occurs, we store the connection 'object' (or whatever it is) in a global variable so we can use it elsewhere.
   DB = db
+  console.log('connected')
 })
 
 module.exports = {
 	allEvents: function(req, res) {
     var events = []
+
+    var cursorCount = 0
     // this is the real first line, where only events happening in the future are fetched, but...
     // var getEvents = DB.collection('corgievent').find({ datetime: { $gt: Date.now() } })
     
@@ -30,6 +32,12 @@ module.exports = {
       .skip ( 10*req.body.pageNum )
       // Results are streamed.
       .stream();
+
+    // number of items returned; used in if statement further down.
+    getEvents.count(function(err, count) {
+      cursorCount = count
+      console.log(cursorCount)
+    })
 
     // turns out we can use the collection.find stuff as a stream, just like any readstream or writestream in node.
     // http://mongodb.github.io/node-mongodb-native/2.0/tutorials/streams/
@@ -49,19 +57,17 @@ module.exports = {
 
         // here we push to the events array, which is returned in res.json.
         events.push(doc)
-        console.log('pushed')
-        getEvents.count(function(err, count) {
-          console.log('count',count)
-          if (events.length === count) { //this only makes sense if we're always returning 10 items.  you can do a fancy version with the cursor.count method.
-            res.json(events)
-            console.log('check passed')
-            // res.end(JSON.stringify(events))
-            // res.end('done')
-          }
+        console.log('pushed',events.length)
+        // res.end(JSON.stringify(events))
+        if (events.length === cursorCount) { //checks whether all items are now in the events array.
+          // res.json(events)
+          console.log('check passed')
+          res.end(JSON.stringify(events))
+          // res.end('done')
+        }
           
         })
       })
-    })
 	},
 
 	newEvent: function(req, res) {
