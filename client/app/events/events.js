@@ -35,13 +35,18 @@ angular.module('lunchCorgi.events', [])
 	$scope.eventsList = {}
 
 	$scope.viewAllEvents = function() {
+		// send request to services.js, which in turn sends the actual http request to events-controller in the server.
 		Events.getEvents($scope.pageNumber)
 		.then(function(data) {
+			// set $scope.eventsList equal to the data we get back from our http request - that's how we 
+			// populate the actual event views in the template.
 			$scope.eventsList = data
 		})
 	}
 
 	$scope.nextPage = function() {
+		// need some way to limit how many pages people can go forward; it seems to get messed up if people 
+		// navigate past where there are no more results to show.
 		$scope.pageNumber++
 		$scope.viewAllEvents()
 	}
@@ -54,5 +59,6 @@ angular.module('lunchCorgi.events', [])
 		}
 	}
 	
+	// show events when the page is first loaded.
 	$scope.viewAllEvents()
 })

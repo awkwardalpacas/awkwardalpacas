@@ -19,11 +19,11 @@ module.exports = {
     // this is the real first line, where only events happening in the future are fetched, but...
     // var getEvents = DB.collection('corgievent').find({ datetime: { $gt: Date.now() } })
     
-    // for testing, we're just fetching everything.
+    // ...for testing, we're just fetching everything.
     var getEvents = DB.collection('corgievent').find()
-      // then sorts time by ascending so we can get the events happening next...
+      // then sort time by ascending so we can get the events happening next...
       .sort({ datetime: 1 })
-      // then limits the response to only ten.
+      // then limit the response to only ten.
       .limit( 10 )
       // If there is an argument passed from events.js, it's to specify the "page," 
       // so we might skip over some events to look at the next ten, for example.
@@ -34,7 +34,8 @@ module.exports = {
     // turns out we can use the collection.find stuff as a stream, just like any readstream or writestream in node.
     // http://mongodb.github.io/node-mongodb-native/2.0/tutorials/streams/
     getEvents.on('data', function(doc) {
-      // we need to find the corresponding user from the corgiuser collection, using this event's creator ID
+      // we need another smaller stream to find the corresponding user from the corgiuser collection, using this event's 
+      // creator ID - so there should only be one result
       var foundUser = DB.collection('corgiuser').find({ userID: doc.creatorID }).stream()
       foundUser.on('data', function(user) {
         // we set this doc's creator to the name of the user that we found
@@ -46,6 +47,7 @@ module.exports = {
         //time
         console.log(doc.datetime.slice(11))
 
+        // here we push to the events array, which is returned in res.json.
         events.push(doc)
         if (events.length === 10) { //this only makes sense if we're always returning 10 items.  you can do a fancy version with the cursor.count method.
           res.json(events)
@@ -57,6 +59,7 @@ module.exports = {
 	newEvent: function(req, res) {
 		// save event object passed in with http request from services.js
 		DB.collection('corgievent').insert(req.body.event)
+    // return the event that was added; this makes for easy debugging in the console, where we can see the Network -> Response tabs
     res.json(req.body.event)
 	}
 

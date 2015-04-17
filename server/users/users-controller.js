@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 var db = mongoose.createConnection("mongodb://localhost/corgi"); //connects to database called corgi
 var bcrypt = require('bcrypt')
 
-// need to adjust this a bit to match the connection, etc. in the events-controller file
+// need to adjust this to match the connection, etc. in the events-controller file
 
 module.exports = {
 	signin: function(req, res) {

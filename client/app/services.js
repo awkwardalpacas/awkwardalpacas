@@ -1,8 +1,11 @@
 angular.module('lunchCorgi.services', [])
 
-.factory('Events', function($http) { //when routes are created, we might not use the $http stuff - TBD
+.factory('Events', function($http) {
+  // these factory functions can be tested in the console with the following syntax (and similar stuff):
+  // var e = angular.element(document.body).injector().get('Events'); -> because the name of the factory is 'Events'
+  // e.addEvent(newEv)
+  // e.getEvents(1)
   
-  // need to figure out how this will point to the correct MongoDB path.  
   // this function finds events with time greater than now (that's what Date.now is)...
   var getEvents = function(pageNum) {
     return $http({
