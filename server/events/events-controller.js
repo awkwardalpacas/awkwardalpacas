@@ -10,7 +10,7 @@ mongo.connect('mongodb://localhost:27017/corgi', function(err, db) {
   if (err) throw err;
   // when the connection occurs, we store the connection 'object' (or whatever it is) in a global variable so we can use it elsewhere.
   DB = db
-  console.log('connected')
+  console.log('connected',DB)
 })
 
 module.exports = {
@@ -59,7 +59,7 @@ module.exports = {
         events.push(doc)
         console.log('pushed',events.length)
         // res.end(JSON.stringify(events))
-        if (events.length === cursorCount) { //checks whether all items are now in the events array.
+        if (events.length === 8) { //checks whether all items are now in the events array.
           // res.json(events)
           console.log('check passed')
           res.end(JSON.stringify(events))

@@ -36,6 +36,7 @@ angular.module('lunchCorgi.events', [])
 
 	$scope.viewAllEvents = function() {
 		// send request to services.js, which in turn sends the actual http request to events-controller in the server.
+		console.log($scope.pageNumber)
 		Events.getEvents($scope.pageNumber)
 		.then(function(data) {
 			// set $scope.eventsList equal to the data we get back from our http request - that's how we 
