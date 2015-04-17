@@ -18,7 +18,8 @@
   <button class="nextPage" style="float: right" ng-click="nextPage()">Next Page</button>
 
   <!-- do we want a navigation bar here? -->
-  <div ng-controller = "EventsController">
+ <!-- removed controller since ng-app in index.html already loads the controller, so we were previously loading it twice. -->
+  <div>
     <form name="eventForm" ng-submit="addEvent()">
       <input type= "text" ng-model = "event.location">
       <input type= "date" ng-model = "event.date">
