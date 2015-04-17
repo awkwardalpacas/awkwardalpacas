@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('lunchCorgi.signup', ['ngRoute']) //lunchCorgi.services' <--this has to go somewhere....
+angular.module('lunchCorgi.signup', ['ngRoute'])
 
-.controller('SignUpCtrl', [function($scope, Users) {
+.controller('SignUpCtrl', ['$scope', 'Users', function($scope, Users) {
   $scope.user = {};
 
   $scope.signin = function () {
