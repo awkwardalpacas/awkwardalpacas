@@ -11,9 +11,10 @@ angular.module('lunchCorgi.services', [])
     return $http({
       method: 'GET',
       url: '/api/events',
-      data: {pageNum: pageNum}
+      params: {pageNum: pageNum}
     })
     .then(function(res) {
+      console.log(res.data)
       return res.data
     })
 

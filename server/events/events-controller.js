@@ -10,7 +10,7 @@ mongo.connect('mongodb://localhost:27017/corgi', function(err, db) {
   if (err) throw err;
   // when the connection occurs, we store the connection 'object' (or whatever it is) in a global variable so we can use it elsewhere.
   DB = db
-  console.log('connected',DB)
+  console.log('connected')
 })
 
 module.exports = {
@@ -26,17 +26,18 @@ module.exports = {
       // then sort time by ascending so we can get the events happening next...
       .sort({ datetime: 1 })
       // then limit the response to only ten.
-      .limit( 10 )
+      // .limit( 10*req.body.pageNum )
       // If there is an argument passed from events.js, it's to specify the "page," 
       // so we might skip over some events to look at the next ten, for example.
-      .skip ( 10*req.body.pageNum )
+      // get requests require passing stuff using params, so we have to parse the page number here.
+      .skip ( 10*(+req.param('pageNum')) )
       // Results are streamed.
       .stream();
 
     // number of items returned; used in if statement further down.
     getEvents.count(function(err, count) {
       cursorCount = count
-      console.log(cursorCount)
+      console.log('cursorCount',cursorCount)
     })
 
     // turns out we can use the collection.find stuff as a stream, just like any readstream or writestream in node.
@@ -51,18 +52,18 @@ module.exports = {
 
         //these logs might eventually be used to get a separate date and time from the mongo datetime object.
         //date
-        console.log(doc.datetime.slice(0,10))
+        // console.log(doc.datetime.slice(0,10))
         //time
-        console.log(doc.datetime.slice(11))
+        // console.log(doc.datetime.slice(11))
 
         // here we push to the events array, which is returned in res.json.
         events.push(doc)
         console.log('pushed',events.length)
         // res.end(JSON.stringify(events))
-        if (events.length === 8) { //checks whether all items are now in the events array.
-          // res.json(events)
+        if (events.length === cursorCount) { //checks whether all items are now in the events array.
+          res.json(events)
           console.log('check passed')
-          res.end(JSON.stringify(events))
+          // res.end(JSON.stringify(events))
           // res.end('done')
         }
           
