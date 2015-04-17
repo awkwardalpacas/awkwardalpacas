@@ -8,10 +8,10 @@ angular.module('lunchCorgi.services', [])
     return $http({
       method: 'GET',
       url: '/api/events',
-      // data: {pageNum: pageNum} //commenting this out for now, but it might be implemented later
+      data: {pageNum: pageNum}
     })
-    .then(function(resp) {
-      return resp.statusCode
+    .then(function(res) {
+      return res.data
     })
 
   };
@@ -35,8 +35,8 @@ angular.module('lunchCorgi.services', [])
         url: '/api/events',
         data: {event: event}
       })
-      .then(function (resp) {
-        return resp.statusCode; 
+      .then(function (res) {
+        return res.data
       });
   }
 

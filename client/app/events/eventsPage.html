@@ -1,5 +1,6 @@
 <div id='container'>
- <ul ng-controller = "EventsController">
+ <!-- removed controller since ng-app in index.html already loads the controller, so we were previously loading it twice. -->
+ <ul>
     <li class = 'event' ng-repeat="event in eventsList | orderBy:'time'">
       <!-- <img src='./assets/redirect_icon.png'/> -->
       <div class='eventInfo'>
