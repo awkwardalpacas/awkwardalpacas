@@ -41,19 +41,24 @@ module.exports = {
         create,
         newUser;
 
-	    var findOne = Q.nbind(User.findOne, User);
+    var findOne = Q.nbind(User.findOne, User);
 
     // check to see if user already exists
-    findOne({username: username})
+    console.log("username, password:", username, password);
+    console.log("findOne test:", findOne({name:"Candy"}));
+    console.log("findOne test2:", findOne({name:"karrielew"}));
+
+    findOne({name: username})
       .then(function(user) {
         if (user) {
           next(new Error('User already exist!'));
         } else {
           // make a new user if not one
+          console.log("we've made it to creating a new user in user-controller");
           create = Q.nbind(User.create, User);
           newUser = {
-            username: username,
-            password: password
+            name: username,
+            hashedpassword: password
           };
           return create(newUser);
         }

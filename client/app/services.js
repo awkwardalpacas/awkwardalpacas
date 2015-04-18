@@ -59,6 +59,7 @@ angular.module('lunchCorgi.services', [])
       url: '/api/users/signup',
       data: user
     }).then(function (resp) {
+      console.log("reponse data back in services:", resp.data);
       return resp.data.token;
     });
   }
