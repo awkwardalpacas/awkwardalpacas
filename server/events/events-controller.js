@@ -82,6 +82,5 @@ module.exports = {
     res.json(req.body.event)
 	}
 
-
 }
 
