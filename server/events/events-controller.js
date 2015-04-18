@@ -83,14 +83,14 @@ module.exports = {
 	},
 
   joinEvent: function(req, res) {
-    // console.log(req.body.event._id);
-    var foundEvent = DB.collection('corgievent').find({_id: req.body._id});
-    // console.log(foundEvent);
+    // console.log(req.body.event.eventID);
+    var foundEvent = DB.collection('corgievent').find({eventID: req.body.event.eventID});
 
     foundEvent.on('data', function (event) {
       console.log(event);
       // this is just a test userID
-      event.attendeeIDs.push({userID: 55555});
+      event.attendeeIDs.push({userID: 6});
+      res.end();
     });
   }
 }
