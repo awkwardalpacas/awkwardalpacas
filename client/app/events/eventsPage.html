@@ -9,7 +9,7 @@
         <div class='location'>{{event.location}}</div>
         <div class='date'>{{event.date}}</div>
         <div class='time'>{{event.time}}</div>
-        <button onclick='joinEvent'>Join this event!</button>
+        <button ng-click='joinEvent(event)'>Join this event!</button>
         <!-- <a href='{{link.base_url}}/api/links/{{link.code}}'>{{link.base_url}}/{{link.code}}</a> -->
       </div>
     </li>

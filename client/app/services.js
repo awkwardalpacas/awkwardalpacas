@@ -14,7 +14,6 @@ angular.module('lunchCorgi.services', [])
       params: {pageNum: pageNum}
     })
     .then(function(res) {
-      console.log(res.data)
       return res.data
     })
 
@@ -22,9 +21,9 @@ angular.module('lunchCorgi.services', [])
 
   var joinEvent = function(event) {
       return $http({
-        method: 'POST',
+        method: 'PUT',
         url: '/api/events', 
-        data: {event: event.attendeeIDs.push(userID)}
+        data: {event: event}
       })
       .then(function (resp) {
         //probably superfluous, but maybe handy for debugging for now - 04/16/2015 - saf
@@ -56,9 +55,10 @@ angular.module('lunchCorgi.services', [])
   var signup = function(user){
     return $http({
       method: 'POST',
-      url: '/api/signup',
+      url: '/api/users/signup',
       data: user
     }).then(function (resp) {
+      console.log("reponse data back in services:", resp.data);
       return resp.data.token;
     });
   }
@@ -66,7 +66,7 @@ angular.module('lunchCorgi.services', [])
   var signin = function(user) {
     return $http({
       method: 'POST',
-      url: '/api/signin',
+      url: '/api/users/signin',
       data: user
     }).then(function (resp) {
       return resp.data.token;
