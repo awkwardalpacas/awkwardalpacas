@@ -18,7 +18,6 @@ module.exports = {
 		bcrypt.compare(user.password, req.body.password, function(err, res) {
 			if (err) throw err;
 			console.log('logged in')
-
 			// Need to figure out what to do about sessions here.  Probably will use express-sessions, or jwt.encode to generate token.
 			// res.json({token: token})
 		})
@@ -27,14 +26,20 @@ module.exports = {
 	signup: function(req, res) {
     // console.log(req);
 		var user = req.body 
-    console.log(user);
+    // console.log(user);
 		// auto-generate salt and hash password
 		bcrypt.genSalt(10, function(err, salt) {
 	    bcrypt.hash(user.password, salt, function(err, hash) {
 	        // Store hash in user object. 
-	        user.password = hash
-					   DB.collection('users').insert(user)
-          console.log(DB);
+	    user.password = hash
+      // var foundUser = DB.collection('corgiuser').find({ name: user.name }).stream()
+      // if (!foundUser) {
+			// save event object passed in with http request from services.js
+    DB.collection('corgiuser').insert(user)
+    // return the event that was added; this makes for easy debugging in the console, where we can see the Network -> Response tabs
+    res.json(user)
+       // } 
+          // console.log(DB);
 					// signin(user)
 		    });
 		});
@@ -51,3 +56,5 @@ module.exports = {
 		res.json(events)
 	}
 }
+/*db.corgi.find({})
+> db.corgi.insert({'user':'Josh'})*/
