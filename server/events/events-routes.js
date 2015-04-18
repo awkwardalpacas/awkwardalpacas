@@ -10,6 +10,6 @@ module.exports = function (app) {
 
   app.route('/')
     .get(eventsController.allEvents)
-    .post(eventsController.newEvent);
-
+    .post(eventsController.newEvent)
+    .put(eventsController.joinEvent);
 };

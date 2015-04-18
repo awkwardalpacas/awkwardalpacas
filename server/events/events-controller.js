@@ -80,8 +80,25 @@ module.exports = {
 		DB.collection('corgievent').insert(req.body.event)
     // return the event that was added; this makes for easy debugging in the console, where we can see the Network -> Response tabs
     res.json(req.body.event)
-	}
+	},
 
+  joinEvent: function(req, res) {
+    // console.log(req.body.event._id);
+    var foundEvent = DB.collection('corgievent').find({_id: req.body._id});
+    // console.log(foundEvent);
 
+    foundEvent.on('data', function (event) {
+      console.log(event);
+      // this is just a test userID
+      event.attendeeIDs.push({userID: 55555});
+    });
+  }
 }
+/*> db.corgiuser.insert({"user": corgi})
+Fri Apr 17 20:01:52.727 ReferenceError: corgi is not defined
+> db.corgiuser.insert({"user":"corgi"})
+> db.corgiuser.find({"user":"corgi"})
+{ "_id" : ObjectId("5531ad0a47571f55cd11daff"), "user" : "corgi" }
+*/
+
 
