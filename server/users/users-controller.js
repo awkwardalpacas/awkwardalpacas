@@ -60,29 +60,18 @@ module.exports = {
       if (result) {
         next(new Error('User already exists!'));
       } else {
-        // make a new user if not one
-        console.log("we've made it to creating a new user in user-controller");
-        // create = Q.nbind(User.create, User);
-        newUser = {
+
+        var newUser = new User({
           name: username,
-          hashedpassword: password
-        };  
-
-        DB.collection('corgiuser').insert(newUser, function(err, result){;
-
-          // create token to send back for auth
-          var token = jwt.encode(newUser, 'secret');
-          res.json({token: token});
-
-      });
-
-      newUser.save().then(function(result){;
-          // create token to send back for auth
-          var token = jwt.encode(result, 'secret');
-          res.json({token: token});
+          password: password
         });
-      };
 
+        newUser.save();
+
+        // create token to send back for auth
+        var token = jwt.encode(password, 'secret');
+        res.json({token: token});
+      }
     });
   },
 

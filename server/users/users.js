@@ -8,7 +8,7 @@ var db = mongoose.createConnection("mongodb://localhost/corgi"); //connects to d
 
 autoIncrement.initialize(db);  // required to get the tables to auto-increment for each new record (user or event)
 
-var UserSchema = new Schema({
+var UserSchema = new mongoose.Schema({
     userID : { type: Number, ref: 'userID'},
     name : String,
     password : String,
@@ -64,13 +64,14 @@ UserSchema.pre('save', function (next) {  ///pre??
     // hash the password along with our new salt
     bcrypt.hash(user.password, salt, null, function(err, hash) {
       if (err) {
-        console.log("we're in bcrypt hash, yep");
         console.log('error in hash fcn: ', err);
       }
 
+      console.log("we're in bcrypt hash, yep");
       // override the cleartext password with the hashed one
       user.password = hash;
       user.salt = salt;
+      next();
     });
   });
 
