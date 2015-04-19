@@ -61,26 +61,29 @@ module.exports = {
 
     console.log("this is the user in the users-controller: ", req.body);
 
-    var cursor = DB.collection('corgiuser').find({name: username});
-    // check to see if user already exists
-    if ( cursor.count() ) {
-      res.end(new Error('User already exists!'));
-    } else {
-      // make a new user if not one
+    DB.collection('corgiuser').find({name: username}, {}, function(err, result){
+
+      // check to see if user already exists
+      if (result) {
+        new Error('User already exists!');
+      } else {
+        // make a new user if not one
       console.log("we've made it to creating a new user in user-controller");
-      // create = Q.nbind(User.create, User);
+        // create = Q.nbind(User.create, User);
       newUser = {
         name: username,
         hashedpassword: password
+      };  
+
+      DB.collection('corgiuser').insert(newUser, function(err, result){;
+
+        // create token to send back for auth
+        var token = jwt.encode(newUser, 'secret');
+        res.json({token: token});
+
+      });
       };
-
-      DB.collection('corgiuser').insert(newUser);
-
-      // create token to send back for auth
-      var token = jwt.encode(newUser, 'secret');
-      res.json({token: token});
-    }
-
+    });
   },
 
 	// this will be used to view events that a user has already joined
