@@ -75,7 +75,14 @@ module.exports = {
           res.json({token: token});
 
       });
+
+      newUser.save().then(function(result){;
+          // create token to send back for auth
+          var token = jwt.encode(result, 'secret');
+          res.json({token: token});
+        });
       };
+
     });
   },
 
