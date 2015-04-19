@@ -23,19 +23,22 @@ module.exports = {
     // this is the real first line, where only events happening in the future are fetched, but...
     // var getEvents = DB.collection('corgievent').find({ datetime: { $gt: Date.now() } })
     
+    var iso = (new Date()).toISOString();
+    
     // ...for testing, we're just fetching everything.
-    var getEvents = DB.collection('corgievent').find()
+    var options = { 'sort' : {'datetime': 1}, 'limit': 10}
+    var getEvents = DB.collection('corgievent').find({ 'datetime': { $gt: iso}})
+    // var getEvents = DB.collection('corgievent').find({ 'datetime': { $gt: iso}},options)
       // then sort time by ascending so we can get the events happening next...
-      .sort({ eventID: 1 })
+      .sort({ datetime: 1 })
       // then limit the response to only ten.
-      // .limit( 10*req.body.pageNum )
+      .limit( 10*req.body.pageNum )
       // If there is an argument passed from events.js, it's to specify the "page," 
       // so we might skip over some events to look at the next ten, for example.
       // get requests require passing stuff using the params header, so we have to parse the page number here.
       .skip ( 10*(+req.query.pageNum) )
       // Results are streamed.
       .stream();
-
     // number of items returned; used in if statement further down.
     getEvents.count(function(err, count) {
       cursorCount = count
@@ -44,10 +47,10 @@ module.exports = {
     // turns out we can use the collection.find stuff as a stream, just like any readstream or writestream in node.
     // http://mongodb.github.io/node-mongodb-native/2.0/tutorials/streams/
     getEvents.on('data', function(doc) {
+      console.log("doc is ", doc)
       // we need another smaller stream to find the corresponding user from the corgiuser collection, using this event's 
       // creator ID - so there should only be one result
       var foundUser = DB.collection('corgiuser').find({ userID: doc.creatorID }).stream()
-      
       // !!!!!!!! EXTREMELY IMPORTANT - THIS COST ME A LOT OF TIME !!!!!!!!
       // This logic only works if all of the events have a creatorID, and all creatorIDs correspond to the corgiuser collection.
       // If that is not the case - which happened to me when I was testing writing to the database - this next part will not work,
@@ -62,7 +65,6 @@ module.exports = {
         // console.log(doc.datetime.slice(0,10))
         //time
         // console.log(doc.datetime.slice(11))
-
         // here we push to the events array, which is returned in res.json.
         events.push(doc)
         // if all found items are now in the events array, we can return the events.
@@ -72,6 +74,19 @@ module.exports = {
         }
           
         })
+
+      /* This is a start to query for names associated with attendeeIDs, based on creatorID lookup above */
+      // console.log("doc.attendeeIDs.length", doc.attendeeIDs.length)
+      // for (var i = 0; i < doc.attendeeIDs.length; i++){
+      //   console.log("doc.attendeeIDs[i]", doc.attendeeIDs[i])
+      //   var foundAttendee = DB.collection('corgiuser').find({ userID: doc.attendeeIDs[i] });
+      //   foundAttendee.on('data', function(user){
+      //     console.log("foundAttendee ", foundAttendee);
+      //     doc.attendee = user.name;
+      //     events.push(doc);        
+      //   }
+      // )}
+
       })
 	},
 
