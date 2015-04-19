@@ -24,11 +24,12 @@ module.exports = {
     // var getEvents = DB.collection('corgievent').find({ datetime: { $gt: Date.now() } })
     
     // ...for testing, we're just fetching everything.
-    var getEvents = DB.collection('corgievent').find()
+    var iso = (new Date()).toISOString();
+    var getEvents = DB.collection('corgievent').find({ datetime: { $gt: iso } })
       // then sort time by ascending so we can get the events happening next...
       .sort({ eventID: 1 })
       // then limit the response to only ten.
-      // .limit( 10*req.body.pageNum )
+      .limit( 10*req.body.pageNum )
       // If there is an argument passed from events.js, it's to specify the "page," 
       // so we might skip over some events to look at the next ten, for example.
       // get requests require passing stuff using the params header, so we have to parse the page number here.
