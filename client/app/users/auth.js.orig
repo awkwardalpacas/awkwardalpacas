@@ -2,7 +2,13 @@
 
 angular.module('lunchCorgi.signup', ['ngRoute'])
 
+<<<<<<< HEAD
+
+.controller('SignUpCtrl', ['$scope', 'Users', function($scope, Users) {
+
+=======
 .controller('SignUpCtrl', function ($scope, $window, $location, Users) {
+>>>>>>> 57aa7f8fe5fb92dd964406bd84fc20a8937f2d87
   $scope.user = {};
 
   $scope.signin = function () {
@@ -26,5 +32,4 @@ angular.module('lunchCorgi.signup', ['ngRoute'])
         console.log(error);
       });
   };
-
-});
+}]);
