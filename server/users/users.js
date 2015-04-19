@@ -20,21 +20,33 @@ UserSchema.plugin(autoIncrement.plugin, 'userID');  // extends the UserSchema to
 
 var User = db.model('User', UserSchema);
 
-UserSchema.methods.comparePasswords = function (candidatePassword) {
-  var defer = Q.defer();
-  var savedPassword = this.password;
-  bcrypt.compare(candidatePassword, savedPassword, function (err, isMatch) {
-    if (err) {
-      defer.reject(err);
-    } else {
-      defer.resolve(isMatch);
-    }
+UserSchema.methods.comparePasswords = function (username, candidatePassword) {
+  console.log("We're in comparePasswords, woo!");
+
+  var foundUser = db.collection('corgiuser').find({name: username}).limit(1);
+
+  foundUser.on('data', function (user) {
+    var savedPassword = user.hashedpassword;
+    console.log("candidatePassword, savedPassword: ", candidatePassword, savedPassword);
+
+    var match;
+
+    bcrypt.compare(candidatePassword, savedPassword, function (err, isMatch) {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log(isMatch);
+      }
+    });
+
+  return match;
   });
-  return defer.promise;
 };
 
 UserSchema.pre('save', function (next) {  ///pre??
+  console.log('pre-hashing gets called, oh boy');
   var user = this;
+  console.log("user: ", user);
 
   // only hash the password if it has been modified (or is new)
   if (!user.isModified('password')) {
