@@ -1,6 +1,6 @@
 angular.module('lunchCorgi.events', [])
 
-.controller('EventsController', function($scope, Events) {
+.controller('EventsController', function($scope, $window, Events) {
 
   $scope.event = {}
   
@@ -19,6 +19,7 @@ angular.module('lunchCorgi.events', [])
         $scope.event.location !== "" &&
         $scope.event.datetime !== "" ) {
           $scope.invalid = false
+        $scope.event.creator = $window.localStorage['com.corgi'];
           Events.addEvent($scope.event)
           .then(function(newEvent) {
             $scope.event = newEvent

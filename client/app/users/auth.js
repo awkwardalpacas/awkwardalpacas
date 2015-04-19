@@ -9,7 +9,7 @@ angular.module('lunchCorgi.signup', ['ngRoute'])
     Auth.signin($scope.user)
       .then(function (token) {
         $window.localStorage.setItem('com.corgi', token);
-        $location.path('/');
+        $location.path('/');  
       })
       .catch(function (error) {
         console.error(error);
@@ -21,7 +21,7 @@ angular.module('lunchCorgi.signup', ['ngRoute'])
       .then(function(token){
         $window.localStorage.setItem('com.corgi', token);
         $location.path('/');
-      })
+        })
       .catch(function(error){
         console.log(error);
       });
