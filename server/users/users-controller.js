@@ -51,7 +51,7 @@ module.exports = {
         password  = req.body.password,
         newUser;
 
-    // var findOne = Q.nbind(User.findOne, User);
+    var response = res;
 
     console.log("this is the user in the users-controller: ", req.body);
 
@@ -66,11 +66,15 @@ module.exports = {
           password: password
         });
 
-        newUser.save();
+        User.create(newUser, function (err, user) {
+          if (err) {
+            response.status(404).send('user was not saved!');
+          }
+          // create token to send back for auth
+          var token = jwt.encode(password, 'secret');
+          response.json({token: token});
+        });
 
-        // create token to send back for auth
-        var token = jwt.encode(password, 'secret');
-        res.json({token: token});
       }
     });
   },
