@@ -46,31 +46,34 @@ UserSchema.methods.comparePasswords = function (username, candidatePassword) {
 UserSchema.pre('save', function (next) {  ///pre??
   console.log('pre-hashing gets called, oh boy');
   var user = this;
-  console.log("user: ", user);
+  console.log("user in pre-hashing: ", user);
+  // console.log("user.isModified: ", user.isModified('hashedpassword'));
 
-  // only hash the password if it has been modified (or is new)
-  if (!user.isModified('password')) {
-    return next();
-  }
+  // // only hash the password if it has been modified (or is new)
+  // if (!user.isModified('password')) {
+  //   return next();
+  // }
 
   // generate a salt
   bcrypt.genSalt(10, function(err, salt) { //hard coded SALT_WORK_FACTOR to 10
     if (err) {
-      return next(err);
+      console.log('error in genSalt: ', err);
     }
 
+    console.log("this is the salt: ", salt);
     // hash the password along with our new salt
     bcrypt.hash(user.password, salt, null, function(err, hash) {
       if (err) {
-        return next(err);
+        console.log("we're in bcrypt hash, yep");
+        console.log('error in hash fcn: ', err);
       }
 
       // override the cleartext password with the hashed one
       user.password = hash;
       user.salt = salt;
-      next();
     });
   });
+
 });
 
 
