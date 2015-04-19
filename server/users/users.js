@@ -67,18 +67,20 @@ UserSchema.pre('save', function (next) {  ///pre??
         console.log('error in hash fcn: ', err);
       }
 
-      console.log("we're in bcrypt hash, yep");
       // override the cleartext password with the hashed one
       user.password = hash;
       user.salt = salt;
-      next();
+      console.log("what user looks like at the end of bcrypt hash:", user);
     });
+
+    console.log("we're at the end of this crazy function called genSalt");
   });
 
+  console.log("we're at the end of the pre save function");
 });
 
 
-exports.User = mongoose.model('users', UserSchema);
+module.exports.User = mongoose.model('users', UserSchema);
 
 /*
 var Schema = mongoose.Schema, ObjectId = Schema.ObjectId;
