@@ -1,6 +1,6 @@
 <div id='container'>
  <!-- removed controller since ng-app in index.html already loads the controller, so we were previously loading it twice. -->
- <ul>
+ <ul class='events'>
     <li class = 'event' ng-repeat="event in eventsList | orderBy:'datetime'">
       <!-- <img src='./assets/redirect_icon.png'/> -->
       <div class='eventInfo'>
@@ -19,7 +19,7 @@
   <button class="nextPage" style="float: right" ng-click="nextPage()">Next Page</button>
 
 
-  <div>
+  <div class='addevent'>
     <form name="eventForm" ng-submit="addEvent()">
       <input type= "text" ng-model = "event.location">
       <input type= "date" ng-model = "event.date">
