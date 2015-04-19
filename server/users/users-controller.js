@@ -61,21 +61,19 @@ module.exports = {
       if (result) {
         next(new Error('User already exists!'));
       } else {
+
         // make a new user if not one
-      console.log("we've made it to creating a new user in user-controller");
-        // create = Q.nbind(User.create, User);
-      var newUser = new User({
-        name: username,
-        password: password
-      });
-
-      newUser.save().then(function(result){;
-          // create token to send back for auth
-          var token = jwt.encode(result, 'secret');
-          res.json({token: token});
+        var newUser = new User({
+          name: username,
+          password: password
         });
-      };
 
+        newUser.save();
+
+        // create token to send back for auth
+        var token = jwt.encode(password, 'secret');
+        res.json({token: token});
+      }
     });
   },
 
