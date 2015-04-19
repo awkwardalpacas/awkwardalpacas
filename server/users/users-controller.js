@@ -51,7 +51,7 @@ module.exports = {
       });
 	},
 
-	signup: function(req, res) {
+	signup: function(req, res, next) {
 		var username  = req.body.username,
         password  = req.body.password,
         create,
@@ -61,11 +61,11 @@ module.exports = {
 
     console.log("this is the user in the users-controller: ", req.body);
 
-    DB.collection('corgiuser').find({name: username}, {}, function(err, result){
-
+    DB.collection('corgiuser').findOne({name: username}, function(err, result){
+      if (err) { new ERROR();};
       // check to see if user already exists
       if (result) {
-        new Error('User already exists!');
+        next(new Error('User already exists!'));
       } else {
         // make a new user if not one
       console.log("we've made it to creating a new user in user-controller");
