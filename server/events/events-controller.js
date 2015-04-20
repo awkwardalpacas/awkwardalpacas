@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var mongo = require('mongodb').MongoClient
+var jwt  = require('jwt-simple');
 
 var DB;
 
@@ -90,17 +91,43 @@ module.exports = {
 	},
 
 	newEvent: function(req, res) {
-		// save event object passed in with http request from services.js
-    //pseudocode: decode the jwt token and use it to locate the proper userID # to add to event
-    // DB.collection('corgiuser').findOne({})
-		DB.collection('corgievent').insert(req.body.event)
-    // return the event that was added; this makes for easy debugging in the console, where we can see the Network -> Response tabs
-    res.json(req.body.event)
+    var event = req.body.event;
+    var userToken = req.body.token;
+
+    var username = jwt.decode(userToken, 'secret');
+
+    var foundUser = DB.collection('corgiuser').find( {name: username} );
+
+    foundUser.on('data', function (user) {
+      // update creatorID and attendee list for event, then add to db
+      var id = user._id.toString();
+      event.creatorID = id;
+      event.attendeeIDs = [{userID: id}];
+  		DB.collection('corgievent').insert(event);
+      // return the event that was added; this makes for easy debugging in the console, where we can see the Network -> Response tabs
+      res.json(event);
+    });
+
+    // save event object passed in with http request from services.js
 	},
 
   joinEvent: function(req, res) {
-    // console.log(req.body.event.eventID);
-    DB.collection('corgievent').update({eventID: req.body.event.eventID}, { $push: {attendeeIDs: {userID: 6} } });
-    res.end();
+    var event = req.body.event.eventID;
+    var userToken = req.body.token;
+
+    // decode userToken to get username
+    var username = jwt.decode(userToken, 'secret');
+
+    // look up userID by username
+    var foundUser = DB.collection('corgiuser').find( {name: username} );
+
+    foundUser.on('data', function (user) {
+      console.log('found user: ', user);
+      var id = user._id.toString();
+      console.log('user id: ', id);
+      DB.collection('corgievent').update({eventID: event}, { $push: {attendeeIDs: {userID: id} } });
+      res.end();
+    });
+
   }
 }

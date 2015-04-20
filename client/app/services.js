@@ -19,11 +19,11 @@ angular.module('lunchCorgi.services', [])
 
   };
 
-  var joinEvent = function(event) {
+  var joinEvent = function(event, userToken) {
       return $http({
         method: 'PUT',
         url: '/api/events', 
-        data: {event: event}
+        data: {event: event, token: userToken}
       })
       .then(function (resp) {
         //probably superfluous, but maybe handy for debugging for now - 04/16/2015 - saf
@@ -32,11 +32,11 @@ angular.module('lunchCorgi.services', [])
       });
   }  
 
-  var addEvent = function(event) {
+  var addEvent = function(event, userToken) {
       return $http({
         method: 'POST',
         url: '/api/events',
-        data: {event: event}
+        data: {event: event, token: userToken}
       })
       .then(function (res) {
         return res.data

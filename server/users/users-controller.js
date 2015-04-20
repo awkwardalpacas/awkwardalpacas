@@ -30,11 +30,11 @@ module.exports = {
     var foundUser = DB.collection('corgiuser').find({name: username});
 
     if ( foundUser.count() === 0 ) {
-      res.status(404).send('User does not exist');
+      res.status(401).send('User does not exist');
     } else {
 
       foundUser.forEach(function (user) {
-        User.schema.methods.comparePasswords(password, user.password, res);
+        User.schema.methods.comparePasswords(password, user.password, res, user);
       });
     }
   },
@@ -47,7 +47,7 @@ module.exports = {
     DB.collection('corgiuser').findOne({name: username}, function(err, result){
       // check to see if user already exists
       if (result) {
-        res.status(404).send('User already exists!');
+        res.status(401).send('User already exists!');
       } else {
 
         bcrypt.genSalt(10, function(err, salt) { //hard coded SALT_WORK_FACTOR to 10          
@@ -85,7 +85,7 @@ module.exports = {
             DB.collection('corgiuser').insert(newUser);
 
             // on success, create token to send back for auth
-            var token = jwt.encode(password, 'secret');
+            var token = jwt.encode(username, 'secret');
             res.json({token: token});
           });
         });
