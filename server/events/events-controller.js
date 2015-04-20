@@ -1,4 +1,3 @@
-var mongoose = require('mongoose');
 var mongo = require('mongodb').MongoClient
 var ObjectID = require('mongodb').ObjectID;
 var jwt  = require('jwt-simple');
