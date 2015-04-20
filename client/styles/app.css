@@ -29,8 +29,12 @@
   padding: 0;
 }
 .events {
-
+  
 }
 .addevent {
   float: right;
+}
+body {
+  background: lightblue;
+  font-family: arial;
 }
