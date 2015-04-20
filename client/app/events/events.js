@@ -51,7 +51,6 @@ angular.module('lunchCorgi.events', [])
   }
 
   $scope.viewAllEvents = function() {
-    // console.log($scope.pageNumber)
     // send request to services.js, which in turn sends the actual http request to events-controller in the server.
 
     if ( $window.localStorage.getItem('com.corgi') ) {

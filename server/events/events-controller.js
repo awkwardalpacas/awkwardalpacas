@@ -76,18 +76,6 @@ module.exports = {
           
         })
 
-      /* This is a start to query for names associated with attendeeIDs, based on creatorID lookup above */
-      // console.log("doc.attendeeIDs.length", doc.attendeeIDs.length)
-      // for (var i = 0; i < doc.attendeeIDs.length; i++){
-      //   console.log("doc.attendeeIDs[i]", doc.attendeeIDs[i])
-      //   var foundAttendee = DB.collection('corgiuser').find({ userID: doc.attendeeIDs[i] });
-      //   foundAttendee.on('data', function(user){
-      //     console.log("foundAttendee ", foundAttendee);
-      //     doc.attendee = user.name;
-      //     events.push(doc);        
-      //   }
-      // )}
-
       })
 	},
 
