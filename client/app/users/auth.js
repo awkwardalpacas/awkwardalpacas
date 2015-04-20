@@ -11,7 +11,7 @@ angular.module('lunchCorgi.signup', ['ngRoute'])
       .then(function (token) {
         $scope.signedIn = true;
         $window.localStorage.setItem('com.corgi', token);
-        $location.path('/');  
+        $location.path('/');
       })
       .catch(function (error) {
         if(error.status === 401){
@@ -27,12 +27,11 @@ angular.module('lunchCorgi.signup', ['ngRoute'])
         $window.localStorage.setItem('com.corgi', token);
         $scope.signedIn = true;
         $location.path('/');
-        })
+      })
       .catch(function(error){
         console.log(error);
     });
   };
-
 
   $scope.signout = function() {
     $scope.signedIn = false;
@@ -41,4 +40,3 @@ angular.module('lunchCorgi.signup', ['ngRoute'])
   }
 
 });
-
