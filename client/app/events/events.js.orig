@@ -1,6 +1,6 @@
 angular.module('lunchCorgi.events', [])
 
-.controller('EventsController', function($scope, Events) {
+.controller('EventsController', function($scope, $window, Events) {
 
   $scope.event = {}
   
@@ -20,7 +20,12 @@ angular.module('lunchCorgi.events', [])
         $scope.newEvent.location !== "" &&
         $scope.newEvent.datetime !== "" ) {
           $scope.invalid = false
+<<<<<<< HEAD
+        $scope.event.creator = $window.localStorage['com.corgi'];
+          Events.addEvent($scope.event)
+=======
           Events.addEvent($scope.newEvent)
+>>>>>>> abe704b821c722318fb1795e220c148b205d2223
           .then(function(newEvent) {
             // need a better way to notify people, but this is simple for now
             alert('Your event has been created.')

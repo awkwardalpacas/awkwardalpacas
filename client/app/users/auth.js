@@ -6,7 +6,7 @@ angular.module('lunchCorgi.signup', ['ngRoute'])
   $scope.user = {};
 
   $scope.signin = function () {
-    Auth.signin($scope.user)
+    Users.signin($scope.user)
       .then(function (token) {
         $window.localStorage.setItem('com.corgi', token);
         $location.path('/');  

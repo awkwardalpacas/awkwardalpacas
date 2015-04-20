@@ -3,7 +3,6 @@ var mongoose = require('mongoose');
 // var bcrypt = require('bcrypt');
 var bcrypt = require('bcrypt-nodejs');
 var Q = require('q');
-var jwt  = require('jwt-simple');
 var User = require('./users.js');
 
 var mongo = require('mongodb').MongoClient
@@ -16,73 +15,80 @@ var DB;
 mongo.connect('mongodb://localhost:27017/corgi', function(err, db) {
   if (err) throw err;
   // when the connection occurs, we store the connection 'object' (or whatever it is) in a global variable so we can use it elsewhere.
-  DB = db
+  DB = db;
 
-  // I added some console logs throughout this file to make it easier to debug; remove them whenever you want.
-  console.log('connected')
 })
 
 // need to adjust this to match the connection, etc. in the events-controller file
 
 module.exports = {
-	signin: function(req, res) {
-	  var username = req.data.username,
-        password = req.data.password;
+  signin: function(req, res) {
+    var username = req.body.username,
+        password = req.body.password;
 
-    var findUser = Q.nbind(User.findOne, User);
-    findUser({username: username})
-      .then(function (user) {
-        if (!user) {
-          next(new Error('User does not exist'));
-        } else {
-          return user.comparePasswords(password)
-            .then(function(foundUser) {
-              if (foundUser) {
-                var token = jwt.encode(user, 'secret');
-                res.json({token: token});
-              } else {
-                return next(new Error('No user'));
-              }
-            });
-        }
-      })
-      .fail(function (error) {
-        next(error);
+    var foundUser = DB.collection('corgiuser').find({name: username});
+
+    if ( foundUser.count() === 0 ) {
+      res.status(404).send('User does not exist');
+    } else {
+
+      foundUser.forEach(function (user) {
+        User.schema.methods.comparePasswords(password, user.password, res);
       });
-	},
+    }
+  },
 
-	signup: function(req, res, next) {
-		var username  = req.body.username,
+  signup: function(req, res, next) {
+    var username  = req.body.username,
         password  = req.body.password,
-        create,
         newUser;
 
-    // var findOne = Q.nbind(User.findOne, User);
-
-    console.log("this is the user in the users-controller: ", req.body);
-
     DB.collection('corgiuser').findOne({name: username}, function(err, result){
-      if (err) { new ERROR();};
       // check to see if user already exists
       if (result) {
-        next(new Error('User already exists!'));
+        res.status(404).send('User already exists!');
       } else {
-        // make a new user if not one
-      console.log("we've made it to creating a new user in user-controller");
-        // create = Q.nbind(User.create, User);
-      newUser = {
-        name: username,
-        hashedpassword: password
-      };  
 
-      DB.collection('corgiuser').insert(newUser, function(err, result){;
+        bcrypt.genSalt(10, function(err, salt) { //hard coded SALT_WORK_FACTOR to 10          
+          if (err) {
+            res.status(404).send('error in genSalt: ', err);
+          }
 
-        // create token to send back for auth
-        var token = jwt.encode(newUser, 'secret');
-        res.json({token: token});
+          console.log("this is the salt: ", salt);
+          // hash the password along with our new salt
+          bcrypt.hash(password, salt, null, function(err, hash) {
+            if (err) {
+              res.status(404).send('Error in hash fcn: ', err);
+            }
 
-      });
-      };
+            // override the cleartext password with the hashed one
+            newUser = ({
+              name: username,
+              password: hash,
+              salt: salt
+            });
+
+            console.log("what newUser looks like at the end of bcrypt hash:", newUser);
+            // make a new user if not one
+
+            // User.create(user, function (err, user) {
+            //   console.log("inside User.create function!");
+            //   if (err) {
+            //     response.status(404).send('User was not saved!');
+            //   }
+            //   // on success, create token to send back for auth
+            //   var token = jwt.encode(password, 'secret');
+            //   response.json({token: token});
+            // });
+
+            DB.collection('corgiuser').insert(newUser);
+
+            // on success, create token to send back for auth
+            var token = jwt.encode(password, 'secret');
+            res.json({token: token});
+          });
+        });
+      }
     });
   },
 

@@ -47,7 +47,6 @@ module.exports = {
     // turns out we can use the collection.find stuff as a stream, just like any readstream or writestream in node.
     // http://mongodb.github.io/node-mongodb-native/2.0/tutorials/streams/
     getEvents.on('data', function(doc) {
-      console.log("doc is ", doc)
       // we need another smaller stream to find the corresponding user from the corgiuser collection, using this event's 
       // creator ID - so there should only be one result
       var foundUser = DB.collection('corgiuser').find({ userID: doc.creatorID }).stream()
