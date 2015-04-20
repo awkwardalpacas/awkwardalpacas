@@ -4,10 +4,12 @@ angular.module('lunchCorgi.signup', ['ngRoute'])
 
 .controller('SignUpCtrl', function ($scope, $window, $location, Users) {
   $scope.user = {};
+  $scope.signedIn = false;
 
   $scope.signin = function () {
     Users.signin($scope.user)
       .then(function (token) {
+        $scope.signedIn = true;
         $window.localStorage.setItem('com.corgi', token);
         $location.path('/');
       })
@@ -23,11 +25,18 @@ angular.module('lunchCorgi.signup', ['ngRoute'])
     Users.signup($scope.user)
       .then(function(token){
         $window.localStorage.setItem('com.corgi', token);
+        $scope.signedIn = true;
         $location.path('/');
       })
       .catch(function(error){
         console.log(error);
       });
   };
+
+  $scope.signout = function() {
+    $scope.signedIn = false;
+    $window.localStorage.setItem('com.corgi','');
+    $location.path('/');
+  }
 
 });
