@@ -12,6 +12,9 @@ angular.module('lunchCorgi.signup', ['ngRoute'])
         $location.path('/');
       })
       .catch(function (error) {
+        if(error.status === 401){
+        alert("Incorrect Username or Password.")
+        }
         console.error(error);
       });
   };

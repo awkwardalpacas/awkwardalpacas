@@ -26,14 +26,14 @@ UserSchema.methods.comparePasswords = function (password, savedPassword, res) {
 
   bcrypt.compare(password, savedPassword, function (err, isMatch) {
     if (err) {
-      res.status(404).send('No user');
+      res.status(401).send('No user');
     }
     console.log("isMatch: ", isMatch);
     if ( isMatch ) {
       var token = jwt.encode(savedPassword, 'secret');
       res.json({token: token});
     } else {
-      res.status(404).send('Incorrect password, please try again.');
+      res.status(401).send('Incorrect password.');
     }
   });
 };
