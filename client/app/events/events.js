@@ -22,12 +22,10 @@ angular.module('lunchCorgi.events', [])
           $scope.invalid = false
           Events.addEvent($scope.newEvent)
           .then(function(newEvent) {
-            // return to defaults - might put this all in an init() function
-            $scope.newEvent = {}
-            $scope.newEvent.description = 'Describe the event.'
-            $scope.newEvent.location = 'Where is the event?'
-            $scope.newEvent.time = (new Date()).toTimeString().substr(0,5)
-            $scope.newEvent.date = (new Date()).toISOString().substr(0,10)
+            // need a better way to notify people, but this is simple for now
+            alert('Your event has been created.')
+            // return to defaults
+            $scope.initNewEventForm()
           })
         } else {
           $scope.invalid = true
@@ -39,11 +37,14 @@ angular.module('lunchCorgi.events', [])
 
   // eventsList is an array used in the template (with ng-repeat) to populate the list of events.
   $scope.eventsList = {}
-  $scope.newEvent = {}
-  $scope.newEvent.description = 'Describe the event.'
-  $scope.newEvent.location = 'Where is the event?'
-  $scope.newEvent.time = (new Date()).toTimeString().substr(0,5)
-  $scope.newEvent.date = (new Date()).toISOString().substr(0,10)
+
+  $scope.initNewEventForm = function() {
+    $scope.newEvent = {}
+    $scope.newEvent.description = 'Describe the event.'
+    $scope.newEvent.location = 'Where is the event?'
+    $scope.newEvent.time = (new Date()).toTimeString().substr(0,5)
+    $scope.newEvent.date = (new Date()).toISOString().substr(0,10)    
+  }
 
   $scope.viewAllEvents = function() {
     // send request to services.js, which in turn sends the actual http request to events-controller in the server.
@@ -73,4 +74,6 @@ angular.module('lunchCorgi.events', [])
   
   // show events when the page is first loaded.
   $scope.viewAllEvents()
+  // populate new event form with default values
+  $scope.initNewEventForm()
 })
