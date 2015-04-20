@@ -32,11 +32,11 @@ angular.module('lunchCorgi.services', [])
       });
   }  
 
-  var addEvent = function(event) {
+  var addEvent = function(event, userToken) {
       return $http({
         method: 'POST',
         url: '/api/events',
-        data: {event: event}
+        data: {event: event, token: userToken}
       })
       .then(function (res) {
         return res.data

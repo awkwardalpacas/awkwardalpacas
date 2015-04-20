@@ -91,10 +91,24 @@ module.exports = {
 	},
 
 	newEvent: function(req, res) {
-		// save event object passed in with http request from services.js
-		DB.collection('corgievent').insert(req.body.event)
-    // return the event that was added; this makes for easy debugging in the console, where we can see the Network -> Response tabs
-    res.json(req.body.event)
+    var event = req.body.event;
+    var userToken = req.body.token;
+
+    var username = jwt.decode(userToken, 'secret');
+
+    var foundUser = DB.collection('corgiuser').find( {name: username} );
+
+    foundUser.on('data', function (user) {
+      // update creatorID and attendee list for event, then add to db
+      var id = user._id.toString();
+      event.creatorID = id;
+      event.attendeeIDs = [{userID: id}];
+  		DB.collection('corgievent').insert(event);
+      // return the event that was added; this makes for easy debugging in the console, where we can see the Network -> Response tabs
+      res.json(event);
+    });
+
+    // save event object passed in with http request from services.js
 	},
 
   joinEvent: function(req, res) {
@@ -103,7 +117,6 @@ module.exports = {
 
     // decode userToken to get username
     var username = jwt.decode(userToken, 'secret');
-    console.log("username after decoding: ", username);
 
     // look up userID by username
     var foundUser = DB.collection('corgiuser').find( {name: username} );
