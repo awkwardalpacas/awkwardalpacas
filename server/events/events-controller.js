@@ -121,14 +121,14 @@ module.exports = {
     // decode userToken to get username
     var username = jwt.decode(userToken, 'secret');
 
-    // look up userID by username
+    // look up user by username--could just add the name directly right now, 
+    // but keeping this code in case we want to store other user info later
+    // such as a photo
     var foundUser = DB.collection('corgiuser').find( {name: username} );
 
     foundUser.on('data', function (user) {
-      console.log('found user: ', user);
-      var id = user._id.toString();
-      console.log('user id: ', id);
-      DB.collection('corgievent').update({eventID: event}, { $push: {attendeeIDs: {userID: id} } });
+      // var id = user._id.toString();
+      DB.collection('corgievent').update({eventID: event}, { $push: {attendeeIDs: {username: user.name} } });
       res.end();
     });
 
