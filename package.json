@@ -1,8 +1,8 @@
 {
   "name": "lunch-corgi",
   "private": true,
-  "version": "0.0.corgi",
-  "description": "Help people find new lunch partners.",
+  "version": "0.0.0",
+  "description": "Help people find new lunch partners. CORGI",
   "repository": "https://github.com/awkwardalpacas/awkwardalpacas.git",
   "devDependencies": {
     "karma": "~0.10",
