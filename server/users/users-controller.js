@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 var Q = require('q');
 var jwt  = require('jwt-simple');
-var User = require('./users.js');
+var User = require('./users.js').User;
 
 var mongo = require('mongodb').MongoClient
 
@@ -98,7 +98,6 @@ module.exports = {
             res.json({token: token});
           });
         });
-
       }
     });
   },
