@@ -49,7 +49,6 @@ module.exports = {
     // turns out we can use the collection.find stuff as a stream, just like any readstream or writestream in node.
     // http://mongodb.github.io/node-mongodb-native/2.0/tutorials/streams/
     getEvents.on('data', function(doc) {
-      console.log('ObjectId("'+doc.creatorID+'")',doc.creatorID)
       // we need another smaller stream to find the corresponding user from the corgiuser collection, using this event's 
       // creator ID - so there should only be one result.      
       // we have the $or statement in the query because of the test data - in practice, only the _id query should be necessary. 
@@ -72,7 +71,6 @@ module.exports = {
 
         // here we push to the events array, which is returned in res.json.
         events.push(doc)
-        console.log(cursorCount,events.length)
 
         // if all found items are now in the events array, we can return the events.
         if (events.length === cursorCount) {
