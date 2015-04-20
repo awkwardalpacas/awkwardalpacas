@@ -3,8 +3,8 @@ angular.module('lunchCorgi.events', [])
 .controller('EventsController', function($scope, $window, Events) {
 
   $scope.event = {}
-  $scope.event.date = "2015-04-20"
-  $scope.event.time = "17:00"
+  $scope.event.date = "2015-04-20"  //set default date
+  $scope.event.time = "17:00"       //set default time  
   //if $scope.invalid is true, it will display an error message in the view
   $scope.invalid = false
 
