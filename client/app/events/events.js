@@ -19,14 +19,17 @@ angular.module('lunchCorgi.events', [])
     if ($scope.newEvent.description !== "" &&
         $scope.newEvent.location !== "" &&
         $scope.newEvent.datetime !== "" ) {
+
           $scope.invalid = false
-          Events.addEvent($scope.newEvent)
+          var userToken = $window.localStorage.getItem('com.corgi');
+
+          Events.addEvent($scope.newEvent, userToken)
           .then(function(newEvent) {
             // need a better way to notify people, but this is simple for now
             alert('Your event has been created.')
             // return to defaults
             $scope.initNewEventForm()
-          })
+          });
         } else {
           $scope.invalid = true
         }     
