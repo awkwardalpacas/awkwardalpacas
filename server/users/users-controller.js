@@ -3,8 +3,7 @@ var mongoose = require('mongoose');
 // var bcrypt = require('bcrypt');
 var bcrypt = require('bcrypt-nodejs');
 var Q = require('q');
-var jwt  = require('jwt-simple');
-var User = require('./users.js').User;
+var User = require('./users.js');
 
 var mongo = require('mongodb').MongoClient
 
@@ -17,10 +16,6 @@ mongo.connect('mongodb://localhost:27017/corgi', function(err, db) {
   if (err) throw err;
   // when the connection occurs, we store the connection 'object' (or whatever it is) in a global variable so we can use it elsewhere.
   DB = db;
-
-  // I added some console logs throughout this file to make it easier to debug; remove them whenever you want.
-  console.log('connected, in users-controller');
-  console.log("User--users-controller before DB.collection call: ", User);
 
 })
 
@@ -36,16 +31,11 @@ module.exports = {
     if ( foundUser.count() === 0 ) {
       res.status(404).send('User does not exist');
     } else {
-      var match = User.schema.methods.comparePasswords(username, password);
-        
-      if (match) {
-        var token = jwt.encode(user, 'secret');
-        res.json({token: token});
-      } else {
-        res.status(404).send('No user');
-      }
-    }
 
+      foundUser.forEach(function (user) {
+        User.schema.methods.comparePasswords(password, user.password, res);
+      });
+    }
   },
 
   signup: function(req, res, next) {
