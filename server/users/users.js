@@ -2,7 +2,8 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     autoIncrement = require('mongoose-auto-increment'),
     bcrypt = require('bcrypt-nodejs'),
-    Q = require('q');
+    Q = require('q'),
+    jwt  = require('jwt-simple');
 
 var db = mongoose.createConnection("mongodb://localhost/corgi"); //connects to database called corgi
 
@@ -20,26 +21,17 @@ UserSchema.plugin(autoIncrement.plugin, 'userID');  // extends the UserSchema to
 
 var User = db.model('User', UserSchema);
 
-UserSchema.methods.comparePasswords = function (username, candidatePassword) {
-  console.log("We're in comparePasswords, woo!");
+UserSchema.methods.comparePasswords = function (password, savedPassword, res) {
+  console.log("in comparePasswords; password, savedPassword: ", password, savedPassword);
 
-  var foundUser = db.collection('corgiuser').find({name: username}).limit(1);
+  bcrypt.compare(password, savedPassword, function (err, isMatch) {
+    if (err) {
+      res.status(404).send('No user');
+    }
+    console.log("isMatch: ", isMatch);
 
-  foundUser.on('data', function (user) {
-    var savedPassword = user.hashedpassword;
-    console.log("candidatePassword, savedPassword: ", candidatePassword, savedPassword);
-
-    var match;
-
-    bcrypt.compare(candidatePassword, savedPassword, function (err, isMatch) {
-      if (err) {
-        console.log(err);
-      } else {
-        console.log(isMatch);
-      }
-    });
-
-  return match;
+    var token = jwt.encode(savedPassword, 'secret');
+    res.json({token: token});
   });
 };
 
