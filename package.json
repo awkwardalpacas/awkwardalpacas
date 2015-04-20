@@ -1,10 +1,9 @@
 {
-  "name": "angular-seed",
+  "name": "lunch-corgi",
   "private": true,
-  "version": "0.0.0",
-  "description": "A starter project for AngularJS",
-  "repository": "https://github.com/angular/angular-seed",
-  "license": "MIT",
+  "version": "0.0.corgi",
+  "description": "Help people find new lunch partners.",
+  "repository": "https://github.com/awkwardalpacas/awkwardalpacas.git",
   "devDependencies": {
     "karma": "~0.10",
     "protractor": "^1.1.1",
@@ -35,6 +34,7 @@
     "mongodb": "^2.0.27",
     "mongoose": "^4.0.1",
     "mongoose-auto-increment": "^4.0.0",
+    "morgan": "^1.5.2",
     "q": "^1.2.0"
   }
 }
