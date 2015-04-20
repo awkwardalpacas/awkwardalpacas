@@ -3,22 +3,13 @@ var mongoose = require('mongoose');
 var path = require('path');
 
 var app = express();
+// we just assign the port in the connection in each controller
 // var port = /*process.env.PORT || */ 8000; //dynamic port assignment for deployment purposes
 var __
 app.use(express.static(__dirname + '/..')); 
-// app.use(express.static('client')); 
 
 app.get("/", function (req, res) {
   res.sendFile('index.html', {root: __dirname + '/../client/app'});
-
-  // res.redirect('index.html');
-  // res.redirect('../client/app/index.html');
-  // res.redirect('/../client/app/index.html');
-  // res.render('/../client/app/index');
-  // res.render('/../client/app/index.html');
-  // res.render('index.html');
-  // res.redirect('/client/app/index.html');
-  // res.send('Hello World!');
 });
 
 require('./middleware.js')(app, express);
