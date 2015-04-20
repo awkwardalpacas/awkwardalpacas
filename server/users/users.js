@@ -30,7 +30,7 @@ UserSchema.methods.comparePasswords = function (password, savedPassword, res, us
       res.status(401).send('No user');
     }
     if ( isMatch ) {
-      var token = jwt.encode(user, 'secret');
+      var token = jwt.encode(user.name, 'secret');
       res.json({token: token});
     } else {
       res.status(401).send('Incorrect password.');
