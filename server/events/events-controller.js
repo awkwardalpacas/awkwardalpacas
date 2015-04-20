@@ -50,10 +50,9 @@ module.exports = {
     // http://mongodb.github.io/node-mongodb-native/2.0/tutorials/streams/
     getEvents.on('data', function(doc) {
       // we need another smaller stream to find the corresponding user from the corgiuser collection, using this event's 
-      // creator ID - so there should only be one result.      
-      // we have the $or statement in the query because of the test data - in practice, only the _id query should be necessary. 
-      var foundUser = DB.collection('corgiuser').find({ $or: [{_id: ObjectID(doc.creatorID) }, {userID: doc.creatorID}] }).stream()
-      
+
+      // creator ID - so there should only be one result
+      var foundUser = DB.collection('corgiuser').find({ _id: ObjectID(doc.creatorID) }).stream()
       // !!!!!!!! EXTREMELY IMPORTANT - THIS COST ME A LOT OF TIME !!!!!!!!
       // This logic only works if all of the events have a creatorID, and all creatorIDs correspond to the corgiuser collection.
       // If that is not the case - which happened to me when I was testing writing to the database - this next part will not work,
@@ -108,8 +107,10 @@ module.exports = {
 	},
 
   joinEvent: function(req, res) {
-    var event = req.body.event.eventID;
+    var eventID = req.body.event._id;
     var userToken = req.body.token;
+
+    console.log('eventID: ', eventID);
 
     // decode userToken to get username
     var username = jwt.decode(userToken, 'secret');
@@ -121,7 +122,7 @@ module.exports = {
 
     foundUser.on('data', function (user) {
       // var id = user._id.toString();
-      DB.collection('corgievent').update({eventID: event}, { $push: {attendeeIDs: {username: user.name} } });
+      DB.collection('corgievent').update({_id: ObjectID(eventID)}, { $push: {attendeeIDs: {username: user.name} } });
       res.end();
     });
 
