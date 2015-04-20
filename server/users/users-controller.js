@@ -34,7 +34,7 @@ module.exports = {
     } else {
 
       foundUser.forEach(function (user) {
-        User.schema.methods.comparePasswords(password, user.password, res);
+        User.schema.methods.comparePasswords(password, user.password, res, user);
       });
     }
   },
@@ -85,7 +85,7 @@ module.exports = {
             DB.collection('corgiuser').insert(newUser);
 
             // on success, create token to send back for auth
-            var token = jwt.encode(password, 'secret');
+            var token = jwt.encode(username, 'secret');
             res.json({token: token});
           });
         });
