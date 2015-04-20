@@ -100,9 +100,12 @@ module.exports = {
 
     foundUser.on('data', function (user) {
       // update creatorID and attendee list for event, then add to db
-      var id = user._id.toString();
-      event.creatorID = id;
-      event.attendeeIDs = [{userID: id}];
+      var userInfo = {
+        username: user.name
+      };
+
+      event.creatorID = user._id.toString();
+      event.attendeeIDs = [userInfo];
   		DB.collection('corgievent').insert(event);
       // return the event that was added; this makes for easy debugging in the console, where we can see the Network -> Response tabs
       res.json(event);
