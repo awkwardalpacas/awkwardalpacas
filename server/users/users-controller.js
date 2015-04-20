@@ -55,7 +55,6 @@ module.exports = {
             res.status(404).send('error in genSalt: ', err);
           }
 
-          console.log("this is the salt: ", salt);
           // hash the password along with our new salt
           bcrypt.hash(password, salt, null, function(err, hash) {
             if (err) {
@@ -69,7 +68,6 @@ module.exports = {
               salt: salt
             });
 
-            console.log("what newUser looks like at the end of bcrypt hash:", newUser);
             // make a new user if not one
 
             // User.create(user, function (err, user) {
