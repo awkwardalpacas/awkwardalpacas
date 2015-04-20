@@ -18,13 +18,12 @@ Stack
 Mongo, Express, Angular, Node
 
  - NOTE -
-The project does not use Mongoose for purposes of ORM, however there are some methods in the project which do use Mongoose so the references and 'requires' are still in there.
+The project does not use Mongoose for purposes of ORM.  However there are some methods in the project which do use Mongoose so the references and 'requires' are still in there.
 
 Database
 --------
- 
- ## DB ##
-> Stores Users in 'corgiuser' collection, and Events in 'corgievent'. Users have an id, name, password, and eventids from events document. Events have an id, description, location, a creatorID, and a list of attendeeIDs.
+
+The MongoDB stores Users and Events in collections. Users have an id assigned by Mongo, name, password, and eventIDs from events document. Events have an id assigned by Mongo, a description, a location, a creatorID corresponding to the userID of the event creator, and a list of userIDs of people who have joined the event.
  
 To get started with the database, there must be at least one user and one event.  Start by using the "Sign Up" to add one user then create one or more events. 
  
