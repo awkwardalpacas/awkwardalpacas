@@ -22,10 +22,8 @@ UserSchema.plugin(autoIncrement.plugin, 'userID');  // extends the UserSchema to
 var User = db.model('User', UserSchema);
 
 UserSchema.methods.comparePasswords = function (password, savedPassword, res, user) {
-  console.log("in comparePasswords; password, savedPassword: ", password, savedPassword);
 
   bcrypt.compare(password, savedPassword, function (err, isMatch) {
-    console.log("isMatch: ", isMatch);
     if (err || !isMatch) {
       res.status(401).send('No user');
     }

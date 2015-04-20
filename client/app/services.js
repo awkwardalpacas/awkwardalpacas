@@ -36,7 +36,6 @@ angular.module('lunchCorgi.services', [])
       var datetime = new Date(event.date + ' ' + event.time);
       var gmt = datetime.toISOString();
       event.datetime = gmt;
-      console.log('event is ', event)
       return $http({
         method: 'POST',
         url: '/api/events',
@@ -62,7 +61,6 @@ angular.module('lunchCorgi.services', [])
       url: '/api/users/signup',
       data: user
     }).then(function (resp) {
-      console.log("reponse data back in services:", resp.data);
       return resp.data.token;
     });
   }
