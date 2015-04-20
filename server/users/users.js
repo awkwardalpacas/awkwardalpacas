@@ -21,7 +21,7 @@ UserSchema.plugin(autoIncrement.plugin, 'userID');  // extends the UserSchema to
 
 var User = db.model('User', UserSchema);
 
-UserSchema.methods.comparePasswords = function (password, savedPassword, res) {
+UserSchema.methods.comparePasswords = function (password, savedPassword, res, user) {
   console.log("in comparePasswords; password, savedPassword: ", password, savedPassword);
 
   bcrypt.compare(password, savedPassword, function (err, isMatch) {
@@ -30,7 +30,7 @@ UserSchema.methods.comparePasswords = function (password, savedPassword, res) {
     }
     console.log("isMatch: ", isMatch);
     if ( isMatch ) {
-      var token = jwt.encode(savedPassword, 'secret');
+      var token = jwt.encode(user, 'secret');
       res.json({token: token});
     } else {
       res.status(404).send('Incorrect password, please try again.');

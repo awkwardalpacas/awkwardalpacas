@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var mongo = require('mongodb').MongoClient
+var jwt  = require('jwt-simple');
 
 var DB;
 
@@ -97,8 +98,23 @@ module.exports = {
 	},
 
   joinEvent: function(req, res) {
-    // console.log(req.body.event.eventID);
-    DB.collection('corgievent').update({eventID: req.body.event.eventID}, { $push: {attendeeIDs: {userID: 6} } });
-    res.end();
+    var event = req.body.event.eventID;
+    var userToken = req.body.token;
+
+    // decode userToken to get username
+    var username = jwt.decode(userToken, 'secret');
+    console.log("username after decoding: ", username);
+
+    // look up userID by username
+    var foundUser = DB.collection('corgiuser').find( {name: username} );
+
+    foundUser.on('data', function (user) {
+      console.log('found user: ', user);
+      var id = user._id.toString();
+      console.log('user id: ', id);
+      DB.collection('corgievent').update({eventID: event}, { $push: {attendeeIDs: {userID: id} } });
+      res.end();
+    });
+
   }
 }
