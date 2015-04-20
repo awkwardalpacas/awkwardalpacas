@@ -1,6 +1,3 @@
-var mongoose = require('mongoose');
-// var db = mongoose.createConnection("mongodb://localhost/corgi"); //connects to database called corgi
-// var bcrypt = require('bcrypt');
 var bcrypt = require('bcrypt-nodejs');
 var Q = require('q');
 var User = require('./users.js');
@@ -29,7 +26,7 @@ module.exports = {
 
     var foundUser = DB.collection('corgiuser').find({name: username});
 
-    if ( foundUser.count() === 0 ) {
+    if ( !foundUser.count() ) {
       res.status(401).send('User does not exist');
     } else {
 
