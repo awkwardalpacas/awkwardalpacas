@@ -33,6 +33,10 @@ angular.module('lunchCorgi.services', [])
   }  
 
   var addEvent = function(event, userToken) {
+      var datetime = new Date(event.date + ' ' + event.time);
+      var gmt = datetime.toISOString();
+      event.datetime = gmt;
+      console.log('event is ', event)
       return $http({
         method: 'POST',
         url: '/api/events',
