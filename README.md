@@ -9,7 +9,7 @@ Mongo, Express, Angular, Node
  - NOTE -
 The project does not use Mongoose for purposes of ORM, however there are some methods in the project which do use Mongoose so the references and 'requires' are still in there.
  
- ## DB ##
+ ## DATABASE ##
 
 The MongoDB stores Users and Events in collections. Users have an id assigned by Mongo, name, password, and eventIDs from events document.  Events have an id assigned by Mongo, a description, a location, a creatorID corresponding to the userID of the event creator, and a list of userIDs of people who have joined the event.
 
