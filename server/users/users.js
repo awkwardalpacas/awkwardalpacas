@@ -25,10 +25,10 @@ UserSchema.methods.comparePasswords = function (password, savedPassword, res) {
   console.log("in comparePasswords; password, savedPassword: ", password, savedPassword);
 
   bcrypt.compare(password, savedPassword, function (err, isMatch) {
-    if (err) {
+    console.log("isMatch: ", isMatch);
+    if (err || !isMatch) {
       res.status(401).send('No user');
     }
-    console.log("isMatch: ", isMatch);
     if ( isMatch ) {
       var token = jwt.encode(savedPassword, 'secret');
       res.json({token: token});
