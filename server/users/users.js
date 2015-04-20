@@ -29,9 +29,12 @@ UserSchema.methods.comparePasswords = function (password, savedPassword, res) {
       res.status(404).send('No user');
     }
     console.log("isMatch: ", isMatch);
-
-    var token = jwt.encode(savedPassword, 'secret');
-    res.json({token: token});
+    if ( isMatch ) {
+      var token = jwt.encode(savedPassword, 'secret');
+      res.json({token: token});
+    } else {
+      res.status(404).send('Incorrect password, please try again.');
+    }
   });
 };
 
