@@ -4,6 +4,7 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 var Q = require('q');
 var User = require('./users.js');
+var jwt  = require('jwt-simple');
 
 var mongo = require('mongodb').MongoClient
 
