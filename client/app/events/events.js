@@ -3,7 +3,7 @@ angular.module('lunchCorgi.events', [])
 .controller('EventsController', function ($scope, $window, $location, Events) {
 
   $scope.event = {}
-  
+
   //if $scope.invalid is true, it will display an error message in the view
   $scope.invalid = false
 
@@ -59,7 +59,7 @@ angular.module('lunchCorgi.events', [])
       .then(function(data) {
         // set $scope.eventsList equal to the data we get back from our http request - that's how we 
         // populate the actual event views in the template.
-        $scope.eventsList = data
+        $scope.eventsList = data;
       });
     } else {
       $location.path('/signin');

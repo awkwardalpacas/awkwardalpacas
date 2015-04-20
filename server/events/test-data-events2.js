@@ -27,7 +27,7 @@ db.corgievent.insert([
 		location : "822 Congress Avenue, Austin, TX 78701",
 		datetime: "2015-04-22T18:30:27+00:00",
 		creatorID : 5,
-		attendeeIDs : [{userID: 5}, {userID: 1}, {userID: 2}, {userID: 7}]
+		attendeeIDs : [{username: "Gus"}, {username: "Candy"}, {username: "Gabe"}, {username: "Asdf"}]
 	},
 
 		{
@@ -36,7 +36,7 @@ db.corgievent.insert([
 		location : "802 Congress Avenue, Austin, TX 78701",
 		datetime: "2015-04-22T18:30:27+00:00",
 		creatorID : 5,
-		attendeeIDs : [{userID: 5}, {userID: 7}]
+		attendeeIDs : [{username: "Voldemort"}, {username: "Dagoth Ur"}]
 	},
 
 		{
@@ -45,7 +45,7 @@ db.corgievent.insert([
 		location : "822 Congress Avenue, Austin, TX 78701",
 		datetime: "2015-04-22T18:30:27+00:00",
 		creatorID : 5,
-		attendeeIDs : [{userID: 5}, {userID: 3}, {userID: 2}, {userID: 7}]
+		attendeeIDs : [{username: "Link"}, {username: "Zelda"}]
 	},
 
 	{
@@ -54,7 +54,7 @@ db.corgievent.insert([
 		location : "822 Congress Avenue, Austin, TX 78701",
 		datetime: "2015-04-22T17:30:27+00:00",
 		creatorID : 4,
-		attendeeIDs : [{userID: 4}, {userID: 3}, {userID: 6}]
+		attendeeIDs : [{username: "Strong Sad"}, {username: "The Cheat"}, {username: "Homestar"}]
 	},
 
 	{
@@ -63,7 +63,7 @@ db.corgievent.insert([
 		location : "822 Congress Avenue, Austin, TX 78701",
 		datetime: "2015-04-22T17:30:27+00:00",
 		creatorID : 3,
-		attendeeIDs : [{userID: 3}]
+		attendeeIDs : [{username: "Gehn"}, {username: "Atrus"}, {username: "Catherine"}, {username: "Tiana"}]
 	},
 
 	{
@@ -72,7 +72,7 @@ db.corgievent.insert([
 		location : "822 Congress Avenue, Austin, TX 78701",
 		datetime: "2015-04-22T17:30:27+00:00",
 		creatorID : 2,
-		attendeeIDs : [{userID: 2}, {userID: 7}]
+		attendeeIDs : [{username: "Moby Dick"}, {username: "War and Peace"}, {username: "Great Expectations"}]
 	},
 
 	{
@@ -81,7 +81,7 @@ db.corgievent.insert([
 		location : "722 Congress Avenue, Austin, TX 78701",
 		datetime: "2015-04-22T17:15:27+00:00",
 		creatorID : 1,
-		attendeeIDs : [{userID: 1}, {userID: 2}, {userID: 12}]
+		attendeeIDs : [{username: "Alan Alda"}, {username: "Radar"}, {username: "Margaret Hoolihan"}, {username: "Colonel Potter"}]
 	},
 
 	{
@@ -90,7 +90,7 @@ db.corgievent.insert([
 		location : "200 West 7th Street, Austin, TX 78701",
 		datetime: "2015-04-22T17:15:27+00:00",
 		creatorID : 2,
-		attendeeIDs : [{userID: 2}, {userID: 3}, {userID: 4}]
+		attendeeIDs : [{username: "adam"}, {username: "stephanie"}, {username: "justjosh"}, {username: "karmakettle"}]
 	},
 
 	{
@@ -99,7 +99,7 @@ db.corgievent.insert([
 		location : "822 Congress Avenue, Austin, TX 78701",
 		datetime: "2015-04-22T17:15:27+00:00",
 		creatorID : 3,
-		attendeeIDs : [{userID: 3}, {userID: 1}, {userID: 4}]
+		attendeeIDs : [{username: "Tara"}, {username: "Locke"}, {username: "Celes"}, {username: "Cyan"}]
 	},
 
 	{
@@ -108,7 +108,7 @@ db.corgievent.insert([
 		location : "822 Congress Avenue, Austin, TX 78701",
 		datetime: "2015-04-22T20:15:27+00:00",
 		creatorID : 4,
-		attendeeIDs : [{userID: 4}, {userID: 9}, {userID: 7}, {userID: 3}]
+		attendeeIDs : [{username: "Dracula"}, {username: "Cryptkeeper"}, {username: "Beetlejuice"}]
 	},
 
 	{
@@ -117,7 +117,7 @@ db.corgievent.insert([
 		location : "822 Congress Avenue, Austin, TX 78701",
 		datetime: "2015-04-23T20:15:27+00:00",
 		creatorID : 4,
-		attendeeIDs : [{userID: 4}, {userID: 8}, {userID: 12}]
+		attendeeIDs : [{username: "Mulder"}, {username: "Scully"}, {username: "Old Smoking Man"}]
 	},
 
 	{
@@ -126,7 +126,7 @@ db.corgievent.insert([
 		location : "822 Congress Avenue, Austin, TX 78701",
 		datetime: "2015-04-24T20:15:27+00:00",
 		creatorID : 4,
-		attendeeIDs : [{userID: 4}, {userID: 12}]
+		attendeeIDs : [{username: "Totoro"}, {username: "Kiki"}, {username: "Nausicaa"}, {username: "Mononoke"}]
 	},
 
 	{
@@ -135,7 +135,7 @@ db.corgievent.insert([
 		location : "850 Congress Avenue, Austin, TX 78701",
 		datetime: "2015-04-25T20:15:27+00:00",
 		creatorID : 5,
-		attendeeIDs : [{userID: 5}, {userID: 2}, {userID: 7}]
+		attendeeIDs : [{username: "Gus"}, {username: "Candy"}, {username: "Gabe"}, {username: "Asdf"}]
 	},
 
 	{
@@ -144,7 +144,7 @@ db.corgievent.insert([
 		location : "850 Congress Avenue, Austin, TX 78701",
 		datetime: "2015-04-22T19:15:27+00:00",
 		creatorID : 6,
-		attendeeIDs : [{userID: 6}, {userID: 2}]
+		attendeeIDs : [{username: "Gus"}, {username: "Candy"}, {username: "Gabe"}, {username: "Asdf"}]
 	},
 
 	{
@@ -153,7 +153,7 @@ db.corgievent.insert([
 		location : "1200 West 6th Street, Austin, TX 78701",
 		datetime: "2015-04-22T19:30:27+00:00",
 		creatorID : 7,
-		attendeeIDs : [{userID: 7}, {userID: 6}]
+		attendeeIDs : [{username: "Gus"}, {username: "Candy"}, {username: "Gabe"}, {username: "Asdf"}]
 	},
 
 	{
@@ -162,7 +162,7 @@ db.corgievent.insert([
 		location : "100 Ceasar Chavez, Austin, TX 78701",
 		datetime: "2015-04-22T19:45:27+00:00",
 		creatorID : 8,
-		attendeeIDs : [{userID: 8}, {userID: 1}, {userID: 2}]
+		attendeeIDs : [{username: "Gus"}, {username: "Candy"}, {username: "Gabe"}, {username: "Asdf"}]
 	},
 
 	{
@@ -171,7 +171,7 @@ db.corgievent.insert([
 		location : "610 Congress Avenue, Austin, TX 78701",
 		datetime: "2015-04-24T18:15:27+00:00",
 		creatorID : 9,
-		attendeeIDs : [{userID: 9}, {userID: 2}, {userID: 7}]
+		attendeeIDs : [{username: "Gus"}, {username: "Candy"}, {username: "Gabe"}, {username: "Asdf"}]
 	},
 
 	{
@@ -180,7 +180,7 @@ db.corgievent.insert([
 		location : "100 West 6th Street, Austin, TX 78701",
 		datetime: "2015-04-21T19:15:27+00:00",
 		creatorID : 10,
-		attendeeIDs : [{userID: 10}, {userID: 2}, {userID: 7}]
+		attendeeIDs : [{username: "Gus"}, {username: "Candy"}, {username: "Gabe"}, {username: "Asdf"}]
 	},
 
 	{
@@ -189,7 +189,7 @@ db.corgievent.insert([
 		location : "200 West 7th Street, Austin, TX 78701",
 		datetime: "2015-04-22T19:30:27+00:00",
 		creatorID : 7,
-		attendeeIDs : [{userID: 7}]
+		attendeeIDs : [{username: "Gus"}, {username: "Candy"}, {username: "Gabe"}, {username: "Asdf"}]
 	},
 
 	{
@@ -198,7 +198,7 @@ db.corgievent.insert([
 		location : "200 West 6th Street, Austin, TX 78701",
 		datetime: "2015-04-21T18:30:27+00:00",
 		creatorID : 2,
-		attendeeIDs : [{userID: 2}]
+		attendeeIDs : [{username: "Gus"}, {username: "Candy"}, {username: "Gabe"}, {username: "Asdf"}]
 	},
 
 	{
@@ -207,6 +207,6 @@ db.corgievent.insert([
 		location : "822 Congress Avenue, Austin, TX 78701",
 		datetime: "2015-04-21T18:30:27+00:00",
 		creatorID : 5,
-		attendeeIDs : [{userID: 5}]
+		attendeeIDs : [{username: "Gus"}, {username: "Candy"}, {username: "Gabe"}, {username: "Asdf"}]
 	}
 ])

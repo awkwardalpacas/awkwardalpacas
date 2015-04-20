@@ -23,7 +23,11 @@
         <div class='date'>{{event.date}}</div>
         <div class='time'>{{event.time}}</div>
         <div class='time'>{{event.datetime | date : 'MM/dd/yyyy @ h:mma' }}</div>        
-        <div class='time'>{{event.datetime | fromNow }}</div>        
+        <div class='time'>{{event.datetime | fromNow }}</div>
+        <div class='attendee-list'>
+          Who's Going?:
+          <div class='attendee' ng-repeat="attendee in event.attendeeIDs">{{attendee.username}}</div>
+        </div>
         <button ng-click='joinEvent(event)'>Join this event!</button>
         <!-- <a href='{{link.base_url}}/api/links/{{link.code}}'>{{link.base_url}}/{{link.code}}</a> -->
       </div>
