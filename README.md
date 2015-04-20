@@ -23,9 +23,10 @@ The project does not use Mongoose for purposes of ORM, however there are some me
 Database
 --------
  
-The MongoDB stores Users and Events in collections. Users have an id assigned by Mongo, name, password, and eventIDs from events document.  Events have an id assigned by Mongo, a description, a location, a creatorID corresponding to the userID of the event creator, and a list of userIDs of people who have joined the event.
-
-To get started with the database, there must be at least one user and one event.  Start from scratch by using the "Sign Up" feature on the home page, then create one or more events. 
+ ## DB ##
+> Stores Users in 'corgiuser' collection, and Events in 'corgievent'. Users have an id, name, password, and eventids from events document. Events have an id, description, location, a creatorID, and a list of attendeeIDs.
+ 
+To get started with the database, there must be at least one user and one event.  Start by using the "Sign Up" to add one user then create one or more events. 
  
 Unless the project is upgraded to be used with Gulp or Grunt, the Mongo server must be started before the Node.js server is started.  Otherwise, Node.js server will produce 'process.nextTick()' error.
 
