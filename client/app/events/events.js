@@ -28,6 +28,7 @@ angular.module('lunchCorgi.events', [])
             // need a better way to notify people, but this is simple for now
             alert('Your event has been created.')
             // return to defaults
+            $scope.viewAllEvents();
             $scope.initNewEventForm()
           });
         } else {

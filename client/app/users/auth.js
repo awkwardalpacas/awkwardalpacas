@@ -30,7 +30,7 @@ angular.module('lunchCorgi.signup', ['ngRoute'])
       })
       .catch(function(error){
         console.log(error);
-      });
+    });
   };
 
   $scope.signout = function() {
