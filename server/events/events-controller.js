@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var mongo = require('mongodb').MongoClient
+var ObjectID = require('mongodb').ObjectID;
 var jwt  = require('jwt-simple');
 
 var DB;
@@ -50,7 +51,8 @@ module.exports = {
     getEvents.on('data', function(doc) {
       // we need another smaller stream to find the corresponding user from the corgiuser collection, using this event's 
       // creator ID - so there should only be one result
-      var foundUser = DB.collection('corgiuser').find({ userID: doc.creatorID }).stream()
+      console.log('doc: ', doc);
+      var foundUser = DB.collection('corgiuser').find({ _id: ObjectID(doc.creatorID) }).stream()
       // !!!!!!!! EXTREMELY IMPORTANT - THIS COST ME A LOT OF TIME !!!!!!!!
       // This logic only works if all of the events have a creatorID, and all creatorIDs correspond to the corgiuser collection.
       // If that is not the case - which happened to me when I was testing writing to the database - this next part will not work,
