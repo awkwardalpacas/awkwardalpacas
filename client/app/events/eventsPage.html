@@ -1,4 +1,5 @@
 <div id='container'>
+  <p> CHOOSE AN EVENT HERE: </p>
  <!-- removed controller since ng-app in index.html already loads the controller, so we were previously loading it twice. -->
  <ul>
     <li class = 'event' ng-repeat="event in eventsList | orderBy:'datetime'">
@@ -9,18 +10,20 @@
         <div class='location'>{{event.location}}</div>
         <div class='date'>{{event.date}}</div>
         <div class='time'>{{event.time}}</div>
-        <div class='time'>{{event.datetime}}</div>        
+        <div class='time'>{{event.datetime | date : 'MM/dd/yyyy @ h:mma' }}</div>        
+        <div class='time'>{{event.datetime | fromNow }}</div>        
         <button ng-click='joinEvent(event)'>Join this event!</button>
         <!-- <a href='{{link.base_url}}/api/links/{{link.code}}'>{{link.base_url}}/{{link.code}}</a> -->
       </div>
     </li>
   </ul>
-  <button class="prevPage" style="float: left" ng-click="prevPage()">Previous Page</button>
-  <button class="nextPage" style="float: right" ng-click="nextPage()">Next Page</button>
+  <!-- <button class="prevPage" style="float: left" ng-click="prevPage()">Previous Page</button> -->
+  <!-- <button class="nextPage" style="float: right" ng-click="nextPage()">Next Page</button> -->
 
   <!-- do we want a navigation bar here? -->
  <!-- removed controller since ng-app in index.html already loads the controller, so we were previously loading it twice. -->
   <div>
+    <p> ADD AN EVENT HERE: </p>
     <form name="eventForm" ng-submit="addEvent()">
       <input type= "text" ng-model = "event.location">
       <input type= "date" ng-model = "event.date">
