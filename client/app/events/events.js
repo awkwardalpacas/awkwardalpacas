@@ -15,13 +15,19 @@ angular.module('lunchCorgi.events', [])
 
   $scope.addEvent = function() {
     // check that all fields in the events.html form are filled out
-    if ($scope.event.description !== "" &&
-        $scope.event.location !== "" &&
-        $scope.event.datetime !== "" ) {
+    // need to add a check to make sure user is logged in
+    if ($scope.newEvent.description !== "" &&
+        $scope.newEvent.location !== "" &&
+        $scope.newEvent.datetime !== "" ) {
           $scope.invalid = false
-          Events.addEvent($scope.event)
+          Events.addEvent($scope.newEvent)
           .then(function(newEvent) {
-            $scope.event = newEvent
+            // return to defaults - might put this all in an init() function
+            $scope.newEvent = {}
+            $scope.newEvent.description = 'Describe the event.'
+            $scope.newEvent.location = 'Where is the event?'
+            $scope.newEvent.time = (new Date()).toTimeString().substr(0,5)
+            $scope.newEvent.date = (new Date()).toISOString().substr(0,10)
           })
         } else {
           $scope.invalid = true
@@ -33,6 +39,11 @@ angular.module('lunchCorgi.events', [])
 
   // eventsList is an array used in the template (with ng-repeat) to populate the list of events.
   $scope.eventsList = {}
+  $scope.newEvent = {}
+  $scope.newEvent.description = 'Describe the event.'
+  $scope.newEvent.location = 'Where is the event?'
+  $scope.newEvent.time = (new Date()).toTimeString().substr(0,5)
+  $scope.newEvent.date = (new Date()).toISOString().substr(0,10)
 
   $scope.viewAllEvents = function() {
     // send request to services.js, which in turn sends the actual http request to events-controller in the server.
