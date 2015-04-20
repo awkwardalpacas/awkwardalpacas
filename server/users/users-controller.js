@@ -26,14 +26,15 @@ module.exports = {
 
     var foundUser = DB.collection('corgiuser').find({name: username});
 
-    if ( !foundUser.count() ) {
-      res.status(401).send('User does not exist');
-    } else {
-
-      foundUser.forEach(function (user) {
-        User.schema.methods.comparePasswords(password, user.password, res, user);
-      });
-    }
+    foundUser.count(function(err,count) {
+      if(!count) {
+        res.status(401).send('User does not exist')
+      } else {
+        foundUser.forEach(function (user) {
+          User.schema.methods.comparePasswords(password, user.password, res, user);
+        });
+      }
+    })
   },
 
   signup: function(req, res, next) {
