@@ -78,3 +78,10 @@ angular.module('lunchCorgi.services', [])
     signin: signin
   }
 })
+/* This custom Angular filter should produce our datetime object in the "from now" format
+popular in other apps */
+  .filter('fromNow', function() {
+    return function(dateString) {
+      return moment(dateString).fromNow()
+    };
+  });
