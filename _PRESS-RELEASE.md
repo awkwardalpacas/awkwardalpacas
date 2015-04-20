@@ -43,4 +43,4 @@ Once the project moves into development, the press release can be used as a touc
   > "This is perfect--all I have to do is log in, and within 30 seconds, I have joined someone for lunch."
 
 ## Closing and Call to Action ##
-  > Check out lunchcorgi.github.io to set up your next lunch experience.
+  > Check out https://github.com/awkwardalpacas/awkwardalpacas to set up your next lunch experience.
