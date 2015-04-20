@@ -3,6 +3,15 @@
 awkwardalpacas - LunchCorgi
 ===========================
 
+Contributers
+------------
+
+Adam Guerra 
+Karen Lewis
+Josh Benson
+Stephanie Foskitt
+
+
 Stack
 -----
  
