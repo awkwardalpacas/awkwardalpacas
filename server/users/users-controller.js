@@ -17,20 +17,23 @@ mongo.connect('mongodb://localhost:27017/corgi', function(err, db) {
 
 })
 
-// need to adjust this to match the connection, etc. in the events-controller file
-
 module.exports = {
   signin: function(req, res) {
     var username = req.body.username,
         password = req.body.password;
 
+    // find user in collection based on login name
     var foundUser = DB.collection('corgiuser').find({name: username});
 
+    // this required a callback, etc. - didn't work when we just used !foundUser.count().
     foundUser.count(function(err,count) {
+      // accounts for both 0 results or 'undefined'
       if(!count) {
         res.status(401).send('User does not exist')
       } else {
         foundUser.forEach(function (user) {
+          // using the function from the user model, this is the only reason we haven't totally deleted mongoose - we could 
+          // easily use bcrypt compare instead.
           User.schema.methods.comparePasswords(password, user.password, res, user);
         });
       }
@@ -42,6 +45,7 @@ module.exports = {
         password  = req.body.password,
         newUser;
 
+    // same exact logic as signin to check for existing users, but using different methods
     DB.collection('corgiuser').findOne({name: username}, function(err, result){
       // check to see if user already exists
       if (result) {
@@ -66,18 +70,6 @@ module.exports = {
               salt: salt
             });
 
-            // make a new user if not one
-
-            // User.create(user, function (err, user) {
-            //   console.log("inside User.create function!");
-            //   if (err) {
-            //     response.status(404).send('User was not saved!');
-            //   }
-            //   // on success, create token to send back for auth
-            //   var token = jwt.encode(password, 'secret');
-            //   response.json({token: token});
-            // });
-
             DB.collection('corgiuser').insert(newUser);
 
             // on success, create token to send back for auth
@@ -89,7 +81,7 @@ module.exports = {
     });
   },
 
-	// this will be used to view events that a user has already joined
+	// this will eventually be used to view events that a user has already joined
 	userEvents: function(req, res) {
 		var eventIDs = db.users.find({ name: req.data.user.username }).eventIDs
 		var events = []
