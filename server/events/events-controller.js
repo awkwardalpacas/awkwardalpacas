@@ -90,9 +90,7 @@ module.exports = {
 	},
 
 	newEvent: function(req, res) {
-		// save event object passed in with http request from services.js
-    //pseudocode: decode the jwt token and use it to locate the proper userID # to add to event
-    // DB.collection('corgiuser').findOne({})
+
 		DB.collection('corgievent').insert(req.body.event)
     // return the event that was added; this makes for easy debugging in the console, where we can see the Network -> Response tabs
     res.json(req.body.event)

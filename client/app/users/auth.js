@@ -21,9 +21,9 @@ angular.module('lunchCorgi.signup', ['ngRoute'])
       .then(function(token){
         $window.localStorage.setItem('com.corgi', token);
         $location.path('/');
-        })
+      })
       .catch(function(error){
         console.log(error);
-    });
+      });
   };
 });
