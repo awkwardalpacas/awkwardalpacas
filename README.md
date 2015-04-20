@@ -7,7 +7,7 @@
 Mongo, Express, Angular, Node
 
  - NOTE -
-The project does not use Mongoose for ORM responsibilities, however there are some methods in the project which do use Mongoose so the references and 'requires' are still in there.
+The project does not use Mongoose for purposes of ORM, however there are some methods in the project which do use Mongoose so the references and 'requires' are still in there.
  
  ## DB ##
 
