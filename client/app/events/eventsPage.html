@@ -1,3 +1,15 @@
+  <div class='addevent'>
+    <form name="eventForm" ng-submit="addEvent()">
+      <input type= "text" ng-model = "newEvent.location">
+      <input type= "text" ng-model = "newEvent.description">
+      <input type= "date" ng-model = "newEvent.date">
+      <input type= "time" ng-model = "newEvent.time">
+      <button onclick="submit">Submit</button>
+      <h1 ng-if="invalid">
+        Please fill in all of the fields.
+      </h1>
+    </form>
+  </div>
 <div id='container'>
   <p> CHOOSE AN EVENT HERE: </p>
  <!-- removed controller since ng-app in index.html already loads the controller, so we were previously loading it twice. -->
@@ -21,18 +33,7 @@
   <!-- <button class="nextPage" style="float: right" ng-click="nextPage()">Next Page</button> -->
 
 
-  <div class='addevent'>
-    <form name="eventForm" ng-submit="addEvent()">
-      <input type= "text" ng-model = "newEvent.location">
-      <input type= "text" ng-model = "newEvent.description">
-      <input type= "date" ng-model = "newEvent.date">
-      <input type= "time" ng-model = "newEvent.time">
-      <button onclick="submit">Submit</button>
-      <h1 ng-if="invalid">
-        Please fill in all of the fields.
-      </h1>
-    </form>
-  </div>
+
 </div>
 </div>
 
