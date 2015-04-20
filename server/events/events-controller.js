@@ -98,21 +98,7 @@ module.exports = {
 
   joinEvent: function(req, res) {
     // console.log(req.body.event.eventID);
-    var foundEvent = DB.collection('corgievent').find({eventID: req.body.event.eventID});
-
-    foundEvent.on('data', function (event) {
-      console.log(event);
-      // this is just a test userID
-      event.attendeeIDs.push({userID: 6});
-      res.end();
-    });
+    DB.collection('corgievent').update({eventID: req.body.event.eventID}, { $push: {attendeeIDs: {userID: 6} } });
+    res.end();
   }
 }
-/*> db.corgiuser.insert({"user": corgi})
-Fri Apr 17 20:01:52.727 ReferenceError: corgi is not defined
-> db.corgiuser.insert({"user":"corgi"})
-> db.corgiuser.find({"user":"corgi"})
-{ "_id" : ObjectId("5531ad0a47571f55cd11daff"), "user" : "corgi" }
-*/
-
-
