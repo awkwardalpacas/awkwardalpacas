@@ -81,7 +81,7 @@ module.exports = {
     });
   },
 
-	// this will eventually be used to view events that a user has already joined
+	// this will slbe used to view events that a user has already joined
 	userEvents: function(req, res) {
 		var eventIDs = db.users.find({ name: req.data.user.username }).eventIDs
 		var events = []
@@ -91,3 +91,8 @@ module.exports = {
 		res.json(events)
 	}
 }
+
+
+
+
+
