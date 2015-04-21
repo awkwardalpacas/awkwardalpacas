@@ -1,5 +1,6 @@
 /* app css stylesheet */
 a {
+  font-weight: bold;
   text-decoration: none;
 }
 
@@ -13,12 +14,26 @@ body {
   margin: 0 auto;
 }
 
+.error {
+  background-color: pink;
+  max-width: 75%;
+  padding: 1em;
+}
+
 .events {
 
 }
 
 form {
   margin: 1em 0;
+}
+
+.logo {
+  background-image: url('/client/assets/lunchmeet.png');
+  background-position: 0 -70px;
+  height: 200px;
+  margin: 0 auto;
+  width: 400px;
 }
 
 .menu {

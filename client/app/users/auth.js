@@ -5,7 +5,6 @@ angular.module('lunchCorgi.signup', ['ngRoute'])
 .controller('SignUpCtrl', function ($scope, $window, $location, Users) {
   $scope.user = {};
 
-  //for some reason, signedIn did not work when I just had it as a plain variable, so I had to make it a function
   $scope.signedIn = function() {
     return !!$window.localStorage['com.corgi']
   };
@@ -17,8 +16,8 @@ angular.module('lunchCorgi.signup', ['ngRoute'])
         $location.path('/');
       })
       .catch(function (error) {
-        if(error.status === 401){
-        alert("Incorrect Username or Password.")
+        if (error.status === 401) {
+          $scope.loginError = true;
         }
         console.error(error);
       });
@@ -30,8 +29,11 @@ angular.module('lunchCorgi.signup', ['ngRoute'])
         $window.localStorage.setItem('com.corgi', token);
         $location.path('/');
       })
-      .catch(function(error){
-        console.log(error);
+      .catch(function (error) {
+        if (error.status === 401) {
+          $scope.signupError = true;
+        }
+        console.error(error);
     });
   };
 

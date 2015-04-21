@@ -1,8 +1,12 @@
- <div id='signup' ng-controller = "SignUpCtrl">
+ <div id='signup'>
    <h1>Sign up</h1>
+
+   <div ng-show="signupError" class="error">User exists. Better luck next time!</div>
+
    <form name="signupForm" ng-submit="signup()">
      <input type='text' placeholder="username" ng-model='user.username' required>
      <input type='password' placeholder="password" ng-model='user.password' required>
+     <input type='tel' placeholder="cell phone #" ng-model='user.phone' required>
      <button class="signup">Sign up</button>
    </form>
    <div class="small"><a href="#/signin">Sign in</a> if you have an account</div>
