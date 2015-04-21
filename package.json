@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "description": "Help people find new lunch partners. CORGI",
-  "repository": "https://github.com/awkwardalpacas/awkwardalpacas.git",
+  "repository": "https://github.com/glamorous-gerbils/awkwardalpacas.git",
   "scripts": {
     "postinstall": "bower install"
     },
