@@ -1,8 +1,7 @@
 angular.module('lunchCorgi.events', [])
 
 .controller('EventsController', function ($scope, $window, $location, Events, Event) {
-  console.log("$location in events.js: ", $location);
-  $scope.location = $location;
+
   $scope.event = {}
 
   //if $scope.invalid is true, it will display an error message in the view
@@ -15,7 +14,6 @@ angular.module('lunchCorgi.events', [])
   }
 
   $scope.eventDetails = function(evt) {
-    // console.log("$location in events.js: ", $location);
     Event.eventDetails(evt);
     $location.path('/event');
   }
