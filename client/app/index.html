@@ -25,22 +25,32 @@
   <script src ='//cdnjs.cloudflare.com/ajax/libs/angular-moment/0.10.0/angular-moment.min.js'></script>
 
 
-  <title>LunchMeet App</title>
+  <title>LunchMeet</title>
 
   <link rel="stylesheet" href="/client/styles/app.css">
 
 </head>
 
-<body ng-cloak>
+
+<body> <!-- ng-cloak removed from body tag until the page is actually working - saf - 04/15/2015 -->
+
+
   <ul class="menu" ng-controller="SignUpCtrl">
     <li ng-if="!signedIn()"><a href="#/signin">Sign In</a></li>
     <li ng-if="!signedIn()"><a href="#/signup">Sign Up</a></li>
     <li ng-if="signedIn()" ng-click="signout()"><a href="#/">Sign Out</a></li>
   </ul>
 
+ <!--  <div id='map'>
+    <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q={{map}}&key=AIzaSyB_QV_SHExfxY9PsJS-ko_DXYvkWRoPjnY"></iframe>
+  </div> -->
+
   <div ng-view></div>
 
-  <div class="version">LunchMeet App v.0.1 2015<span app-version></span></div>
+  <div>LunchMeet App v.2.0 2015<span app-version></span></div>
 
 </body>
 </html>
+
+
+

@@ -78,7 +78,6 @@ module.exports = {
         }
           
         })
-
       })
 	},
 
@@ -87,7 +86,6 @@ module.exports = {
     var userToken = req.body.token;
 
     var username = jwt.decode(userToken, 'secret');
-
     var foundUser = DB.collection('corgiuser').find( {name: username} );
 
     foundUser.on('data', function (user) {
@@ -122,9 +120,20 @@ module.exports = {
 
     foundUser.on('data', function (user) {
       // var id = user._id.toString();
-      DB.collection('corgievent').update({_id: ObjectID(eventID)}, { $push: {attendeeIDs: {username: user.name} } });
+      DB.collection('corgievent').update({_id: ObjectID(eventID)}, { $addToSet: {attendeeIDs: {username: user.name} } });
+      
+      //will this add to their array and remain there once the event has passed?
+      DB.collection('corgiuser').update({_id: ObjectID(eventID)}, { $addToSet: {eventIDs: eventID} });
       res.end();
     });
 
   }
 }
+
+
+
+
+
+
+
+
