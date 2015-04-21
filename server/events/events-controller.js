@@ -7,8 +7,7 @@ var DB;
 // this is a little weird - we're using the mongodb node module (in line 2), not the straight-up regular mongoDB stuff.  So just because a
 // command works in the mongo shell, doesn't mean it will work here.  It looks like these are the correct docs:
 // http://mongodb.github.io/node-mongodb-native/2.0/api/
-mongo.connect('mongodb://heroku_app36102509:m3ei2epf1460981rpihk0egjsd@ds041377.mongolab.com:41377/heroku_app36102509
-', function(err, db) {
+mongo.connect('mongodb://heroku_app36102509:m3ei2epf1460981rpihk0egjsd@ds041377.mongolab.com:41377/heroku_app36102509', function(err, db) {
   if (err) throw err;
   // when the connection occurs, we store the connection 'object' (or whatever it is) in a global variable so we can use it elsewhere.
   DB = db
@@ -35,7 +34,7 @@ module.exports = {
       .sort({ datetime: 1 })
       // then limit the response to only ten.
       .limit( 10 )
-      // If there is an argument passed from events.js, it's to specify the "page," 
+      // If there is an argument passed from events.js, it's to specify the "page,"
       // so we might skip over some events to look at the next ten, for example.
       // get requests require passing stuff using the params header, so we have to parse the page number here.
       .skip ( 10*(+req.query.pageNum) )
@@ -50,7 +49,7 @@ module.exports = {
     // turns out we can use the collection.find stuff as a stream, just like any readstream or writestream in node.
     // http://mongodb.github.io/node-mongodb-native/2.0/tutorials/streams/
     getEvents.on('data', function(doc) {
-      // we need another smaller stream to find the corresponding user from the corgiuser collection, using this event's 
+      // we need another smaller stream to find the corresponding user from the corgiuser collection, using this event's
 
       // creator ID - so there should only be one result
       var foundUser = DB.collection('corgiuser').find({ _id: ObjectID(doc.creatorID) }).stream()
@@ -77,7 +76,7 @@ module.exports = {
           res.json(events)
           console.log('check passed')
         }
-          
+
         })
 
       })
@@ -116,7 +115,7 @@ module.exports = {
     // decode userToken to get username
     var username = jwt.decode(userToken, 'secret');
 
-    // look up user by username--could just add the name directly right now, 
+    // look up user by username--could just add the name directly right now,
     // but keeping this code in case we want to store other user info later
     // such as a photo
     var foundUser = DB.collection('corgiuser').find( {name: username} );
