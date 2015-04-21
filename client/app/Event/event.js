@@ -8,5 +8,5 @@ angular.module('lunchCorgi.event', [])
   }
 
   $scope.loadEvent();
-
+// test comment
 });
