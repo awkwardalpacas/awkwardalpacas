@@ -34,3 +34,93 @@
 .addevent {
   float: right;
 }
+
+
+#todoapp h1 {
+  font-size: 36px;
+  text-align: center;
+}
+
+#todoapp input[type="text"] {
+  width: 80%;
+  font-size: 20px;
+  line-height: 1em;
+  padding: 10px;
+}
+
+#main {
+  display: none;
+}
+
+#todo-list {
+  margin: 10px 0;
+  padding: 0;
+  list-style: none;
+}
+
+#todo-list li {
+  padding: 15px 20px 15px 0;
+  position: relative;
+  font-size: 20px;
+  border-bottom: 1px solid #cccccc;
+}
+
+#todo-list li .completed-true  {
+    color: #ccc;
+    margin-left: 30px;
+    text-decoration: line-through;
+}
+
+#todo-list li .completed-false  {
+    margin-left: 30px;
+}
+
+.delete.icon {
+  width: 20px;
+  height: 20px;
+  background-image: url("../assets/x.gif");
+  display: inline-block;
+  position: absolute;
+  right: 0px;
+  top: 15px;
+  cursor: pointer;
+}
+
+li.focus {
+  background-color: #eee;
+}
+
+select {
+    padding:3px;
+    background: #f8f8f8;
+    color:#888;
+    appearance:none;
+    cursor:pointer;
+    width: 7%;
+    margin: 10px;
+    height: 28px;
+}
+
+.priority {
+  width: 10%;
+  height: 20px;
+  display: inline-block;
+  position: absolute;
+  right: 25px;
+  top: 15px;
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid #777;
+  text-align: center;
+  font-size: 14px;
+  font-weight: bold;
+  line-height: 1.4em;
+}
+
+.priority.medium {
+  background-color: #FFCB00;
+}
+
+.priority.high {
+  background-color: red;
+}
