@@ -2,7 +2,8 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     autoIncrement = require('mongoose-auto-increment');
 
-var db = mongoose.createConnection("mongodb://localhost/corgi"); //connects to database called corgi
+var db = mongoose.createConnection("mongodb://heroku_app36102509:m3ei2epf1460981rpihk0egjsd@ds041377.mongolab.com:41377/heroku_app36102509
+"); //connects to database called corgi
 
 autoIncrement.initialize(connection);  // required to get the tables to auto-increment for each new record (user or event)
 
