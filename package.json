@@ -29,6 +29,7 @@
     "bcrypt": "^0.8.2",
     "bcrypt-nodejs": "0.0.3",
     "body-parser": "^1.12.2",
+    "bower": "^1.4.1",
     "express": "^4.12.3",
     "jwt-simple": "^0.3.0",
     "mongodb": "^2.0.27",
