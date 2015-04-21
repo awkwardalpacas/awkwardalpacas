@@ -1,6 +1,6 @@
 angular.module('lunchCorgi.events', [])
 
-.controller('EventsController', function ($scope, $window, $location, Events) {
+.controller('EventsController', function ($scope, $window, $location, $sce, Events) {
 
   $scope.event = {}
 
