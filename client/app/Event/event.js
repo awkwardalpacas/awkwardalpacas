@@ -9,6 +9,4 @@ angular.module('lunchCorgi.event', [])
 
   $scope.loadEvent();
 
-
-
 });

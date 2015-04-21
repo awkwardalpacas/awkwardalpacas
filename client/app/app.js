@@ -5,6 +5,7 @@ var lunchCorgi = angular.module('lunchCorgi', [
   'ngRoute',
   'lunchCorgi.services',
   'lunchCorgi.events',
+  'lunchCorgi.event',
   'lunchCorgi.signup'
   ]).
 config(['$routeProvider', function($routeProvider) {
