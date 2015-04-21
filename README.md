@@ -1,15 +1,15 @@
 
 ##Contributors
 
-[adamlg] (https://github.com/adamlg)
-[benibear](https://github.com/benibear) 
-[enjareyes](https://github.com/enjareyes)
-[gtilma](https://github.com/gtilma)
-[joshuabenson](https://github.com/joshuabenson)
-[karmakettle](https://github.com/karmakettle)
-[samuelfullerthomas](https://github.com/samuelfullerthomas)
-[SFoskitt](https://github.com/SFoskitt)
-[sharkySharks](https://github.com/sharkySharks)
+-[adamlg] (https://github.com/adamlg)
+-[benibear](https://github.com/benibear) 
+-[enjareyes](https://github.com/enjareyes)
+-[gtilma](https://github.com/gtilma)
+-[joshuabenson](https://github.com/joshuabenson)
+-[karmakettle](https://github.com/karmakettle)
+-[samuelfullerthomas](https://github.com/samuelfullerthomas)
+-[SFoskitt](https://github.com/SFoskitt)
+-[sharkySharks](https://github.com/sharkySharks)
 
 ##Stack
 
