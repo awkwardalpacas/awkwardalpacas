@@ -78,7 +78,6 @@ module.exports = {
         }
           
         })
-
       })
 	},
 
@@ -87,7 +86,6 @@ module.exports = {
     var userToken = req.body.token;
 
     var username = jwt.decode(userToken, 'secret');
-
     var foundUser = DB.collection('corgiuser').find( {name: username} );
 
     foundUser.on('data', function (user) {
