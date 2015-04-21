@@ -1,5 +1,6 @@
 /* app css stylesheet */
 a {
+  font-weight: bold;
   text-decoration: none;
 }
 
@@ -11,6 +12,12 @@ body {
   font-family: 'Roboto Slab', courier;
   max-width: 50%;
   margin: 0 auto;
+}
+
+.error {
+  background-color: pink;
+  max-width: 75%;
+  padding: 1em;
 }
 
 .events {
