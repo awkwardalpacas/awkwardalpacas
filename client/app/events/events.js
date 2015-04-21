@@ -1,6 +1,6 @@
 angular.module('lunchCorgi.events', [])
 
-.controller('EventsController', function ($scope, $window, $location, Events) {
+.controller('EventsController', function ($scope, $window, $location, $sce, Events) {
 
   $scope.event = {}
 
@@ -81,7 +81,8 @@ angular.module('lunchCorgi.events', [])
   };
 
   $scope.renderMap = function(location){
-    $scope.map = location;
+    $scope.map = $sce.trustAsHtml('<iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q='+location+'&key=AIzaSyDLun535FCG-VEepOE94GqSvWZqsBMw0zM"></iframe>')
+    console.log(location)
   };
   
   // show events when the page is first loaded.
