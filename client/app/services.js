@@ -5,7 +5,14 @@ angular.module('lunchCorgi.services', [])
   // var e = angular.element(document.body).injector().get('Events'); -> because the name of the factory is 'Events'
   // e.addEvent(newEv)
   // e.getEvents(1)
-  
+  var remind = function(){
+    return $http({
+      method: 'GET',
+      url:'/api/reminder'
+    }).then(function(res){
+      return res.data
+    })
+  }
   // this function finds events with time greater than now (that's what Date.now is)...
   var getEvents = function(pageNum) {
     return $http({

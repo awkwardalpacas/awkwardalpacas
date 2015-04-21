@@ -7,6 +7,12 @@ angular.module('lunchCorgi.events', [])
   //if $scope.invalid is true, it will display an error message in the view
   $scope.invalid = false
 
+  $scope.remind=function(){
+    Events.remind().then(function(data){
+      alert(data)
+    })
+  }
+
   $scope.joinEvent = function(evt) {
     $scope.event = evt;
     var userToken = $window.localStorage.getItem('com.corgi');
