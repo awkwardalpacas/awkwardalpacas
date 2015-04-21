@@ -10,7 +10,7 @@ var DB;
 // this is a little weird - we're using the mongodb node module (in line 2), not the straight-up regular mongoDB stuff.  So just because a
 // command works in the mongo shell, doesn't mean it will work here.  It looks like these are the correct docs:
 // http://mongodb.github.io/node-mongodb-native/2.0/api/
-mongo.connect('mongodb://heroku_app36102509:m3ei2epf1460981rpihk0egjsd@ds041377.mongolab.com:41377/heroku_app36102509', function(err, db) {
+mongo.connect('mongodb://localhost:27017/corgi', function(err, db) {
   if (err) throw err;
   // when the connection occurs, we store the connection 'object' (or whatever it is) in a global variable so we can use it elsewhere.
   DB = db;
