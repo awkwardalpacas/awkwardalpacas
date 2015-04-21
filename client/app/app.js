@@ -20,6 +20,10 @@ config(['$routeProvider', function($routeProvider) {
       when('/signin', {
         templateUrl: 'client/app/users/signin.html',
         controller: 'SignUpCtrl'
+    }).
+      when('/event', {
+        templateUrl: 'client/app/event/event.html',
+        controller: 'eventController'
     }).otherwise({
         redirectTo: '/'
     });

@@ -55,12 +55,12 @@ angular.module('lunchCorgi.services', [])
 
 })
 .factory('Event', function($http){
-  var eventDetails = function(evt){
-
+  var eventDetails = function(evt, $location){
+    $location.path('/event');
   }
 
   return {
-    eventDetails: eventDetails;
+    eventDetails: eventDetails
   }
 })
 .factory('Users', function($http){

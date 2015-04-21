@@ -13,7 +13,7 @@ angular.module('lunchCorgi.events', [])
     Events.joinEvent(evt, userToken);
   }
 
-  $scope.eventDetails = function(evt) {
+  $scope.eventDetails = function(evt, $location) {
     Event.eventDetails(evt);
   }
 
