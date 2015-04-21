@@ -2,14 +2,15 @@
 Contributers
 --------------
 
-Adam Guerra [Adam's Github profile] (https://github.com/adamlg)
-
-Karen Lewis [Karen's Github profile](https://github.com/karmakettle)
-
-Josh Benson [Josh's Github profile](https://github.com/joshuabenson)
-
-Stephanie Foskitt [Stephanie's Github profile](https://github.com/SFoskitt)
-
+[adamlg] (https://github.com/adamlg)
+[karmakettle](https://github.com/karmakettle)
+[joshuabenson](https://github.com/joshuabenson)
+[SFoskitt](https://github.com/SFoskitt)
+[enjareyes](https://github.com/enjareyes)
+[benibear](https://github.com/benibear) 
+[gtilma](https://github.com/gtilma)
+[sharkySharks](https://github.com/sharkySharks)
+[samuelfullerthomas](https://github.com/samuelfullerthomas)
 
 Stack
 -----
