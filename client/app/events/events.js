@@ -26,7 +26,7 @@ angular.module('lunchCorgi.events', [])
           Events.addEvent($scope.newEvent, userToken)
           .then(function(newEvent) {
             // need a better way to notify people, but this is simple for now
-            alert('Your event has been created: ', newEvent.description);
+            //alert('Your event has been created: ', newEvent.description);
             // return to defaults
             $scope.viewAllEvents();
             $scope.initNewEventForm()
@@ -44,8 +44,8 @@ angular.module('lunchCorgi.events', [])
 
   $scope.initNewEventForm = function() {
     $scope.newEvent = {}
-    $scope.newEvent.description = 'Describe the event.'
-    $scope.newEvent.location = 'Where is the event?'
+    //$scope.newEvent.description = ''
+    //$scope.newEvent.location = ''
     $scope.newEvent.time = (new Date()).toTimeString().substr(0,5)
     $scope.newEvent.date = new Date(new Date() + new Date().getTimezoneOffset()*60000).toISOString().substr(0,10)    
   }
