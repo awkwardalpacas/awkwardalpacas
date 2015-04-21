@@ -85,7 +85,7 @@ module.exports = {
 	newEvent: function(req, res) {
     var event = req.body.event;
     var userToken = req.body.token;
-
+    event.chat=[]
     var username = jwt.decode(userToken, 'secret');
 
     var foundUser = DB.collection('corgiuser').find( {name: username} );
@@ -95,7 +95,6 @@ module.exports = {
       var userInfo = {
         username: user.name
       };
-
       event.creatorID = user._id.toString();
       event.attendeeIDs = [userInfo];
   		DB.collection('corgievent').insert(event);

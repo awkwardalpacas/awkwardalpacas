@@ -17,7 +17,7 @@ module.exports ={
  getchats:function(req,res){
   var eventID = req.body.event._id; 
   var allchats =[];
-  var getChats = DB.collections('eventChat').find({'eventID':eventID});
+  var getChats = DB.collections('corgievent').find({_id: ObjectID(eventID)});
   getChats.on('data',function (room){
     res.end(room.chats);
   })
@@ -27,36 +27,14 @@ module.exports ={
   var eventID = req.body.event._id;
   var userToken = req.body.token;
   var username = jwt.decode(userToken, 'secret');
-  var foundUser = DB.collection('corgiuser').find( {name: username} );
+  var foundUser = DB.collection('corgievent').find( {{_id: ObjectID(eventID)}} );
   foundUser.on('data',function (user){
   var chat = {username:user.name,message:req.body.message}
-    DB.collection('eventChat').find({'eventID':eventID},{$push:{chats:chat}})
+    DB.collection('eventChat').find({_id: ObjectID(eventID)},{$push:{chat:chat}})
     res.end('posted chats')
   })
 
  },
- createroom:function(req,res){
-  Chatroom={}
-  var event=req.body.event;
-  Chatroom.eventID = req.body.event._id;
-  var userToken = req.body.token;
-  var username = jwt.decode(userToken, 'secret');
-
-  var foundUser = DB.collection('corgiuser').find( {name: username} );
-  
-  foundUser.on('data', function (user){
-    Chatroom.userID = user._id.toString();
-    Chatroom.chats=[];
-    DB.collection('eventChat').insert(Chatroom)
-    res.end('createdchats')
-  
-  })
- }
+ 
 }
 
-// var  ChatroomSchema = new Schema ({
-//   roomID:{ type: Number, ref: 'roomID'},
-//   eventID : { type: Number, ref: 'eventID'},
-//   creatorID : Number,
-//   chats : []
-// });
