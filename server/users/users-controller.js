@@ -43,6 +43,7 @@ module.exports = {
   signup: function(req, res, next) {
     var username  = req.body.username,
         password  = req.body.password,
+        phone = req.body.phone,
         newUser;
 
     // same exact logic as signin to check for existing users, but using different methods
@@ -67,6 +68,7 @@ module.exports = {
             newUser = ({
               name: username,
               password: hash,
+              phone: phone,
               salt: salt
             });
 
