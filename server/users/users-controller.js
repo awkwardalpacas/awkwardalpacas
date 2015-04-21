@@ -26,9 +26,9 @@ module.exports = {
     var foundUser = DB.collection('corgiuser').find({name: username});
 
     // this required a callback, etc. - didn't work when we just used !foundUser.count().
-    foundUser.count(function(err,count) {
+    foundUser.count(function(err,user) {
       // accounts for both 0 results or 'undefined'
-      if(!count) {
+      if(!user) {
         res.status(401).send('User does not exist')
       } else {
         foundUser.forEach(function (user) {
