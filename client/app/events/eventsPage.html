@@ -11,23 +11,18 @@
     </form>
   </div>
 <div id='container'>
-
-  <div id='map'>
-    <iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q={{map}}&key=AIzaSyB_QV_SHExfxY9PsJS-ko_DXYvkWRoPjnY"></iframe>
-  </div>
-
+  
   <p> CHOOSE AN EVENT HERE: </p>
-
  <!-- removed controller since ng-app in index.html already loads the controller, so we were previously loading it twice. -->
  <ul class='events'>
     <li class = 'event' ng-repeat="event in eventsList | orderBy:'datetime'">
       <!-- <img src='./assets/redirect_icon.png'/> -->
       <div class='eventInfo'>
-        <!-- <div class='creator'>{{event.creator}}</div> -->
-        <div class='description'>Event: {{event.description}}</div>
-        <a href class='location' ng-click='renderMap(event.location)'>Location: {{event.location}}</a>
-        <!-- <div class='date'>{{event.date}}</div> -->
-        <!-- <div class='time'>{{event.time}}</div> -->
+        <div class='creator'>{{event.creator}}</div>
+        <div class='description'>{{event.description}}</div>
+        <button class='location' ng-click='renderMap(event.location)'>{{event.location}}</button>
+        <div class='date'>{{event.date}}</div>
+        <div class='time'>{{event.time}}</div>
         <div class='time'>{{event.datetime | date : 'MM/dd/yyyy @ h:mma' }}</div>        
         <div class='time'>{{event.datetime | fromNow }}</div>
         <div class='attendee-list'>
@@ -35,9 +30,11 @@
           <div class='attendee' ng-repeat="attendee in event.attendeeIDs">{{attendee.username}}</div>
         </div>
         <button ng-click='joinEvent(event)'>Join this event!</button>
-        <!-- <a href='{{link.base_url}}/api/links/{{link.code}}'>{{link.base_url}}/{{link.code}}</a> -->
+
       </div>
     </li>
+    
+    <div ng-bind-html='map'></div>
   </ul>
   <!-- <button class="prevPage" style="float: left" ng-click="prevPage()">Previous Page</button> -->
   <!-- <button class="nextPage" style="float: right" ng-click="nextPage()">Next Page</button> -->

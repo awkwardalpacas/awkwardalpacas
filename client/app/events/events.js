@@ -81,7 +81,7 @@ angular.module('lunchCorgi.events', [])
   };
 
   $scope.renderMap = function(location){
-    $scope.map = location;
+    $scope.map = '<iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q='+location+'&key=AIzaSyDLun535FCG-VEepOE94GqSvWZqsBMw0zM"></iframe>'
   };
   
   // show events when the page is first loaded.
