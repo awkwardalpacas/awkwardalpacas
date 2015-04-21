@@ -5,7 +5,7 @@
   "description": "Help people find new lunch partners. CORGI",
   "repository": "https://github.com/awkwardalpacas/awkwardalpacas.git",
   "scripts": {
-    "postinstall": "bower install",
+    "postinstall": "bower install"
     },
   "dependencies": {
     "bcrypt": "^0.8.2",
