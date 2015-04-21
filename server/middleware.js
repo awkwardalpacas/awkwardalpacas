@@ -21,7 +21,7 @@ module.exports = function (app, express) {
   // app.use(helpers.errorHandler);
 
   // inject our routers into their respective route files
-  app.use('/api/eventspage', eventspageRouter)
+  app.use('/api/event', eventspageRouter)
 
   require('./users/users-routes.js')(userRouter);
   require('./events/events-routes.js')(eventsRouter);
