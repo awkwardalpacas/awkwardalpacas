@@ -79,6 +79,10 @@ angular.module('lunchCorgi.events', [])
       $scope.viewAllEvents()
     }
   };
+
+  $scope.renderMap = function(location){
+    $scope.map = location
+  }
   
   // show events when the page is first loaded.
   $scope.viewAllEvents()
