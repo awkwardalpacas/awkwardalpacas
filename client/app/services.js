@@ -5,7 +5,7 @@ angular.module('lunchCorgi.services', [])
   // var e = angular.element(document.body).injector().get('Events'); -> because the name of the factory is 'Events'
   // e.addEvent(newEv)
   // e.getEvents(1)
-  
+
   // this function finds events with time greater than now (that's what Date.now is)...
   var getEvents = function(pageNum) {
     return $http({
@@ -22,15 +22,15 @@ angular.module('lunchCorgi.services', [])
   var joinEvent = function(event, userToken) {
       return $http({
         method: 'PUT',
-        url: '/api/events', 
+        url: '/api/events',
         data: {event: event, token: userToken}
       })
       .then(function (resp) {
         //probably superfluous, but maybe handy for debugging for now - 04/16/2015 - saf
         alert("You were added to event ", event.description)
-        return resp.statusCode; 
+        return resp.statusCode;
       });
-  }  
+  }
 
   var addEvent = function(event, userToken) {
       var datetime = new Date(event.date + ' ' + event.time);
@@ -54,6 +54,21 @@ angular.module('lunchCorgi.services', [])
   }
 
 })
+.factory('Event', function($http){
+  var event;
+  var eventDetails = function(evt){
+    event = evt;
+  }
+
+  var loadEvent = function($scope){
+    $scope.event = event;
+  }
+
+  return {
+    eventDetails: eventDetails,
+    loadEvent: loadEvent
+  }
+})
 .factory('Users', function($http){
   var signup = function(user){
     return $http({
@@ -72,7 +87,7 @@ angular.module('lunchCorgi.services', [])
       data: user
     }).then(function (resp) {
       return resp.data.token;
-    });    
+    });
   }
 
   return {
