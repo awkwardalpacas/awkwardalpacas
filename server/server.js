@@ -10,6 +10,10 @@ app.get("/", function (req, res) {
   res.sendFile('index.html', {root: __dirname + '/../client/app'});
 });
 
+app.get('/api/reminder', function(req, res){
+	res.end("hello")
+})
+
 require('./middleware.js')(app, express);
 
 app.listen(process.env.PORT || 8000);
