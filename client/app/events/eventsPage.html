@@ -9,18 +9,18 @@
  
         <div id="">
             <input type="text" name="add-task" class='add task' placeholder="Add your item here" ng-model="taskName" ng-keyup="addTask()"/>
-            <select ng-model="priority">
+            <!-- <select ng-model="priority">
                 <option value='low'>Low</option>
                 <option value='medium'>Medium</option>
                 <option value='high'>High</option>
-            </select>
+            </select> -->
         </div>
                   
 
         <ul id="todo-list">
             <li ng-repeat="task in tasklist track by $index" ng-mouseenter="task.show = true; item= 'focus'" ng-mouseleave="task.show = false; item = 'nofocus'" ng-class='item'>
                 <span class="completed-{{task.completed}}">{{task.name}}</span>
-                <span class="priority {{task.priority}}">{{task.priority}}</span>
+                <!-- <span class="priority {{task.priority}}">{{task.priority}}</span> -->
                 <span class="delete icon" title="Delete Task" ng-show="task.show" ng-click="deleteTask(tasklist.indexOf(task))"></span>
             </li>
         </ul>
@@ -48,8 +48,16 @@
         <div class='time'>{{event.datetime | fromNow }}</div>
         <div class='attendee-list'>
           Who's Going?:
-          <div class='attendee' ng-repeat="attendee in event.attendeeIDs">{{attendee.username}}</div>
+          <div class='attendee' ng-repeat="attendee in event.attendeeIDs">{{attendee.username}}
+          </div>
         </div>
+        <div class='task-list'>
+          Items:
+          <div class='task' ng-repeat="task in event.tasklist">
+          {{event.task}}
+        </div>
+      </div>
+
         <button ng-click='joinEvent(event)'>Join this event!</button>
         <!-- <a href='{{link.base_url}}/api/links/{{link.code}}'>{{link.base_url}}/{{link.code}}</a> -->
       </div>

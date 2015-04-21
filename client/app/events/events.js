@@ -86,13 +86,14 @@ angular.module('lunchCorgi.events', [])
   $scope.initNewEventForm()
 
   $scope.tasklist = [];
-  $scope.priority = 'medium';
+  //$scope.priority = 'medium';
   
   $scope.addTask = function() {
       if(event.keyCode == 13 && $scope.taskName) {
-          $scope.tasklist.push({"name": $scope.taskName, "completed": false, "priority": $scope.priority});   
+          $scope.tasklist.push({"name": $scope.taskName, "completed": false}); 
+            //,"priority": $scope.priority});   
           $scope.taskName = "";
-          $scope.priority = 'medium';
+          //$scope.priority = 'medium';
       }
   }
 
