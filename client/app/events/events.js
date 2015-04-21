@@ -84,4 +84,19 @@ angular.module('lunchCorgi.events', [])
   $scope.viewAllEvents()
   // populate new event form with default values
   $scope.initNewEventForm()
+
+  $scope.tasklist = [];
+  $scope.priority = 'medium';
+  
+  $scope.addTask = function() {
+      if(event.keyCode == 13 && $scope.taskName) {
+          $scope.tasklist.push({"name": $scope.taskName, "completed": false, "priority": $scope.priority});   
+          $scope.taskName = "";
+          $scope.priority = 'medium';
+      }
+  }
+
+  $scope.deleteTask = function(index) {
+      $scope.tasklist.splice(index, 1);
+  }
 })
