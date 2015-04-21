@@ -51,10 +51,12 @@
           <div class='attendee' ng-repeat="attendee in event.attendeeIDs">{{attendee.username}}
           </div>
         </div>
+        
+
         <div class='task-list'>
           Items:
           <div class='task' ng-repeat="task in event.tasklist">
-          {{event.task}}
+          {{task.name}}
         </div>
       </div>
 

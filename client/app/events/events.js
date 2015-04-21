@@ -48,6 +48,8 @@ angular.module('lunchCorgi.events', [])
     $scope.newEvent.location = 'Where is the event?'
     $scope.newEvent.time = (new Date()).toTimeString().substr(0,5)
     $scope.newEvent.date = new Date(new Date() + new Date().getTimezoneOffset()*60000).toISOString().substr(0,10)    
+    $scope.newEvent.tasklist = []
+    $scope.tasklist = []
   }
 
   $scope.viewAllEvents = function() {
@@ -91,6 +93,7 @@ angular.module('lunchCorgi.events', [])
   $scope.addTask = function() {
       if(event.keyCode == 13 && $scope.taskName) {
           $scope.tasklist.push({"name": $scope.taskName, "completed": false}); 
+          $scope.newEvent.tasklist.push({"name": $scope.taskName, "completed": false}); 
             //,"priority": $scope.priority});   
           $scope.taskName = "";
           //$scope.priority = 'medium';
