@@ -4,6 +4,7 @@
   "version": "0.0.0",
   "description": "Help people find new lunch partners. CORGI",
   "repository": "https://github.com/awkwardalpacas/awkwardalpacas.git",
+  "devDependencies" : {},
   // "devDependencies": {
   //   "karma": "~0.10",
   //   "protractor": "^1.1.1",
