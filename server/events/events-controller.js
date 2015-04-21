@@ -122,7 +122,7 @@ module.exports = {
 
     foundUser.on('data', function (user) {
       // var id = user._id.toString();
-      DB.collection('corgievent').update({_id: ObjectID(eventID)}, { $push: {attendeeIDs: {username: user.name} } });
+      DB.collection('corgievent').update({_id: ObjectID(eventID)}, { $addToSet: {attendeeIDs: {username: user.name} } });
       res.end();
     });
 
