@@ -1,13 +1,10 @@
-
  <div id='signin' ng-controller = "SignUpCtrl">
-   <h1>Sign in to find lunch companions now!</h1>
-   <h2>If you don't have an account, <a href="#/signup">sign up <strong>here!</strong>
-   </a></h2>
+   <h1>Sign in</h1>
 
    <form name="signinForm" ng-submit='signin()'>
-     <input type='text' ng-model='user.username' required>
-     <input type='password' ng-model='user.password' required>
+     <input type='text' placeholder="username" ng-model='user.username' required>
+     <input type='password' placeholder="password" ng-model='user.password' required>
      <button class="signin">Sign In</button>
    </form>
+   <div class="small"><a href="#/signup">Sign up</a> for an account</div>
  </div>
- 

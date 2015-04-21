@@ -1,4 +1,25 @@
 /* app css stylesheet */
+a {
+  text-decoration: none;
+}
+
+.addevent {
+  float: right;
+}
+
+body {
+  font-family: 'Roboto Slab', courier;
+  max-width: 50%;
+  margin: 0 auto;
+}
+
+.events {
+
+}
+
+form {
+  margin: 1em 0;
+}
 
 .menu {
   list-style: none;
@@ -28,9 +49,22 @@
   content: "";
   padding: 0;
 }
-.events {
 
+.small {
+  font-size: 0.9em;
 }
-.addevent {
-  float: right;
+
+.version {
+  color: #666;
+  font-size: small;
+  margin-top: 3em;
 }
+
+#map {
+  margin: auto;
+}
+
+
+
+
+
