@@ -28,6 +28,14 @@ form {
   margin: 1em 0;
 }
 
+.logo {
+  background-image: url('/client/assets/lunchmeet.png');
+  background-position: 0 -70px;
+  height: 200px;
+  margin: 0 auto;
+  width: 400px;
+}
+
 .menu {
   list-style: none;
   border-bottom: 0.1em solid black;
