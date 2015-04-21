@@ -1,10 +1,6 @@
-![lunchcorgi](/client/assets/lunchcorgi.jpg)
-
-awkwardalpacas - LunchCorgi
-===========================
 
 Contributers
-------------
+--------------
 
 Adam Guerra [Adam's Github profile] (https://github.com/adamlg)
 
