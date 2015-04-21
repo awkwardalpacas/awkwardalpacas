@@ -26,7 +26,7 @@ angular.module('lunchCorgi.events', [])
           Events.addEvent($scope.newEvent, userToken)
           .then(function(newEvent) {
             // need a better way to notify people, but this is simple for now
-            alert('Your event has been created: ', newEvent.description);
+            Materialize.toast('New Event Created!', 4000)
             // return to defaults
             $scope.viewAllEvents();
             $scope.initNewEventForm()

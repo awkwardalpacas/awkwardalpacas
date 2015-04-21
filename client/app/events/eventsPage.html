@@ -1,33 +1,106 @@
-  <div class='addevent'>
-    <form name="eventForm" ng-submit="addEvent()">
-      <input type= "text" ng-model = "newEvent.location">
-      <input type= "text" ng-model = "newEvent.description">
-      <input type= "date" ng-model = "newEvent.date">
-      <input type= "time" ng-model = "newEvent.time">
+<div class="row col s12"> 
 
-      <div id="todoapp">
- 
-        <div id="">
-            <input type="text" name="add-task" class='add task' placeholder="Add your item here" ng-model="taskName" ng-keyup="addTask()"/>
-            <!-- <select ng-model="priority">
-                <option value='low'>Low</option>
-                <option value='medium'>Medium</option>
-                <option value='high'>High</option>
-            </select> -->
+
+  <div>
+    <!-- removed controller since ng-app in index.html already loads the controller, so we were previously loading it twice. -->
+    <div class="container col s6">
+      <p> CHOOSE AN EVENT HERE: </p>
+      <ul class='collapsible popout' data-collapsible="accordion">
+        <li class = 'event' ng-repeat="event in eventsList | orderBy:'datetime'">
+          <!-- <img src='./assets/redirect_icon.png'/> -->
+          <div class='description collapsible-header'>{{event.description}}</div>
+          <div class='eventInfo collapsible-body'>
+            <div class='creator'>{{event.creator}}</div>
+            <div class='location'>{{event.location}}</div>
+            <div class='date'>{{event.date}}</div>
+            <div class='time'>{{event.time}}</div>
+            <div class='time'>{{event.datetime | date : 'MM/dd/yyyy @ h:mma' }}</div>        
+            <div class='time'>{{event.datetime | fromNow }}</div>
+            <div class='attendee-list'>
+              Who's Going?:
+              <div class='attendee' ng-repeat="attendee in event.attendeeIDs">{{attendee.username}}
+              </div>
+            </div>
+            <div class='task-list'>
+              Items:
+              <div class='task' ng-repeat="task in event.tasklist">
+              {{event.task}}
+            </div>
+          </div>
+
+            <button class="btn waves-effect waves-light" ng-click='joinEvent(event)'>Join this event!</button>
+          </div>
+        </li>
+      </ul>   
+    </div>
+  </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <div class='addevent'>
+    <form name="eventForm col s6" ng-submit="addEvent()">
+      <div class="input-field col s12">
+        <input type= "text" ng-model = "newEvent.location">
+      </div>
+      <div class="input-field col s12">
+        <input type= "text" ng-model = "newEvent.description">
+      </div>
+
+        <div class="col s12">
+          <div class="input-field col s6">
+            <input type= "date" ng-model = "newEvent.date">
+          </div>
+          <div class="input-field col s6">
+            <input type= "time" ng-model = "newEvent.time">
+          </div>   
+
+      </div>
+
+      <div id="todoapp" class="row">
+
             <input type="button" value="Submit Event" ng-click="addEvent()"/>
+
+        <div class="col s12">
+          <input type="text" name="add-task" class='add task col s6' placeholder="Add your item here" ng-model="taskName" ng-keyup="addTask()"/>
+          <!-- <select ng-model="priority">
+              <option value='low'>Low</option>
+              <option value='medium'>Medium</option>
+              <option value='high'>High</option>
+          </select> -->
+          <div style="display: inline;" class="btn waves-effect waves-light" ng-click="addEvent()">Submit Event</div>
         </div>
                   
-
         <ul id="todo-list">
             <li ng-repeat="task in tasklist track by $index" ng-mouseenter="task.show = true; item= 'focus'" ng-mouseleave="task.show = false; item = 'nofocus'" ng-class='item'>
-                <span class="completed-{{task.completed}}">{{task.name}}</span>
-                <!-- <span class="priority {{task.priority}}">{{task.priority}}</span> -->
-                <span class="delete icon" title="Delete Task" ng-show="task.show" ng-click="deleteTask(tasklist.indexOf(task))"></span>
+              <span class="completed-{{task.completed}}">{{task.name}}</span>
+              <!-- <span class="priority {{task.priority}}">{{task.priority}}</span> -->
+              <span class="delete icon" title="Delete Task" ng-show="task.show" ng-click="deleteTask(tasklist.indexOf(task))"></span>
             </li>
         </ul>
       </div>      
 
-     
       <h1 ng-if="invalid">
         Please fill in all of the fields.
       </h1>
@@ -61,17 +134,12 @@
         </div>
       </div>
 
-        <button ng-click='joinEvent(event)'>Join this event!</button>
-        <!-- <a href='{{link.base_url}}/api/links/{{link.code}}'>{{link.base_url}}/{{link.code}}</a> -->
-      </div>
-    </li>
-  </ul>
-  <!-- <button class="prevPage" style="float: left" ng-click="prevPage()">Previous Page</button> -->
-  <!-- <button class="nextPage" style="float: right" ng-click="nextPage()">Next Page</button> -->
 
 
 
-</div>
+
+
+  
 </div>
 
 

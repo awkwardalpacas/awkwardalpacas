@@ -1,13 +1,28 @@
+<div class="container" id='signin' ng-controller = "SignUpCtrl">
 
- <div id='signin' ng-controller = "SignUpCtrl">
-   <h1>Sign in to find lunch companions now!</h1>
-   <h2>If you don't have an account, <a href="#/signup">sign up <strong>here!</strong>
-   </a></h2>
+  <form name="signinForm" ng-submit="signin()">
 
-   <form name="signinForm" ng-submit='signin()'>
-     <input type='text' ng-model='user.username' required>
-     <input type='password' ng-model='user.password' required>
-     <button class="signin">Sign In</button>
-   </form>
- </div>
- 
+    <div class="row">
+      <div class="input-field">
+        <input placeholder="username" type='text' ng-model='user.username' required>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="input-field">
+        <input placeholder="password" type='password' ng-model='user.password' required>
+      </div>
+    </div>
+
+    <h5>If don't have an account,
+      <a href="#/signup">sign up here!</a>
+    </h5>
+
+    <button class="btn waves-effect waves-light">
+      Sign In
+      <i class="mdi-content-send left"></i>
+    </button>
+
+  </form>
+
+</div>

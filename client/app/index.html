@@ -1,15 +1,11 @@
 <!doctype html>
-<!--[if gt IE 8]><!--> <html lang="en" ng-app="lunchCorgi" class="no-js"> <!--<![endif]-->
+<html lang="en" ng-app="lunchCorgi" class="no-js">
 <head>
   <meta charset="utf-8">
-  <link rel="stylesheet" href="../../bower_components/html5-boilerplate/css/normalize.css">
-  <link rel="stylesheet" href="../../bower_components/html5-boilerplate/css/main.css">
-  <style>
-/* comment this until the page is actually working - saf - 04/14/2015
-      [ng-cloak] {
-      display: none;
-    }*/
-  </style>
+
+  <link rel="stylesheet" href="../../client/materialize/css/materialize.css">
+  <script src="../../client/materialize/js/jquery.min.js"></script>
+  <script src = "../../client/materialize/js/materialize.js"></script>
   <script src ="../../bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
   <script src ='../../bower_components/angular/angular.js'></script>
   <script src ='../../bower_components/angular-route/angular-route.js'></script>
@@ -30,13 +26,20 @@
 
 </head>
 
-<body> <!-- ng-cloak removed from body tag until the page is actually working - saf - 04/15/2015 -->
-  <ul class="menu" ng-controller="SignUpCtrl">
-    <li><a href="#/signin">Sign In</a></li>
-    <li><a href="#/signup">Sign Up</a></li>
-    <li ng-if="signedIn()" ng-click="signout()"><a href="#/">Sign Out</a></li>
-  </ul>
-
+<body>
+  <nav>
+    <div class="nav-wrapper">
+      <a href="#!" class="brand-logo">
+        <img style="height:55px;" src="../../client/assets/e.viato-thumb.png"></img>
+      </a>
+      <ul class="right hide-on-med-and-down">
+        <li><a href="sass.html"><i class="mdi-action-search"></i></a></li>
+        <li><a href="components.html"><i class="mdi-action-view-module"></i></a></li>
+        <li><a href="javascript.html"><i class="mdi-navigation-refresh"></i></a></li>
+        <li><a href="mobile.html"><i class="mdi-navigation-more-vert"></i></a></li>
+      </ul>
+    </div>
+  </nav>
   <div ng-view></div>
 
 
