@@ -17,7 +17,7 @@ angular.module('lunchCorgi.signup', ['ngRoute'])
       })
       .catch(function (error) {
         if (error.status === 401) {
-          alert(error.data)
+          $scope.loginError = true;
         }
         console.error(error);
       });
@@ -31,7 +31,7 @@ angular.module('lunchCorgi.signup', ['ngRoute'])
       })
       .catch(function (error) {
         if (error.status === 401) {
-          alert(error.data);
+          $scope.signupError = true;
         }
         console.error(error);
     });
