@@ -71,14 +71,16 @@ angular.module('lunchCorgi.services', [])
     $scope.event = event;
   }
 
-  var createMap = function(latitude, longitude, divId){
+  var createMap = function(latitude, longitude, divId, $scope){
     var coords = new google.maps.LatLng(latitude, longitude);
     mapOptions.center = coords;
+
     var map = new google.maps.Map(document.getElementById(divId), mapOptions);
+
     if (divId === 'map-submit'){
-      var marker = new google.maps.Marker({position: coords, map: map, draggable: true});
+      $scope.marker = new google.maps.Marker({position: coords, map: map, draggable: true});
     } else {
-      var marker = new google.maps.Marker({position: coords, map: map});
+      $scope.marker = new google.maps.Marker({position: coords, map: map});
     }
   }
 

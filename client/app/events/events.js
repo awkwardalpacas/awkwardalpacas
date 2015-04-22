@@ -5,7 +5,7 @@ angular.module('lunchCorgi.events', [])
   $scope.event = {}
 
   $scope.createMap = function(){
-    return Event.createMap(30.2958, -97.8101, "map-submit")
+    return Event.createMap(30.2958, -97.8101, "map-submit", $scope)
   }()
 
   //if $scope.invalid is true, it will display an error message in the view
@@ -21,6 +21,13 @@ angular.module('lunchCorgi.events', [])
   $scope.eventDetails = function(evt) {
     Event.eventDetails(evt);
     $location.path('/event');
+  }
+
+  $scope.getLocation = function(){
+    google.maps.event.addListener($scope.marker, 'dragend', function(evt){
+      $scope.newEvent.lat = this.position.lat();
+      $scope.newEvent.lng = this.position.lng();
+    });
   }
 
   $scope.addEvent = function() {
@@ -58,6 +65,7 @@ angular.module('lunchCorgi.events', [])
     //$scope.newEvent.location = ''
     $scope.newEvent.time = (new Date()).toTimeString().substr(0,5)
     $scope.newEvent.date = new Date(new Date() + new Date().getTimezoneOffset()*60000).toISOString().substr(0,10)
+    $scope.getLocation();
   }
 
   $scope.viewAllEvents = function() {

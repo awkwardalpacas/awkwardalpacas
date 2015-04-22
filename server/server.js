@@ -14,7 +14,9 @@ app.get("/", function (req, res) {
 
 require('./middleware.js')(app, express);
 
-var server = app.listen(process.env.PORT, function () {
+// change back before commiting
+// process.env.PORT
+var server = app.listen(8000, function () {
 
   var host = server.address().address;
   var port = server.address().port;
