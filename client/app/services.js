@@ -1,11 +1,15 @@
 angular.module('lunchCorgi.services', [])
 
+.factory('Username', function(){
+  return {}
+})
+
 .factory('Events', function($http) {
   // these factory functions can be tested in the console with the following syntax (and similar stuff):
   // var e = angular.element(document.body).injector().get('Events'); -> because the name of the factory is 'Events'
   // e.addEvent(newEv)
   // e.getEvents(1)
-  
+ 
   // this function finds events with time greater than now (that's what Date.now is)...
   var getEvents = function(pageNum) {
     return $http({

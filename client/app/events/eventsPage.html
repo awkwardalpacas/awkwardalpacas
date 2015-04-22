@@ -1,16 +1,19 @@
   <div class='addevent'>
     <form name="eventForm" ng-submit="addEvent()">
-      <input type= "text" ng-model = "newEvent.location">
-      <input type= "text" ng-model = "newEvent.description">
+      <div class="form-line-1">
+        <input type= "text" ng-model = "newEvent.location" placeholder='location'>
+        <input type= "text" ng-model = "newEvent.description" placeholder='description'>
+      </div>
       <input type= "date" ng-model = "newEvent.date">
       <input type= "time" ng-model = "newEvent.time">
-      <button onclick="submit">Submit</button>
+      <button onclick="submit">Add</button>
       <h1 ng-if="invalid">
         Please fill in all of the fields.
       </h1>
     </form>
   </div>
 <div id='container'>
+  
   <p> CHOOSE AN EVENT HERE: </p>
  <!-- removed controller since ng-app in index.html already loads the controller, so we were previously loading it twice. -->
  <ul class='events'>
@@ -19,7 +22,7 @@
       <div class='eventInfo'>
         <div class='creator'>{{event.creator}}</div>
         <div class='description'>{{event.description}}</div>
-        <div class='location'>{{event.location}}</div>
+        <button class='location' ng-click='renderMap(event.location)'>{{event.location}}</button>
         <div class='date'>{{event.date}}</div>
         <div class='time'>{{event.time}}</div>
         <div class='time'>{{event.datetime | date : 'MM/dd/yyyy @ h:mma' }}</div>        
@@ -28,15 +31,16 @@
           Who's Going?:
           <div class='attendee' ng-repeat="attendee in event.attendeeIDs">{{attendee.username}}</div>
         </div>
-        <button ng-click='joinEvent(event)'>Join this event!</button>
-        <!-- <a href='{{link.base_url}}/api/links/{{link.code}}'>{{link.base_url}}/{{link.code}}</a> -->
+        <button ng-click='joinEvent(event); remind()'>Join this event!</button>
+        <!-- <button ng-click='remind()'>REMIND!</button> -->
+
       </div>
     </li>
+    
+    <div ng-bind-html='map'>{{map}}</div>
   </ul>
   <!-- <button class="prevPage" style="float: left" ng-click="prevPage()">Previous Page</button> -->
   <!-- <button class="nextPage" style="float: right" ng-click="nextPage()">Next Page</button> -->
-
-
 
 </div>
 </div>
