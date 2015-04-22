@@ -31,7 +31,7 @@ console.log("no error")
   var eventID = req.body.event._id;
   var userToken = req.body.token;
   var username = jwt.decode(userToken, 'secret');
-  var foundUser = DB.collection('corgievent').find( {{_id: ObjectID(eventID)}} );
+  var foundUser = DB.collection('corgiuser').find( {name: username} );
   foundUser.on('data',function (user){
   var chat = {username:user.name, messagekey:req.body.message}
     DB.collection('corgievent').update({_id: ObjectID(eventID)},{$addToSet:{chat:chat}})
