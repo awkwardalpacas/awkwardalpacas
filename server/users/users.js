@@ -5,7 +5,7 @@ var mongoose = require('mongoose'),
     Q = require('q'),
     jwt  = require('jwt-simple');
 
-var db = mongoose.createConnection("mongodb://localhost/corgi"); //connects to database called corgi
+var db = mongoose.createConnection(process.env.MONGOLAB_URI || "mongodb://localhost/corgi"); //connects to database called corgi
 
 autoIncrement.initialize(db);  // required to get the tables to auto-increment for each new record (user or event)
 
@@ -25,14 +25,13 @@ UserSchema.methods.comparePasswords = function (password, savedPassword, res, us
 
   bcrypt.compare(password, savedPassword, function (err, isMatch) {
     if (err || !isMatch) {
-      res.status(401).send('No user');
+      res.status(401).send('Incorrect username or password');
     }
-    if ( isMatch ) {
+
+    if (isMatch) {
       var token = jwt.encode(user.name, 'secret');
       res.json({token: token});
-    } else {
-      res.status(401).send('Incorrect password.');
-    }
+    } 
   });
 };
 

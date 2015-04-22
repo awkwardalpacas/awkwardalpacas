@@ -1,42 +1,48 @@
   <div class='addevent'>
     <form name="eventForm" ng-submit="addEvent()">
-      <input type= "text" ng-model = "newEvent.location">
-      <input type= "text" ng-model = "newEvent.description">
+      <div class="form-line-1">
+        <input type= "text" ng-model = "newEvent.description" placeholder='description'>
+        <input type= "text" ng-model = "newEvent.location" placeholder='location'>
+      </div>
       <input type= "date" ng-model = "newEvent.date">
       <input type= "time" ng-model = "newEvent.time">
-      <button onclick="submit">Submit</button>
+      <button onclick="submit">Add</button>
       <h1 ng-if="invalid">
         Please fill in all of the fields.
       </h1>
     </form>
   </div>
-<div id='container'>
-  <p> CHOOSE AN EVENT HERE: </p>
- <!-- removed controller since ng-app in index.html already loads the controller, so we were previously loading it twice. -->
- <ul class='events'>
-    <li class = 'event' ng-repeat="event in eventsList | orderBy:'datetime'">
+  <div id='container'>
+  
+  <div class="title">Events</div>
+  <ul class='events'>
+    <li class='event' ng-repeat="event in eventsList | orderBy:'datetime'">
       <!-- <img src='./assets/redirect_icon.png'/> -->
       <div class='eventInfo'>
-        <div class='creator'>{{event.creator}}</div>
-        <div class='description'>{{event.description}}</div>
-        <div class='location'>{{event.location}}</div>
-        <div class='date'>{{event.date}}</div>
-        <div class='time'>{{event.time}}</div>
-        <div class='time'>{{event.datetime | date : 'MM/dd/yyyy @ h:mma' }}</div>        
-        <div class='time'>{{event.datetime | fromNow }}</div>
-        <div class='attendee-list'>
-          Who's Going?:
-          <div class='attendee' ng-repeat="attendee in event.attendeeIDs">{{attendee.username}}</div>
+        <!-- <div class='creator'>{{event.creator}}</div> -->
+        <button class="join" ng-click='joinEvent(event); remind()'>Attend</button>
+        <div class="event-line1">
+          <span class='description'>{{ event.description }}</span>
+          <span class='location'>at {{ event.location }}</span>
+          <span class='time'>{{ event.datetime | fromNow }}</span>
         </div>
-        <button ng-click='joinEvent(event)'>Join this event!</button>
-        <!-- <a href='{{link.base_url}}/api/links/{{link.code}}'>{{link.base_url}}/{{link.code}}</a> -->
+        <div class="event-line2">
+          <span class='time'>{{ event.datetime | date : 'MM/dd/yyyy @ h:mma' }}</span>        
+          <span class='attendee-list'>
+            Attendees
+            <span class='attendee' ng-repeat="attendee in event.attendeeIDs">{{ attendee.username }}</span>
+          </span>
+          <button ng-click='renderMap(event.location)'>Map</button>
+        </div>
+        <!-- <button ng-click='remind()'>REMIND!</button> -->
+
       </div>
     </li>
+    <div ng-bind-html='map'>{{ map }}</div>
+    
   </ul>
   <!-- <button class="prevPage" style="float: left" ng-click="prevPage()">Previous Page</button> -->
   <!-- <button class="nextPage" style="float: right" ng-click="nextPage()">Next Page</button> -->
-
-
 
 </div>
 </div>
