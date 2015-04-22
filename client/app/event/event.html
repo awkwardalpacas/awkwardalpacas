@@ -16,7 +16,12 @@
 
 <div>
   <h2>Chat with other people who are coming</h2>
-  <div class="chat">[chat area]</div>
+  <div class="chat" ng-controller='chatCtrl'>
+    <div class = 'displaychats'>
+      <p ng-repeat= 'chat from chats'>{{chat.name}}+":"+{{chat.message}}</p>
+    <div>
+    
+  </div>
 </div>
 
  <button ng-click='loadEvents()'>Back to Events Page</button>

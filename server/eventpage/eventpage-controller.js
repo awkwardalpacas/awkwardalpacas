@@ -19,7 +19,7 @@ module.exports ={
   var allchats =[];
   var getChats = DB.collections('corgievent').find({_id: ObjectID(eventID)});
   getChats.on('data',function (room){
-    res.end(room.chats);
+    res.end(room.chat);
   })
 
  },
@@ -27,14 +27,14 @@ module.exports ={
   var eventID = req.body.event._id;
   var userToken = req.body.token;
   var username = jwt.decode(userToken, 'secret');
-  var foundUser = DB.collection('corgievent').find( {{_id: ObjectID(eventID)}} );
+  var foundUser = DB.collection('corgiuser').find( {name: username} );
   foundUser.on('data',function (user){
   var chat = {username:user.name,message:req.body.message}
     DB.collection('eventChat').find({_id: ObjectID(eventID)},{$push:{chat:chat}})
     res.end('posted chats')
   })
 
- },
+ }
  
 }
 
