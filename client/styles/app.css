@@ -7,6 +7,7 @@ a {
 .addevent button {
   background: url('/client/assets/lettuce-button.png');
   height: 1.7em;
+  width: 5em;
 }
 
 .addevent form {
@@ -67,7 +68,7 @@ form input[type='date'] {
 }
 
 form input[type='time'] {
-  width: 5em;
+  width: 7.5em;
 }
 
 .form-line-1 input {
