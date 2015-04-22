@@ -41,6 +41,7 @@
     <li ng-if="!signedIn()"><a href="#/signin">Sign In</a></li>
     <li ng-if="!signedIn()"><a href="#/signup">Sign Up</a></li>
     <li ng-if="signedIn()" ng-click="signout()"><a href="#/">Sign Out</a></li>
+    <li ng-if="signedIn()" ng-click="profile()"><button>Profile<button></li>
   </ul>
   <div class="logo"></div>
 
