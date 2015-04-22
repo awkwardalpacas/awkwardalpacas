@@ -24,7 +24,9 @@ module.exports = {
     // this is the real first line, where only events happening in the future are fetched, but...
     // var getEvents = DB.collection('corgievent').find({ datetime: { $gt: Date.now() } })
 
-    var iso = (new Date()).toISOString();
+    var iso = new Date();
+    iso.setMinutes(iso.getMinutes()-30)
+    iso = iso.toISOString();
 
     // ...for testing, we're just fetching everything.
     var options = { 'sort' : {'datetime': 1}, 'limit': 10}
