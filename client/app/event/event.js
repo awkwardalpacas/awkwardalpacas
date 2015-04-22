@@ -17,7 +17,7 @@ angular.module('lunchCorgi.event', [])
     // fake data
     // return Event.createMap(30.2958, -97.8101, "map-canvas", $scope)
     // real data will look something like this
-    return Event.createMap($scope.newEvent.lat, $scope.newEvent.lgn, "map-canvas", $scope)
+    return Event.createMap($scope.event.lat, $scope.event.lng, "map-canvas", $scope)
   }
 
   $scope.createMap();
