@@ -104,3 +104,12 @@ angular.module('lunchCorgi.events', [])
       $scope.tasklist.splice(index, 1);
   }
 })
+.directive('accordian', function() {
+  return {
+    link: function($scope, element) {
+      jQuery('.collapsible').collapsible({
+        accordian: true
+      })
+    }
+  }
+})
