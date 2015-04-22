@@ -85,6 +85,7 @@ module.exports = {
 
 	// this will slbe used to view events that a user has already joined
 	userEvents: function(req, res) {
+    console.log(req.body)
     var found = DB.collection('corgiuser').find({name:"sam"})
 
     found.on('data', function(user){
