@@ -28,8 +28,8 @@
           Who's Going?:
           <div class='attendee' ng-repeat="attendee in event.attendeeIDs">{{attendee.username}}</div>
         </div>
-        <button ng-click='joinEvent(event);$event.preventDefault(); $event.stopPropagation();'>Join this event!</button>
-        <button ng-click='eventDetails(event)'>More Details</button>
+        <button type='button' ng-click='joinEvent(event);$event.preventDefault(); $event.stopPropagation();' prevent-default>Join this event!</button>
+        <button type='button' ng-click='eventDetails(event)' prevent-default>More Details</button>
         <!-- <a href='{{link.base_url}}/api/links/{{link.code}}'>{{link.base_url}}/{{link.code}}</a> -->
       </div>
     </li>
