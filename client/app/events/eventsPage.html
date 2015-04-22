@@ -4,7 +4,6 @@ window.once = function() {
   var ran = false
   return function() {
     if(ran) return
-    debugger
     ran = true
     jQuery('.collapsible').collapsible({
       accordian: true
