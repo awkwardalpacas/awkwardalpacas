@@ -37,7 +37,7 @@ app.post('/api/reminder', function(req,res){
       var params = {
         'src': '19192751649', // Caller Id
         'dst' : '1' + phoneNumber, // User Number to Call
-        'text' : "Hi, your event will happen",
+        'text' : "Hi, don't forget your event!",
         'type' : "sms"
       };
 
