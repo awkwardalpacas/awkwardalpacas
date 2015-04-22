@@ -88,7 +88,7 @@ module.exports = {
     var found = DB.collection('corgiuser').find({name:"sam"})
 
     found.on('data', function(user){
-      console.log(user._id)
+      console.log(user.eventIDs)
       res.send('hi')
     })        
 		// var eventIDs = db.users.find({ name: req.data.user.username }).eventIDs
