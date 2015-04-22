@@ -7,6 +7,7 @@ a {
 .addevent button {
   background: url('/client/assets/lettuce-button.png');
   height: 1.7em;
+  width: 5em;
 }
 
 .addevent form {
@@ -21,6 +22,10 @@ body {
   margin: 0 auto;
 }
 
+.description {
+  font-weight: bold;
+}
+
 .error {
   background-color: pink;
   margin: 0 auto;
@@ -28,8 +33,13 @@ body {
   padding: 1em;
 }
 
-.events {
+.event {
+  margin-bottom: 1em;
+  padding-left: 66px;
+}
 
+.events {
+  list-style-type: none;
 }
 
 form {
@@ -67,12 +77,30 @@ form input[type='date'] {
 }
 
 form input[type='time'] {
-  width: 5em;
+  width: 7.5em;
 }
 
 .form-line-1 input {
   margin-bottom: 0.5em;
   width: 76%;
+}
+
+.join {
+  background: url('/client/assets/tomato.png');
+  background-position: -43px 0;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  float: left;
+  font-weight: bold;
+  height: 1.7em;
+  margin-right: 1em;
+  margin-top: 4px;
+  width: 4em;
+}
+
+.location {
+  text-decoration: underline;
 }
 
 .logo {
@@ -123,6 +151,14 @@ form input[type='time'] {
 
 .small {
   font-size: 0.9em;
+}
+
+.title {
+  color: #E22A38;
+  font-size: 2.2em;
+  font-weight: bold;
+  margin: 1em 0;
+  text-align: center;
 }
 
 .version {
