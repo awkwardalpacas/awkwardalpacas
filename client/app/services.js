@@ -65,15 +65,27 @@ angular.module('lunchCorgi.services', [])
   }
   ////VISHAL WAS HERE////////////
 
-  var getChat =function(event){
+  var getChat =function(cb){
     $http({
       method: 'GET',
-      url: '/api/event',
-      data:{event:event}
+      url: '/api/event/chats',
+      params:event
     }).then(function(chats){
-      return chats
+        cb(chats)
     })
-  }
+  };
+  var sendChat =function(userToken,message,cb){
+      $http({
+        method: 'POST',
+        url: '/api/chats',
+        data: {message: message, token: userToken, event:event}
+      })
+      .then(function (res) {
+        console.log(res)
+        cb()
+      });
+
+  };
 
 
 
@@ -82,7 +94,9 @@ angular.module('lunchCorgi.services', [])
 
   return {
     eventDetails: eventDetails,
-    loadEvent: loadEvent
+    loadEvent: loadEvent,
+    getChat:getChat,
+    sendChat:sendChat
   }
 })
 .factory('Users', function($http){

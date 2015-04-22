@@ -16,13 +16,17 @@
 
 <div>
   <h2>Chat with other people who are coming</h2>
+  chats below
   <div class="chat" ng-controller='chatCtrl'>
-    <div class = 'displaychats'>
-      <p ng-repeat= 'chat from chats'>{{chat.name}}+":"+{{chat.message}}</p>
-    <div>
-    
+  <h1>{{test}}</h1>
+    <div class = 'displaychats'  ng-repeat = 'chat in chats'>
+      <p>{{chat.username}}:{{chat.messagekey}}</p>
+
+    </div>
+    <input type="text" ng-model = "textinput"> 
+    <button type="button" ng-click='sendmessage()'>Send</button></br>
   </div>
 </div>
 
  <button ng-click='loadEvents()'>Back to Events Page</button>
- <p>{{event}}</p>
+
