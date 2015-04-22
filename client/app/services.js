@@ -70,10 +70,10 @@ angular.module('lunchCorgi.services', [])
     $scope.event = event;
   }
 
-  var createMap = function(latitude, longitude){
+  var createMap = function(latitude, longitude, divId){
     var coords = new google.maps.LatLng(latitude, longitude);
     mapOptions.center = coords;
-    var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    var map = new google.maps.Map(document.getElementById(divId), mapOptions);
     var marker = new google.maps.Marker({position: coords, map: map});
   }
 

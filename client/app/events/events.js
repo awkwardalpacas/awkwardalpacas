@@ -4,6 +4,10 @@ angular.module('lunchCorgi.events', [])
 
   $scope.event = {}
 
+  $scope.createMap = function(){
+    return Event.createMap(30.2958, -97.8101, "map-submit")
+  }()
+
   //if $scope.invalid is true, it will display an error message in the view
   $scope.invalid = false
 
