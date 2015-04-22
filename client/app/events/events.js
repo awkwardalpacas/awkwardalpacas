@@ -29,31 +29,31 @@ angular.module('lunchCorgi.events', [])
             alert('Your event has been created: ', newEvent.description);
             // return to defaults
             $scope.viewAllEvents();
-            $scope.initNewEventForm()
+            $scope.initNewEventForm();
           });
         } else {
-          $scope.invalid = true
+          $scope.invalid = true;
         }     
   }
 
   // first page of events is page number 0; when more events are viewed, the page number is increased
-  $scope.pageNumber = 0
+  $scope.pageNumber = 0;
 
   // eventsList is an array used in the template (with ng-repeat) to populate the list of events.
-  $scope.eventsList = {}
+  $scope.eventsList = {};
 
   $scope.initNewEventForm = function() {
-    $scope.newEvent = {}
-    $scope.newEvent.description = ''
-    $scope.newEvent.location = ''
-    $scope.newEvent.time = (new Date()).toTimeString().substr(0,5)
-    $scope.newEvent.date = new Date(new Date() + new Date().getTimezoneOffset()*60000).toISOString().substr(0,10)    
+    $scope.newEvent = {};
+    $scope.newEvent.description = '';
+    $scope.newEvent.location = '';
+    $scope.newEvent.time = '';
+    $scope.newEvent.date = '';
   }
 
   $scope.viewAllEvents = function() {
     // send request to services.js, which in turn sends the actual http request to events-controller in the server.
 
-    if ( $window.localStorage.getItem('com.corgi') ) {
+    if ($window.localStorage.getItem('com.corgi')) {
       Events.getEvents($scope.pageNumber)
       .then(function(data) {
         // set $scope.eventsList equal to the data we get back from our http request - that's how we 

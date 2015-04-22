@@ -48,6 +48,7 @@ form button {
 }
 
 form input {
+  border-radius: 3px;
   height: 1.8em;
   padding: 0 0.5em;
 }
@@ -94,7 +95,7 @@ form input {
 }
 
 #signin,
-#signout {
+#signup {
   text-align: center;
 }
 
