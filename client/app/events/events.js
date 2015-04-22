@@ -26,7 +26,7 @@ angular.module('lunchCorgi.events', [])
           Events.addEvent($scope.newEvent, userToken)
           .then(function(newEvent) {
             // need a better way to notify people, but this is simple for now
-            alert('Your event has been created: ', newEvent.description);
+            Materialize.toast('New Event Created!', 4000)
             // return to defaults
             $scope.viewAllEvents();
             $scope.initNewEventForm()
@@ -48,6 +48,8 @@ angular.module('lunchCorgi.events', [])
     $scope.newEvent.location = 'Where is the event?'
     $scope.newEvent.time = (new Date()).toTimeString().substr(0,5)
     $scope.newEvent.date = new Date(new Date() + new Date().getTimezoneOffset()*60000).toISOString().substr(0,10)    
+    $scope.newEvent.tasklist = []
+    $scope.tasklist = []
   }
 
   $scope.viewAllEvents = function() {
@@ -84,4 +86,30 @@ angular.module('lunchCorgi.events', [])
   $scope.viewAllEvents()
   // populate new event form with default values
   $scope.initNewEventForm()
+
+  $scope.tasklist = [];
+  //$scope.priority = 'medium';
+  
+  $scope.addTask = function() {
+      if(event.keyCode == 13 && $scope.taskName) {
+          $scope.tasklist.push({"name": $scope.taskName, "completed": false}); 
+          $scope.newEvent.tasklist.push({"name": $scope.taskName, "completed": false}); 
+            //,"priority": $scope.priority});   
+          $scope.taskName = "";
+          //$scope.priority = 'medium';
+      }
+  }
+
+  $scope.deleteTask = function(index) {
+      $scope.tasklist.splice(index, 1);
+  }
+})
+.directive('accordian', function() {
+  return {
+    link: function($scope, element) {
+      jQuery('.collapsible').collapsible({
+        accordian: true
+      })
+    }
+  }
 })
