@@ -4,8 +4,15 @@ a {
   text-decoration: none;
 }
 
-.addevent {
-  float: right;
+.addevent button {
+  background: url('/client/assets/lettuce-button.png');
+  height: 1.7em;
+}
+
+.addevent form {
+  margin: 0 auto;
+  text-align: center;
+  width: 80%;
 }
 
 body {
@@ -29,8 +36,10 @@ form {
   margin: 1em 0;
 }
 
-form input,
-form button {
+#signin form input,
+#signup form input,
+#signin form button,
+#signup form button {
   display: block;
   margin: 0.5em auto;
 }
@@ -53,9 +62,22 @@ form input {
   padding: 0 0.5em;
 }
 
+form input[type='date'] {
+  width: 9em;
+}
+
+form input[type='time'] {
+  width: 5em;
+}
+
+.form-line-1 input {
+  margin-bottom: 0.5em;
+  width: 76%;
+}
+
 .logo {
   background: url('/client/assets/lunchmeet.png') no-repeat;
-  background-position: 0 -70px;
+  background-position: 20px -70px;
   height: 200px;
   margin: 0 auto;
   width: 400px;
