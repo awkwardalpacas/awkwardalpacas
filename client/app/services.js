@@ -62,6 +62,7 @@ angular.module('lunchCorgi.services', [])
     zoom: 10,
     center: {}
   }
+
   var eventDetails = function(evt){
     event = evt;
   }
@@ -74,7 +75,11 @@ angular.module('lunchCorgi.services', [])
     var coords = new google.maps.LatLng(latitude, longitude);
     mapOptions.center = coords;
     var map = new google.maps.Map(document.getElementById(divId), mapOptions);
-    var marker = new google.maps.Marker({position: coords, map: map});
+    if (divId === 'map-submit'){
+      var marker = new google.maps.Marker({position: coords, map: map, draggable: true});
+    } else {
+      var marker = new google.maps.Marker({position: coords, map: map});
+    }
   }
 
   return {
