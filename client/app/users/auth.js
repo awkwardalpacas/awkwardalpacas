@@ -53,6 +53,13 @@ angular.module('lunchCorgi.signup', ['ngRoute', ])
     $location.path('/signin');
   }
 
+  $scope.profile = function() {
+    Users.getProfile($scope.user)
+      .then(function(data){
+        console.log(data)
+      })
+  }
+
 });
 
 

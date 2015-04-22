@@ -75,10 +75,20 @@ angular.module('lunchCorgi.services', [])
       return resp.data.token;
     });    
   }
+  var getProfile = function(user) {
+    return $http({
+      method: 'POST',
+      url: '/api/users/profile',
+      data: user
+    }).then(function (resp) {
+      return resp.data;
+    });    
+  }
 
   return {
     signup: signup,
-    signin: signin
+    signin: signin,
+    getProfile: getProfile
   }
 })
 /* This custom Angular filter should produce our datetime object in the "from now" format
