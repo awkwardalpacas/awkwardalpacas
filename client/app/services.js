@@ -19,7 +19,8 @@ angular.module('lunchCorgi.services', [])
 
   };
 
-  var joinEvent = function(event, userToken) {
+  var joinEvent = function(event, userToken, cb) {
+  //var joinEvent = function(event, userToken) {  
       return $http({
         method: 'PUT',
         url: '/api/events',
@@ -28,6 +29,7 @@ angular.module('lunchCorgi.services', [])
       .then(function (resp) {
         //probably superfluous, but maybe handy for debugging for now - 04/16/2015 - saf
         //alert("You were added to event ", event.description)
+        cb();
         return resp.statusCode; 
       });
   }
