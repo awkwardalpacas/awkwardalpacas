@@ -10,7 +10,7 @@ autoIncrement.initialize(connection);  // required to get the tables to auto-inc
 var EventSchema = new Schema ({
 	eventID : { type: Number, ref: 'eventID'},
 	description : String,
-  number: Number,
+  	number: Number,
 	location : String,
 	datetime: Date,
 	creatorID : Number,
