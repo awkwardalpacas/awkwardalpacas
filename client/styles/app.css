@@ -16,6 +16,18 @@ a {
   width: 80%;
 }
 
+.attendee {
+  text-align: center;
+}
+
+.attendee-list {
+  color: rgb(197, 96, 12);
+}
+
+.attendee-list:hover {
+  cursor: pointer;
+}
+
 body {
   font-family: 'Roboto Slab', courier;
   max-width: 50%;
@@ -169,4 +181,16 @@ form input[type='time'] {
 
 ::-webkit-input-placeholder {
   text-align: center;
+}
+
+@media screen and (max-width: 1050px) {
+  body {
+    max-width: 75%;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  body {
+    max-width: 100%;
+  }
 }
