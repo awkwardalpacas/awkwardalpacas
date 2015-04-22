@@ -10,7 +10,7 @@ angular.module('lunchCorgi.signup', ['ngRoute'])
   };
 
   $scope.signin = function () {
-    Username.user=$scope.user.username
+    Username.user = $scope.user.username
     Users.signin($scope.user)
       // .then(function(){
       //   Username.user=$scope.user.username
@@ -43,8 +43,12 @@ angular.module('lunchCorgi.signup', ['ngRoute'])
   };
 
   $scope.signout = function() {
-    $window.localStorage.setItem('com.corgi','');
+    $window.localStorage.removeItem('com.corgi');
     $location.path('/signin');
   }
 
 });
+
+
+
+
