@@ -1,9 +1,26 @@
+<script>
+
+window.once = function() {
+  var ran = false
+  return function() {
+    if(ran) return
+    debugger
+    ran = true
+    jQuery('.collapsible').collapsible({
+      accordian: true
+    })
+  }
+}()
+
+
+</script>
+
 <div class="row col s12"> 
 
 
   <div>
     <!-- removed controller since ng-app in index.html already loads the controller, so we were previously loading it twice. -->
-    <div class="container col s6">
+    <div class="container col s6" onmouseover="once()">
       <p> CHOOSE AN EVENT HERE: </p>
       <ul class='collapsible popout' data-collapsible="accordion">
         <li class = 'event' ng-repeat="event in eventsList | orderBy:'datetime'">
@@ -24,7 +41,7 @@
             <div class='task-list'>
               Items:
               <div class='task' ng-repeat="task in event.tasklist">
-              {{event.task}}
+              {{task.name}}
             </div>
           </div>
 
@@ -34,23 +51,6 @@
       </ul>   
     </div>
   </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -81,17 +81,14 @@
       <div id="todoapp" class="row">
 
 
-        <div class="col s12">
-          <input type="text" name="add-task" class='add task col s6' placeholder="Add your item here" ng-model="taskName" ng-keyup="addTask()"/>
-          <!-- <select ng-model="priority">
-              <option value='low'>Low</option>
-              <option value='medium'>Medium</option>
-              <option value='high'>High</option>
-          </select> -->
-          <div style="display: inline;" class="btn waves-effect waves-light" ng-click="addEvent()">Submit Event</div>
-        </div>
+        
+          <div class="col s8">
+            <input type="text" name="add-task" class='add task' placeholder="Add your item here" ng-model="taskName" ng-keyup="addTask()" style="width: 80%"/>
+          </div>
+          <div class="btn waves-effect waves-light col s3" style="margin-right: 25px; margin-top: 15px;" ng-click="addEvent()">Submit Event</div>
+     
                   
-        <ul id="todo-list">
+        <ul id="todo-list" style="clear: both;">
             <li ng-repeat="task in tasklist track by $index" ng-mouseenter="task.show = true; item= 'focus'" ng-mouseleave="task.show = false; item = 'nofocus'" ng-class='item'>
               <span class="completed-{{task.completed}}">{{task.name}}</span>
               <!-- <span class="priority {{task.priority}}">{{task.priority}}</span> -->
