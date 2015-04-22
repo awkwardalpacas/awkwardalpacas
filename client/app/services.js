@@ -63,6 +63,22 @@ angular.module('lunchCorgi.services', [])
   var loadEvent = function($scope){
     $scope.event = event;
   }
+  ////VISHAL WAS HERE////////////
+
+  var getChat =function(event){
+    $http({
+      method: 'GET',
+      url: '/api/event',
+      data:{event:event}
+    }).then(function(chats){
+      return chats
+    })
+  }
+
+
+
+
+  ////////////////////////
 
   return {
     eventDetails: eventDetails,
