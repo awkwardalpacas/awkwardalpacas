@@ -35,7 +35,9 @@ angular.module('lunchCorgi.events', [])
     // need to add a check to make sure user is logged in
     if ($scope.newEvent.description !== "" &&
         $scope.newEvent.location !== "" &&
-        $scope.newEvent.datetime !== "" ) {
+        $scope.newEvent.datetime !== "" &&
+        $scope.newEvent.lat !== "" &&
+        $scope.newEvent.lng !== "") {
 
           $scope.invalid = false
           var userToken = $window.localStorage.getItem('com.corgi');
