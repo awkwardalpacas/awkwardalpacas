@@ -4,6 +4,10 @@ angular.module('lunchCorgi.events', [])
 
   $scope.event = {}
 
+  $scope.createMap = function(){
+    return Event.createMap(30.2958, -97.8101, "map-submit", $scope)
+  }()
+
   //if $scope.invalid is true, it will display an error message in the view
   $scope.invalid = false
 
@@ -19,12 +23,21 @@ angular.module('lunchCorgi.events', [])
     $location.path('/event');
   }
 
+  $scope.getLocation = function(){
+    google.maps.event.addListener($scope.marker, 'dragend', function(evt){
+      $scope.newEvent.lat = this.position.lat();
+      $scope.newEvent.lng = this.position.lng();
+    });
+  }
+
   $scope.addEvent = function() {
     // check that all fields in the events.html form are filled out
     // need to add a check to make sure user is logged in
     if ($scope.newEvent.description !== "" &&
         $scope.newEvent.location !== "" &&
-        $scope.newEvent.datetime !== "" ) {
+        $scope.newEvent.datetime !== "" &&
+        $scope.newEvent.lat !== "" &&
+        $scope.newEvent.lng !== "") {
 
           $scope.invalid = false
           var userToken = $window.localStorage.getItem('com.corgi');
@@ -54,6 +67,7 @@ angular.module('lunchCorgi.events', [])
     //$scope.newEvent.location = ''
     $scope.newEvent.time = (new Date()).toTimeString().substr(0,5)
     $scope.newEvent.date = new Date(new Date() + new Date().getTimezoneOffset()*60000).toISOString().substr(0,10)
+    $scope.getLocation();
   }
 
   $scope.viewAllEvents = function() {

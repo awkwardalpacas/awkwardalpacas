@@ -13,7 +13,9 @@ var EventSchema = new Schema ({
 	location : String,
 	datetime: Date,
 	creatorID : Number,
-	attendeeIDs : []
+	attendeeIDs : [],
+  lat: Double,
+  lng: Double
 });
 
 EventSchema.plugin(autoIncrement.plugin, 'eventID');  // extends the EventSchema to include the auto-increment

@@ -1,4 +1,8 @@
 /* app css stylesheet */
+.map {
+  height: 400px;
+  width: 400px;
+}
 
 .menu {
   list-style: none;
