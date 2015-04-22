@@ -7,8 +7,8 @@ var DB;
 var plivo = require('plivo-node')
 
 var api = plivo.RestAPI({
-  authId: 'MANDCWOWIXNTG2YZQXNT',
-  authToken: 'MDBhNGQyNjA4NTU2ODIzZjQxMzc2M2FhY2Q2OGE1',
+  authId: process.env.authId,
+  authToken: process.env.authToken
 });
 
 
