@@ -16,7 +16,7 @@ angular.module('lunchCorgi.events', [])
     }).then(function(res){
       alert(res.data)
       $http({
-      url: 'https://api.plivo.com/v1/Account/MANJQ3NDMYZGIWZTCZNG/Message/',
+      // url: 'https://api.plivo.com/v1/Account/MANJQ3NDMYZGIWZTCZNG/Message/',
       src: '13303823056',
       dst: '1'+res.data,
       text:'Your event is happening blahblah'

@@ -22,7 +22,7 @@ app.get("/", function (req, res) {
 
 app.post('/api/reminder', function(req,res){
 	var user = req.body.user
-	console.log(user)
+	console.log(user, user)
     var found = DB.collection('corgiuser').find({name:user})
 
     found.on('data', function(user){
