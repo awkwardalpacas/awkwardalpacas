@@ -1,6 +1,6 @@
 angular.module('lunchCorgi.events', [])
 
-.controller('EventsController', function ($scope, $window, $location, $sce, Events) {
+.controller('EventsController', function ($scope, $window, $location, $sce, Events, $http) {
 
   $scope.event = {}
 
@@ -8,9 +8,18 @@ angular.module('lunchCorgi.events', [])
   $scope.invalid = false
 
   $scope.remind=function(){
-    Events.remind().then(function(data){
-      alert(data)
+    $http({
+      method: 'GET',
+      url:'/api/reminder'
+    }).then(function(res){
+      $http({
+      method: 'POST',
+      src: '19192751649',
+      dst: '1'+res, //get the phone number from DB
+      text:'Your event is happening blahblah'
     })
+   })
+    
   }
 
   $scope.joinEvent = function(evt) {
