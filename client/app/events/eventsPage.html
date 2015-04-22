@@ -28,11 +28,13 @@
         </div>
         <div class="event-line2">
           <span class='time'>{{ event.datetime | date : 'MM/dd/yyyy @ h:mma' }}</span>        
-          <span class='attendee-list'>
-            Attendees
-            <span class='attendee' ng-repeat="attendee in event.attendeeIDs">{{ attendee.username }}</span>
+          <span ng-click="attendees=!attendees" class='attendee-list'>
+            -- Attendees --
           </span>
           <button ng-click='renderMap(event.location)'>Map</button>
+          
+            <div class='attendee' ng-hide="attendees" ng-repeat="attendee in event.attendeeIDs">{{ attendee.username }}</div>
+
         </div>
         <!-- <button ng-click='remind()'>REMIND!</button> -->
 
