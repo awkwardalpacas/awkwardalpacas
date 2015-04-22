@@ -41,7 +41,6 @@ angular.module('lunchCorgi.services', [])
   }
 
   var addEvent = function(event, userToken) {
-    console.log('event in addEvent', event)
       var datetime = new Date(event.date + ' ' + event.time);
       var gmt = datetime.toISOString();
       event.datetime = gmt;
