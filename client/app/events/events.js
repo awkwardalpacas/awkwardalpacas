@@ -1,11 +1,29 @@
 angular.module('lunchCorgi.events', [])
 
-.controller('EventsController', function ($scope, $window, $location, $sce, Events) {
+.controller('EventsController', function ($scope, $window, $location, $sce, Events, $http, Username) {
 
   $scope.event = {}
 
+
   //if $scope.invalid is true, it will display an error message in the view
   $scope.invalid = false
+
+  $scope.remind=function(){
+    $http({
+      method: 'POST',
+      url:'/api/reminder',
+      data: {user:Username.user}
+    }).then(function(res){
+      alert(res.data)
+      $http({
+      // url: 'https://api.plivo.com/v1/Account/MANJQ3NDMYZGIWZTCZNG/Message/',
+      src: '13303823056',
+      dst: '1'+res.data,
+      text:'Your event is happening blahblah'
+    })
+   })
+    
+  }
 
   $scope.joinEvent = function(evt) {
     $scope.event = evt;
