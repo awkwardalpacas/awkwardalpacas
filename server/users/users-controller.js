@@ -83,20 +83,20 @@ module.exports = {
     });
   },
 
-	// this will be used to view events that a user has already joined
+	// this will slbe used to view events that a user has already joined
 	userEvents: function(req, res) {
-		var eventIDs;
-    DB.collection('corgiuser').find({ name: 'sam' }, function(err, result){
-      if (result){
-        eventIDs = result;
-      }
-    })
-    console.log(eventIDs)
-		var events = []
+    var found = DB.collection('corgiuser').find({name:"sam"})
+
+    found.on('data', function(user){
+      console.log(user._id)
+      res.send('hi')
+    })        
+		// var eventIDs = db.users.find({ name: req.data.user.username }).eventIDs
+		// var events = []
 		// eventIDs.forEach(function(evID) {
 		// 	events.push(db.events.find({ eventID: evID }))
 		// })
-		res.send('hi!')
+		// res.json(events)
 	}
 }
 
