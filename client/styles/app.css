@@ -16,6 +16,7 @@ body {
 
 .error {
   background-color: pink;
+  margin: 0 auto;
   max-width: 75%;
   padding: 1em;
 }
@@ -28,12 +29,39 @@ form {
   margin: 1em 0;
 }
 
+form input,
+form button {
+  display: block;
+  margin: 0.5em auto;
+}
+
+form button {
+  background: url('/client/assets/spam-button.png');
+  background-position: 10px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 1.2em;
+  font-weight: bold;
+  height: 1.8em;
+  width: 7em;
+}
+
+form input {
+  height: 1.8em;
+  padding: 0 0.5em;
+}
+
 .logo {
-  background-image: url('/client/assets/lunchmeet.png');
+  background: url('/client/assets/lunchmeet.png') no-repeat;
   background-position: 0 -70px;
   height: 200px;
   margin: 0 auto;
   width: 400px;
+}
+
+#map {
+  margin: auto;
 }
 
 .menu {
@@ -65,6 +93,11 @@ form {
   padding: 0;
 }
 
+#signin,
+#signout {
+  text-align: center;
+}
+
 .small {
   font-size: 0.9em;
 }
@@ -72,14 +105,9 @@ form {
 .version {
   color: #666;
   font-size: small;
-  margin-top: 3em;
+  margin-top: 9em;
 }
 
-#map {
-  margin: auto;
+::-webkit-input-placeholder {
+  text-align: center;
 }
-
-
-
-
-
