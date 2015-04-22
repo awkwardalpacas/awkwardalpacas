@@ -12,5 +12,11 @@ angular.module('lunchCorgi.event', [])
   }
 
   $scope.loadEvent();
-// test comment
+
+  $scope.createMap = function(){
+    // return Event.createMap($scope.event.latitude, $scope.event.longitude)
+    return Event.createMap(30.2958, -97.8101)
+  }
+
+  $scope.createMap();
 });

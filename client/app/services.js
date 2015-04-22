@@ -58,6 +58,10 @@ angular.module('lunchCorgi.services', [])
 })
 .factory('Event', function($http){
   var event;
+  var mapOptions = {
+    zoom: 10,
+    center: {}
+  }
   var eventDetails = function(evt){
     event = evt;
   }
@@ -66,9 +70,17 @@ angular.module('lunchCorgi.services', [])
     $scope.event = event;
   }
 
+  var createMap = function(latitude, longitude){
+    var coords = new google.maps.LatLng(latitude, longitude);
+    mapOptions.center = coords;
+    var map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+    var marker = new google.maps.Marker({position: coords, map: map});
+  }
+
   return {
     eventDetails: eventDetails,
-    loadEvent: loadEvent
+    loadEvent: loadEvent,
+    createMap: createMap
   }
 })
 .factory('Users', function($http){
