@@ -7,7 +7,7 @@ var DB;
 // this is a little weird - we're using the mongodb node module (in line 2), not the straight-up regular mongoDB stuff.  So just because a
 // command works in the mongo shell, doesn't mean it will work here.  It looks like these are the correct docs:
 // http://mongodb.github.io/node-mongodb-native/2.0/api/
-mongo.connect('mongodb://heroku_app36102509:m3ei2epf1460981rpihk0egjsd@ds041377.mongolab.com:41377/heroku_app36102509', function(err, db) {
+mongo.connect('mongodb://localhost:27017/corgi', function(err, db) {
   if (err) throw err;
   // when the connection occurs, we store the connection 'object' (or whatever it is) in a global variable so we can use it elsewhere.
   DB = db
@@ -17,7 +17,7 @@ mongo.connect('mongodb://heroku_app36102509:m3ei2epf1460981rpihk0egjsd@ds041377.
 })
 
 module.exports = {
-	allEvents: function(req, res) {
+  allEvents: function(req, res) {
     var events = []
 
     var cursorCount = 0
@@ -80,12 +80,12 @@ module.exports = {
         })
 
       })
-	},
+  },
 
-	newEvent: function(req, res) {
+  newEvent: function(req, res) {
     var event = req.body.event;
     var userToken = req.body.token;
-    event.chat=[]
+    event.chat=[{username:'test',messagekey: "this is a message"}]
     var username = jwt.decode(userToken, 'secret');
 
     var foundUser = DB.collection('corgiuser').find( {name: username} );
@@ -97,13 +97,13 @@ module.exports = {
       };
       event.creatorID = user._id.toString();
       event.attendeeIDs = [userInfo];
-  		DB.collection('corgievent').insert(event);
+      DB.collection('corgievent').insert(event);
       // return the event that was added; this makes for easy debugging in the console, where we can see the Network -> Response tabs
       res.json(event);
     });
 
     // save event object passed in with http request from services.js
-	},
+  },
 
   joinEvent: function(req, res) {
     var eventID = req.body.event._id;
