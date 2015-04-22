@@ -4,7 +4,6 @@ angular.module('lunchCorgi.events', [])
 
   $scope.event = {}
 
-
   //if $scope.invalid is true, it will display an error message in the view
   $scope.invalid = false
 
@@ -14,13 +13,28 @@ angular.module('lunchCorgi.events', [])
       url:'/api/reminder',
       data: {user:Username.user}
     }).then(function(res){
-      alert(res.data)
-      $http({
-      // url: 'https://api.plivo.com/v1/Account/MANJQ3NDMYZGIWZTCZNG/Message/',
-      src: '13303823056',
-      dst: '1'+res.data,
-      text:'Your event is happening blahblah'
-    })
+      console.log('number', res.data)
+
+      // $http.post('https://api.plivo.com/v1/Account/MANJQ3NDMYZGIWZTCZNG/Message/', {
+      //   src: '13303823056',
+      //   dst: '1'+res.data,
+      //   text:'Your event is happening blahblah'
+      // })
+      // .then(function(data, status, headers, config) {
+      //   // this callback will be called asynchronously
+      //   // when the response is available
+      //   console.log('HOORAY sent.')
+      // })
+
+      // $http({
+      //   method: 'POST',
+      //   url: 'https://api.plivo.com/v1/Account/MANJQ3NDMYZGIWZTCZNG/Message/',
+      //   data: {
+      //     src: '13303823056',
+      //     dst: '1'+res.data,
+      //     text:'Your event is happening blahblah'
+      //   }
+      // })
    })
     
   }
