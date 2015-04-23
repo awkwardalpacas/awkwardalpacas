@@ -23,7 +23,6 @@ angular.module('lunchCorgi.event', [])
   $scope.createMap();
 })
 
-
 .controller('chatCtrl',function($scope, $window, Event){
   $scope.test = "works"
   $scope.chats=[{messagekey:'test',username:'vis'}];
