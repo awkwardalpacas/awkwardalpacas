@@ -5,6 +5,7 @@
 <p>That's {{event.datetime | fromNow}}, so get ready!</p>
 
 <div class='attendee-list'>
+
   <h2>These people are coming!</h2>
   <div class='attendee' ng-repeat="attendee in event.attendeeIDs">{{attendee.username}}</div>
 </div>
@@ -24,6 +25,8 @@
     </div>
     <input type="text" ng-model = "textinput"> 
     <button type="button" ng-click='sendmessage()'>Send</button></br>
+
+<div class="fb-send" data-href="http://corgi.herokuapp.com/" data-colorscheme="dark">share our page</div>
   </div>
 </div>
 
