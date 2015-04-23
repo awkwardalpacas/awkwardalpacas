@@ -21,6 +21,10 @@ config(['$routeProvider', function($routeProvider) {
       templateUrl: 'client/app/users/signin.html',
       controller: 'SignUpCtrl'
     })
+    .when('/profile', {
+      templateUrl: 'client/app/users/profile.html',
+      controller: 'SignUpCtrl'
+    })
     .otherwise({
       redirectTo: '/'
     });

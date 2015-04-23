@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('lunchCorgi.signup', ['ngRoute', ])
+angular.module('lunchCorgi.signup', ['ngRoute'])
 
-.controller('SignUpCtrl', function ($scope, $window, $location, Users, Events) {
+.controller('SignUpCtrl', function ($scope, $window, $location, $sce, Users, Events) {
   $scope.user = {};
 
   $scope.signedIn = function() {
@@ -10,6 +10,8 @@ angular.module('lunchCorgi.signup', ['ngRoute', ])
   };
 
   $scope.signin = function () {
+    //Username.user = $scope.user.username
+    $window.localStorage.setItem('username', $scope.user.username)
     Users.signin($scope.user)
       // .then(function(){
       //   Username.user=$scope.user.username
@@ -31,6 +33,8 @@ angular.module('lunchCorgi.signup', ['ngRoute', ])
   };
 
   $scope.signup = function() {
+    //Username.user=$scope.user.username
+    $window.localStorage.setItem('username', $scope.user.username)
     Users.signup($scope.user)
       .then(function(token){
         var obj={
@@ -52,6 +56,19 @@ angular.module('lunchCorgi.signup', ['ngRoute', ])
     localStorage.removeItem('com.corgi');
     $location.path('/signin');
   }
+
+  $scope.profile = function() {
+    var user = {user : $window.localStorage.getItem('username')}
+    Users.getProfile(JSON.stringify(user))
+      .then(function(data){
+        $scope.userEventsList = data;
+        $scope.username = user.user;
+      })
+  }
+  $scope.renderMap = function(location){
+    $scope.map = $sce.trustAsHtml('<iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q='+location+'&key=AIzaSyDLun535FCG-VEepOE94GqSvWZqsBMw0zM"></iframe>')
+  };
+  $scope.profile();
 
 });
 

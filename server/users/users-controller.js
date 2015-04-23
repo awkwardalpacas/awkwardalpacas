@@ -2,6 +2,8 @@ var bcrypt = require('bcrypt-nodejs');
 var Q = require('q');
 var User = require('./users.js');
 var jwt  = require('jwt-simple');
+var ObjectID = require('mongodb').ObjectID;
+
 
 var mongo = require('mongodb').MongoClient
 
@@ -85,12 +87,32 @@ module.exports = {
 
 	// this will slbe used to view events that a user has already joined
 	userEvents: function(req, res) {
-		var eventIDs = db.users.find({ name: req.data.user.username }).eventIDs
-		var events = []
-		eventIDs.forEach(function(evID) {
-			events.push(db.events.find({ eventID: evID }))
-		})
-		res.json(events)
+    var username = req.body.user;
+    var found = DB.collection('corgiuser').find({name: username})
+
+    found.on('data', function(user){
+      console.log(user)
+      var events = []
+      if(user.eventIDs){
+        user.eventIDs.map(function(evID) {
+         var find = DB.collection('corgievent').find({"_id" : ObjectID(evID)})
+         find.on('data', function(ev){
+          events.push(ev);
+          //console.log(events)
+          if(events.length === user.eventIDs.length){
+            res.send(events)
+          }
+         })
+        })
+      }
+      
+    })        
+		// var eventIDs = db.users.find({ name: req.data.user.username }).eventIDs
+		// var events = []
+		// eventIDs.forEach(function(evID) {
+		// 	events.push(db.events.find({ eventID: evID }))
+		// })
+		// res.json(events)
 	}
 }
 
