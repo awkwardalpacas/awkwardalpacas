@@ -4,8 +4,6 @@ angular.module('lunchCorgi.events', [])
 
   $scope.attendees = true;
 
-  $scope.attendees = true;
-
   $scope.event = {}
 
   //if $scope.invalid is true, it will display an error message in the view
