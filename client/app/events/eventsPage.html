@@ -4,7 +4,7 @@
       <div class="success" ng-if="valid">Good job!</div>
       <div class="message">Add an event</div>
       <div class="form-line-1">
-        <input type= "text" ng-model="newEvent.description" placeholder='description'>
+        <input type= "text" ng-model="newEvent.description" placeholder='name/description'>
         <input type= "text" ng-model="newEvent.location" placeholder='location'>
       </div>
       <input type= "date" ng-model="newEvent.date">
@@ -12,7 +12,7 @@
       <button onclick="submit">Add</button>
     </form>
   </div>
-  <div id='container'>
+  <div id='container' ng-click='valid=false'>
   
   <div class="title">Events</div>
   <ul class='events'>
@@ -23,19 +23,21 @@
         <button class="join" ng-click='joinEvent(event); remind(event.description)'>Attend</button>
         <div class="event-line1">
           <span class='description'>{{ event.description }}</span>
-          <span class='location'>at {{ event.location }}</span>
-          <span class='time'>{{ event.datetime | fromNow }}</span>
+          <span class="at" ng-click='renderMap(event.location)'> at 
+            <span class='location'>{{ event.location }}</span>
+          </span>
+          <span class='fromNow'>{{ event.datetime | fromNow }}</span>
         </div>
         <div class="event-line2">
-          <span class='time'>{{ event.datetime | date : 'MM/dd/yyyy @ h:mma' }}</span>        
+          <span class='time'>{{ event.datetime | date : 'MM/dd/yyyy @ h:mma' }}</span>
+
+        </div>
           <span ng-click="attendees=!attendees" class='attendee-list'>
             -- Attendees --
           </span>
-          <button ng-click='renderMap(event.location)'>Map</button>
           
-            <div class='attendee' ng-hide="attendees" ng-repeat="attendee in event.attendeeIDs">{{ attendee.username }}</div>
-
-        </div>
+          <div class='attendee' ng-hide="attendees" ng-repeat="attendee in event.attendeeIDs">{{ attendee.username }}
+          </div>
         <!-- <button ng-click='remind()'>REMIND!</button> -->
 
       </div>
