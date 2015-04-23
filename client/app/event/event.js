@@ -25,10 +25,9 @@ angular.module('lunchCorgi.event', [])
 
 
 .controller('chatCtrl',function($scope, $window, Event){
-  $scope.test = "works"
-  $scope.chats=[{messagekey:'test',username:'vis'}];
+
   $scope.loadchats = function(){
-    console.log('start')
+
     Event.getChat(
       function(value){$scope.chats =value.data;
         console.log($scope.chats);
@@ -37,7 +36,7 @@ angular.module('lunchCorgi.event', [])
   }
   $scope.init =function(){
     $scope.loadchats()
-    setInterval($scope.loadchats,10000)
+    setInterval($scope.loadchats,20000)
   }
   $scope.sendmessage =function(){
     var userToken = $window.localStorage.getItem('com.corgi')

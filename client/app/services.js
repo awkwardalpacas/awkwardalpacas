@@ -95,14 +95,13 @@ angular.module('lunchCorgi.services', [])
     })
   };
   var sendChat =function(userToken,message,cb){
-    console.log('sending message')
+
       $http({
         method: 'POST',
         url: '/api/event/chats',
         data: {event: event,message: message, token: userToken}
       })
       .then(function (res) {
-        console.log(res)
         cb()
       });
 
