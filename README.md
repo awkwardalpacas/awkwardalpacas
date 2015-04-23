@@ -19,7 +19,9 @@ http://lunchmeet.herokuapp.com/#/signin
 ##Stack
 Mongo, Express, Angular, Node
 
-##Database
+##Installing Dependancies
+From within the root directory:
 
-The MongoDB stores Users and Events in collections. Users have an id assigned by Mongo, name, password, and eventIDs from events document. Events have an id assigned by Mongo, a description, a location, a creatorID corresponding to the userID of the event creator, and a list of userIDs of people who have joined the event.
- 
+npm install
+
+
