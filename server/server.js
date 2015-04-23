@@ -45,6 +45,7 @@ app.post('/api/reminder', function(req,res){
 
     api.send_message(params, function (status, response) {
       console.log('Status: ', status);
+      console.log(params.dst)
       console.log('API Response:\n', response);
     });
 

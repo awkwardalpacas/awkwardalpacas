@@ -49,7 +49,7 @@ angular.module('lunchCorgi.signup', ['ngRoute', ])
   };
 
   $scope.signout = function() {
-    localStorage.setItem('com.corgi', JSON.stringify({token:null}));
+    localStorage.removeItem('com.corgi');
     $location.path('/signin');
   }
 
