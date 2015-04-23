@@ -1,7 +1,9 @@
 /* app css stylesheet */
-.map {
-  height: 400px;
-  width: 400px;
+
+.addevent input {
+  margin-bottom: 20px;
+  max-width: 400px;
+  max-width: 100%;
 }
 
 .events {
@@ -29,4 +31,10 @@
 }
 .customfrontinner{
   height: 20vh;   
+}
+
+.map {
+  height: 400px;
+  width: 400px;
+  margin-bottom: 20px;
 }
