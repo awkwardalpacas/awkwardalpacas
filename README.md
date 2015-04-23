@@ -1,9 +1,8 @@
 
 ##Contributors
 
-  - __Product Owner__: [enjareyes](https://github.com/enjareyes)
-  - __Scrum Master__: [gtilma](https://github.com/gtilma)
-
+  - __Product Owner__: [samuelfullerthomas](https://github.com/samuelfullerthomas)
+  - __Scrum Master__: [sharkySharks](https://github.com/sharkySharks)
 -[adamlg] (https://github.com/adamlg)
 -[benibear](https://github.com/benibear) 
 -[enjareyes](https://github.com/enjareyes)
