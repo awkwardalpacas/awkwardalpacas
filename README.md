@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.org/Glamorous-Gerbils/awkwardalpacas.svg)](https://travis-ci.org/Glamorous-Gerbils/awkwardalpacas)
 
-![KaMealeon](../../client/images/chameleon.jpg)
+![KaMealeon](/client/images/chameleon.jpg)
 
 Glamorous-Gerbils - KaMealeon
 ===========================
