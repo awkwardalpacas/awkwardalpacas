@@ -24,3 +24,12 @@ html body {
   bottom:2px;
   text-align: center;
 }
+
+.chatwindow {
+  height: 300px;
+  border: 1px solid red;
+}
+
+.event-page {
+  background-image: url('../images/chameleon.jpg');
+}
