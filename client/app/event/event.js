@@ -21,7 +21,7 @@ angular.module('lunchCorgi.event', [])
   }
 
   $scope.createMap();
-});
+})
 
 
 .controller('chatCtrl',function($scope, $window, Event){
@@ -33,7 +33,7 @@ angular.module('lunchCorgi.event', [])
       function(value){$scope.chats =value.data;
         console.log($scope.chats);
     });
-   
+
   }
   $scope.init =function(){
     $scope.loadchats()
