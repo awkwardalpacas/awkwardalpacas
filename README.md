@@ -1,20 +1,20 @@
 [![Build Status](https://travis-ci.org/Glamorous-Gerbils/awkwardalpacas.svg)](https://travis-ci.org/Glamorous-Gerbils/awkwardalpacas)
 
-![lunchcorgi](/client/assets/lunchcorgi.jpg)
+![KaMealeon](client/images/chameleon.jpg)
 
-awkwardalpacas - LunchCorgi
+Glamorous-Gerbils - KaMealeon
 ===========================
 
 Contributers
 ------------
 
-Adam Guerra [Adam's Github profile] (https://github.com/adamlg)
+Vishal Atmakuri [Vishal's Github profile] (https://github.com/vishalatmakuri)
 
-Karen Lewis [Karen's Github profile](https://github.com/karmakettle)
+Pat Dalberg [Pat's Github profile] (https://github.com/pat-dalberg)
 
-Josh Benson [Josh's Github profile](https://github.com/joshuabenson)
+Phil Dornfeld [Phil's Github profile] (https://github.com/phillydorn)
 
-Stephanie Foskitt [Stephanie's Github profile](https://github.com/SFoskitt)
+Ben Johnson [Ben's Github profile] (https://github.com/bjmfactory)
 
 
 Stack
