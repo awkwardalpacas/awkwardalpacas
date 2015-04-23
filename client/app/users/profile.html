@@ -1,0 +1,35 @@
+  <div class="title">Hi {{username}}, these are your events</div>
+  <ul class='events'>
+    <li class='event' ng-repeat="event in userEventsList | orderBy:'datetime'">
+      <!-- <img src='./assets/redirect_icon.png'/> -->
+      <div class='eventInfo'>
+        <!-- <div class='creator'>{{event.creator}}</div> -->
+        <div class="event-line1">
+          <span class='description'>{{ event.description }}</span>
+          <span class='location'>at {{ event.location }}</span>
+          <span class='time'>{{ event.datetime | fromNow }}</span>
+        </div>
+        <div class="event-line2">
+          <span class='time'>{{ event.datetime | date : 'MM/dd/yyyy @ h:mma' }}</span>        
+          <span class='attendee-list'>
+            Attendees
+            <span class='attendee' ng-repeat="attendee in event.attendeeIDs">{{ attendee.username }}</span>
+          </span>
+          <button ng-click='renderMap(event.location)'>Map</button>
+        </div>
+        <!-- <button ng-click='remind()'>REMIND!</button> -->
+
+      </div>
+    </li>
+    <div ng-bind-html='map'>{{ map }}</div>
+    
+  </ul>
+  <!-- <button class="prevPage" style="float: left" ng-click="prevPage()">Previous Page</button> -->
+  <!-- <button class="nextPage" style="float: right" ng-click="nextPage()">Next Page</button> -->
+  <div ng-repeat="quote in quotes">
+    <div>{{quote.quote}}</div>
+    <div> - {{quote.author}}</div>
+    <div>{{quote.source}}</div>
+  </div> 
+</div>
+</div>
