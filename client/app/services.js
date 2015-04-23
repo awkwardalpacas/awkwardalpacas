@@ -86,9 +86,11 @@ angular.module('lunchCorgi.services', [])
   }
 
   var createMap = function(latitude, longitude, divId, $scope){
+    if (divId === 'map-canvas' && !$scope.event.lat) {
+      return
+    }
     var coords = new google.maps.LatLng(latitude, longitude);
     mapOptions.center = coords;
-
     var map = new google.maps.Map(document.getElementById(divId), mapOptions);
 
     if (divId === 'map-submit'){
