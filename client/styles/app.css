@@ -4,6 +4,10 @@ a {
   text-decoration: none;
 }
 
+.at{
+  margin-left:.25em;
+}
+
 .addevent {
   margin: 0 auto;
   max-width: 75%;
@@ -21,19 +25,17 @@ a {
 }
 
 .attendee {
-  text-align: center;
+  text-align: left;
+  margin-left: 5em;
 }
 
 .attendee-list {
   color: rgb(197, 96, 12);
+  margin-left:5em;
 }
 
 .attendee-list:hover {
   cursor: pointer;
-}
-
-.attendee {
-  text-align: center;
 }
 
 .attendee-list {
@@ -52,6 +54,7 @@ body {
 
 .description {
   font-weight: bold;
+  font-size: 1.5em;
 }
 
 .error {
@@ -68,6 +71,7 @@ body {
 
 .events {
   list-style-type: none;
+  margin-left:2em;
 }
 
 form {
@@ -129,6 +133,11 @@ form input[type='time'] {
 
 .location {
   text-decoration: underline;
+}
+
+.location:hover{
+  font-weight:bold;
+  color: #A70DAE;
 }
 
 .logo {
@@ -198,6 +207,10 @@ form input[type='time'] {
   padding: 1em;
 }
 
+.time{
+  margin-left:5em;
+}
+
 .title {
   color: #E22A38;
   font-size: 2.2em;
@@ -216,7 +229,7 @@ form input[type='time'] {
   text-align: center;
 }
 
-@media screen and (max-width: 1050px) {
+@media screen and (max-width: 1080px) {
   body {
     max-width: 75%;
   }
@@ -240,5 +253,9 @@ form input[type='time'] {
   .event,
   .events {
     padding: 0;
+  }
+
+  .events{
+    margin-left: 7em;
   }
 }

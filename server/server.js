@@ -1,17 +1,16 @@
-var mongo = require('mongodb').MongoClient,
-    express = require('express'),
-    mongoose = require('mongoose'),
-    path = require('path'),
-    bodyParser  = require('body-parser'),
-    // plivo = require('plivo-node'),
-    text = require('mtextbelt'),
-    CronJob = require('cron').CronJob,
-    DB;
+var mongo = require('mongodb').MongoClient
+var express = require('express');
+var mongoose = require('mongoose');
+var path = require('path');
+var bodyParser  = require('body-parser');
+var DB;
+var plivo = require('plivo-node')
 
-// var api = plivo.RestAPI({
-//   authId: process.env.authId,
-//   authToken: process.env.authToken
-// });
+
+var api = plivo.RestAPI({
+  authId: process.env.authId,
+  authToken: process.env.authToken
+});
 
 
 mongo.connect(process.env.MONGOLAB_URI || 'mongodb://localhost:27017/corgi', function(err, db) {
