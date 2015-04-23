@@ -2,6 +2,8 @@ angular.module('lunchCorgi.events', [])
 
 .controller('EventsController', function ($scope, $window, $location, $sce, Events, $http) {
 
+  $scope.attendees = true;
+
   $scope.event = {}
 
   //if $scope.invalid is true, it will display an error message in the view
@@ -47,19 +49,16 @@ angular.module('lunchCorgi.events', [])
   }
 
   $scope.addEvent = function() {
-    // check that all fields in the events.html form are filled out
-    // need to add a check to make sure user is logged in
     if ($scope.newEvent.description !== "" &&
         $scope.newEvent.location !== "" &&
         $scope.newEvent.datetime !== "" ) {
 
-          $scope.invalid = false
+          $scope.invalid = false;
           var userToken = JSON.parse(localStorage.getItem('com.corgi')).token;
 
           Events.addEvent($scope.newEvent, userToken)
           .then(function(newEvent) {
-            // need a better way to notify people, but this is simple for now
-            alert('Your event has been created: ', newEvent.description);
+            $scope.valid = true;
             // return to defaults
             $scope.viewAllEvents();
             $scope.initNewEventForm();

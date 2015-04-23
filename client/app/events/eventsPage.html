@@ -1,15 +1,15 @@
   <div class='addevent'>
     <form name="eventForm" ng-submit="addEvent()">
+      <div class="error" ng-if="invalid">You're missing something...</div>
+      <div class="success" ng-if="valid">Good job!</div>
+      <div class="message">Add an event</div>
       <div class="form-line-1">
-        <input type= "text" ng-model = "newEvent.description" placeholder='description'>
-        <input type= "text" ng-model = "newEvent.location" placeholder='location'>
+        <input type= "text" ng-model="newEvent.description" placeholder='description'>
+        <input type= "text" ng-model="newEvent.location" placeholder='location'>
       </div>
-      <input type= "date" ng-model = "newEvent.date">
-      <input type= "time" ng-model = "newEvent.time">
+      <input type= "date" ng-model="newEvent.date">
+      <input type= "time" ng-model="newEvent.time">
       <button onclick="submit">Add</button>
-      <h1 ng-if="invalid">
-        Please fill in all of the fields.
-      </h1>
     </form>
   </div>
   <div id='container'>
@@ -28,11 +28,13 @@
         </div>
         <div class="event-line2">
           <span class='time'>{{ event.datetime | date : 'MM/dd/yyyy @ h:mma' }}</span>        
-          <span class='attendee-list'>
-            Attendees
-            <span class='attendee' ng-repeat="attendee in event.attendeeIDs">{{ attendee.username }}</span>
+          <span ng-click="attendees=!attendees" class='attendee-list'>
+            -- Attendees --
           </span>
           <button ng-click='renderMap(event.location)'>Map</button>
+          
+            <div class='attendee' ng-hide="attendees" ng-repeat="attendee in event.attendeeIDs">{{ attendee.username }}</div>
+
         </div>
         <!-- <button ng-click='remind()'>REMIND!</button> -->
 
