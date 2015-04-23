@@ -41,7 +41,6 @@ angular.module('lunchCorgi.services', [])
   }
 
   var addEvent = function(event, userToken) {
-    console.log('event in addEvent', event)
       var datetime = new Date(event.date + ' ' + event.time);
       var gmt = datetime.toISOString();
       event.datetime = gmt;
@@ -84,6 +83,35 @@ angular.module('lunchCorgi.services', [])
   var loadEvent = function($scope){
     $scope.event = event;
   }
+  ////VISHAL WAS HERE////////////
+
+  var getChat =function(cb){
+    $http({
+      method: 'GET',
+      url: '/api/event/chats',
+      params:event
+    }).then(function(chats){
+        cb(chats)
+    })
+  };
+  var sendChat =function(userToken,message,cb){
+    console.log('sending message')
+      $http({
+        method: 'POST',
+        url: '/api/event/chats',
+        data: {event: event,message: message, token: userToken}
+      })
+      .then(function (res) {
+        console.log(res)
+        cb()
+      });
+
+  };
+
+
+
+
+  ////////////////////////
 
   var createMap = function(latitude, longitude, divId, $scope){
     if (divId === 'map-canvas' && !$scope.event.lat) {
@@ -103,7 +131,9 @@ angular.module('lunchCorgi.services', [])
   return {
     eventDetails: eventDetails,
     loadEvent: loadEvent,
-    createMap: createMap
+    createMap: createMap,
+    getChat:getChat,
+    sendChat:sendChat
   }
 })
 .factory('Users', function($http){

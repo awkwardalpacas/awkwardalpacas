@@ -81,13 +81,13 @@ module.exports = {
     });
   },
 
-	// this will eventually be used to view events that a user has already joined
-	userEvents: function(req, res) {
-		var eventIDs = db.users.find({ name: req.data.user.username }).eventIDs
-		var events = []
-		eventIDs.forEach(function(evID) {
-			events.push(db.events.find({ eventID: evID }))
-		})
-		res.json(events)
-	}
+  // this will eventually be used to view events that a user has already joined
+  userEvents: function(req, res) {
+    var eventIDs = db.users.find({ name: req.data.user.username }).eventIDs
+    var events = []
+    eventIDs.forEach(function(evID) {
+      events.push(db.events.find({ eventID: evID }))
+    })
+    res.json(events)
+  }
 }

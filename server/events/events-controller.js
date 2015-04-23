@@ -17,7 +17,7 @@ mongo.connect('mongodb://heroku_app36102509:m3ei2epf1460981rpihk0egjsd@ds041377.
 })
 
 module.exports = {
-	allEvents: function(req, res) {
+  allEvents: function(req, res) {
     var events = []
 
     var cursorCount = 0
@@ -80,12 +80,12 @@ module.exports = {
         })
 
       })
-	},
+  },
 
-	newEvent: function(req, res) {
+  newEvent: function(req, res) {
     var event = req.body.event;
     var userToken = req.body.token;
-
+    event.chat=[]
     var username = jwt.decode(userToken, 'secret');
 
     var foundUser = DB.collection('corgiuser').find( {name: username} );
@@ -95,16 +95,15 @@ module.exports = {
       var userInfo = {
         username: user.name
       };
-
       event.creatorID = user._id.toString();
       event.attendeeIDs = [userInfo];
-  		DB.collection('corgievent').insert(event);
+      DB.collection('corgievent').insert(event);
       // return the event that was added; this makes for easy debugging in the console, where we can see the Network -> Response tabs
       res.json(event);
     });
 
     // save event object passed in with http request from services.js
-	},
+  },
 
   joinEvent: function(req, res) {
     var eventID = req.body.event._id;
