@@ -9,14 +9,28 @@ angular.module('lunchCorgi.events', [])
   //if $scope.invalid is true, it will display an error message in the view
   $scope.invalid = false
 
-  $scope.remind=function(description){
+  $scope.remind=function(event){
+    var description = event.description,
+        date = new Date(),
+        orig_time = new Date(event.datetime),        
+        newTime = new Date(orig_time.setHours(orig_time.getHours()-1)),
+        cronTime = '0 ';
+
+    var month = newTime.getMonth(),
+        day = newTime.getDate(),
+        hours = newTime.getHours(),
+        min = newTime.getMinutes();
+
+        cronTime += min + ' ' + hours + ' ' + day + ' ' + month + ' *'
+        //console.log(cronTime);
+
     $http({
       method: 'POST',
       url:'/api/reminder',
       data: {user:JSON.parse(localStorage.getItem("com.corgi")).username,
-      eventName: description}
+      eventName: description, cronTime: cronTime}
     }).then(function(res){
-      console.log('number', res.data)
+      console.log('post results in events.js : ', res.data)
 
       // $http.post('https://api.plivo.com/v1/Account/MANJQ3NDMYZGIWZTCZNG/Message/', {
       //   src: '13303823056',
@@ -112,15 +126,6 @@ angular.module('lunchCorgi.events', [])
     }
   };
 
-  $scope.calulateReminderTime = function(){
-    //create date object
-    var date = new date()
-    
-    //set date object to the event time and date
-    //get reminder notice time from user
-    //calculate reminder time and send to cron job
-  }
-
   $scope.renderMap = function(location){
     $scope.map = $sce.trustAsHtml('<iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q='+location+'&key=AIzaSyDLun535FCG-VEepOE94GqSvWZqsBMw0zM"></iframe>')
     console.log(location)
@@ -131,3 +136,6 @@ angular.module('lunchCorgi.events', [])
   // populate new event form with default values
   $scope.initNewEventForm()
 })
+
+
+
