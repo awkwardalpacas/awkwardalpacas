@@ -1,8 +1,8 @@
 'use strict';
 
-angular.module('lunchCorgi.signup', ['ngRoute'])
+angular.module('lunchCorgi.signup', ['ngRoute', ])
 
-.controller('SignUpCtrl', function ($scope, $window, $location, Users, Events, Username) {
+.controller('SignUpCtrl', function ($scope, $window, $location, Users, Events) {
   $scope.user = {};
 
   $scope.signedIn = function() {
@@ -10,13 +10,16 @@ angular.module('lunchCorgi.signup', ['ngRoute'])
   };
 
   $scope.signin = function () {
-    Username.user = $scope.user.username
     Users.signin($scope.user)
       // .then(function(){
       //   Username.user=$scope.user.username
       // })
       .then(function (token) {
-        $window.localStorage.setItem('com.corgi', token);
+        var obj={
+          token: token,
+          username: $scope.user.username
+        }
+        $window.localStorage.setItem('com.corgi', JSON.stringify(obj));
         $location.path('/');
       })
       .catch(function (error) {
@@ -28,10 +31,13 @@ angular.module('lunchCorgi.signup', ['ngRoute'])
   };
 
   $scope.signup = function() {
-    Username.user=$scope.user.username
     Users.signup($scope.user)
       .then(function(token){
-        $window.localStorage.setItem('com.corgi', token);
+        var obj={
+          token: token,
+          username: $scope.user.username
+        }
+        $window.localStorage.setItem('com.corgi', JSON.stringify(obj));
         $location.path('/');
       })
       .catch(function (error) {
@@ -43,7 +49,7 @@ angular.module('lunchCorgi.signup', ['ngRoute'])
   };
 
   $scope.signout = function() {
-    $window.localStorage.removeItem('com.corgi');
+    $window.localStorage.setItem('com.corgi', JSON.stringify({token:null}));
     $location.path('/signin');
   }
 

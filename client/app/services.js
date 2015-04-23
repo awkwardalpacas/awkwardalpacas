@@ -1,8 +1,5 @@
 angular.module('lunchCorgi.services', [])
 
-.factory('Username', function(){
-  return {}
-})
 
 .factory('Events', function($http) {
   // these factory functions can be tested in the console with the following syntax (and similar stuff):
