@@ -19,7 +19,7 @@ angular.module('lunchCorgi.signup', ['ngRoute', ])
           token: token,
           username: $scope.user.username
         }
-        $window.localStorage.setItem('com.corgi', JSON.stringify(obj));
+        localStorage.setItem('com.corgi', JSON.stringify(obj));
         $location.path('/');
       })
       .catch(function (error) {
@@ -37,7 +37,7 @@ angular.module('lunchCorgi.signup', ['ngRoute', ])
           token: token,
           username: $scope.user.username
         }
-        $window.localStorage.setItem('com.corgi', JSON.stringify(obj));
+        localStorage.setItem('com.corgi', JSON.stringify(obj));
         $location.path('/');
       })
       .catch(function (error) {
@@ -49,7 +49,7 @@ angular.module('lunchCorgi.signup', ['ngRoute', ])
   };
 
   $scope.signout = function() {
-    $window.localStorage.setItem('com.corgi', JSON.stringify({token:null}));
+    localStorage.setItem('com.corgi', JSON.stringify({token:null}));
     $location.path('/signin');
   }
 
