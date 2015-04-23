@@ -32,6 +32,18 @@ a {
   cursor: pointer;
 }
 
+.attendee {
+  text-align: center;
+}
+
+.attendee-list {
+  color: rgb(197, 96, 12);
+}
+
+.attendee-list:hover {
+  cursor: pointer;
+}
+
 body {
   font-family: 'Roboto Slab', courier;
   max-width: 60%;
