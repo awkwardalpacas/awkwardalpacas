@@ -60,27 +60,6 @@ app.post('/api/reminder', function(req,res){
       "America/Chicago" // Time zone of this job. 
     );
 
-
-    // var params = {
-    //   'src': '19192751649', // Caller Id
-    //   'dst' : '1' + phoneNumber, // User Number to Call
-    //   'text' : "Hi, don't forget your event: "+eventnameg+"!",
-    //   'type' : "sms"
-    // };
-
-    var params = {
-      'src': '19192751649', // Caller Id
-      'dst' : '1' + phoneNumber, // User Number to Call
-      'text' : "Hi, don't forget your event: "+eventnameg+"!",
-      'type' : "sms"
-    };
-
-    api.send_message(params, function (status, response) {
-      console.log('Status: ', status);
-      console.log(params.dst)
-      console.log('API Response:\n', response);
-    });
-
   })
 
  })
