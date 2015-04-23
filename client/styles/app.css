@@ -10,6 +10,10 @@
 
 }
 
+form[name="eventForm"] input {
+  max-width: 400px;
+}
+
 .lc-footer {
   text-align: center;
   margin: 20px;
@@ -33,8 +37,19 @@
   height: 20vh;   
 }
 
+li.event {
+  list-style: none;
+  margin: 20px 0px 20px 0px;
+  padding: 20px 0px 20px 0px;
+  border-bottom: 1px solid #EBEBEB;
+}
+
 .map {
   height: 400px;
   width: 400px;
   margin-bottom: 20px;
+}
+
+ul.events {
+  padding: 0px;
 }
