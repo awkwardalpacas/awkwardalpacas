@@ -1,4 +1,8 @@
 /* app css stylesheet */
+.map {
+  height: 400px;
+  width: 400px;
+}
 
 .menu {
   list-style: none;
@@ -33,4 +37,17 @@
 }
 .addevent {
   float: right;
+}
+
+html body {
+  padding-right: 16px;
+  padding-left: 16px;
+  padding-top: 8px;
+  padding-bottom: 0px;
+}
+
+.lc-footer {
+  width:100%;
+  bottom:2px;
+  text-align: center;
 }

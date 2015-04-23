@@ -1,10 +1,11 @@
   <div class='addevent'>
-    <form name="eventForm" ng-submit="addEvent()">
-      <input type= "text" ng-model = "newEvent.location">
-      <input type= "text" ng-model = "newEvent.description">
+    <form name="eventForm">
+      <input type= "text" ng-model = "newEvent.location" placeholder="Event Location" value="">
+      <input type= "text" ng-model = "newEvent.description" placeholder="Event Description" value="">
       <input type= "date" ng-model = "newEvent.date">
       <input type= "time" ng-model = "newEvent.time">
-      <button onclick="submit">Submit</button>
+      <div id="map-submit" class="map"></div>
+      <button type="button" ng-click="addEvent()" prevent-default>Submit</button>
       <h1 ng-if="invalid">
         Please fill in all of the fields.
       </h1>
@@ -22,13 +23,14 @@
         <div class='location'>{{event.location}}</div>
         <div class='date'>{{event.date}}</div>
         <div class='time'>{{event.time}}</div>
-        <div class='time'>{{event.datetime | date : 'MM/dd/yyyy @ h:mma' }}</div>        
+        <div class='time'>{{event.datetime | date : 'MM/dd/yyyy @ h:mma' }}</div>
         <div class='time'>{{event.datetime | fromNow }}</div>
         <div class='attendee-list'>
           Who's Going?:
           <div class='attendee' ng-repeat="attendee in event.attendeeIDs">{{attendee.username}}</div>
         </div>
-        <button ng-click='joinEvent(event)'>Join this event!</button>
+        <button type='button' ng-click='joinEvent(event);$event.preventDefault(); $event.stopPropagation();' prevent-default>Join this event!</button>
+        <button type='button' ng-click='eventDetails(event)' prevent-default>More Details</button>
         <!-- <a href='{{link.base_url}}/api/links/{{link.code}}'>{{link.base_url}}/{{link.code}}</a> -->
       </div>
     </li>
