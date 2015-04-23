@@ -24,3 +24,10 @@ html body {
   bottom:2px;
   text-align: center;
 }
+.customfront{
+   height:80vh;
+  margin-top: -1.6%;
+}
+.customfrontinner{
+  height: 20vh;   
+}
