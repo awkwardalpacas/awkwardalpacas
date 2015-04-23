@@ -28,25 +28,27 @@ app.get("/", function (req, res) {
 
 app.post('/api/reminder', function(req,res){
 	var user = req.body.user
+  var eventname=req.body.eventName
 	console.log('user', user)
-    var found = DB.collection('corgiuser').find({name:user})
 
-    found.on('data', function(user){
-      var phoneNumber = user.phone;
+  var found = DB.collection('corgiuser').find({name:user})
+  
+  found.on('data', function(user){
+    var phoneNumber = user.phone;
 
-      var params = {
-        'src': '19192751649', // Caller Id
-        'dst' : '1' + phoneNumber, // User Number to Call
-        'text' : "Hi, don't forget your event!",
-        'type' : "sms"
-      };
+    var params = {
+      'src': '19192751649', // Caller Id
+      'dst' : '1' + phoneNumber, // User Number to Call
+      'text' : "Hi, don't forget your event!"+eventname,
+      'type' : "sms"
+    };
 
-      api.send_message(params, function (status, response) {
-        console.log('Status: ', status);
-        console.log('API Response:\n', response);
-      });
+    api.send_message(params, function (status, response) {
+      console.log('Status: ', status);
+      console.log('API Response:\n', response);
+    });
 
-    })
+  })
 
  })
 

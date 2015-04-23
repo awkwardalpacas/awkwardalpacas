@@ -1,17 +1,18 @@
 angular.module('lunchCorgi.events', [])
 
-.controller('EventsController', function ($scope, $window, $location, $sce, Events, $http, Username) {
+.controller('EventsController', function ($scope, $window, $location, $sce, Events, $http) {
 
   $scope.event = {}
 
   //if $scope.invalid is true, it will display an error message in the view
   $scope.invalid = false
 
-  $scope.remind=function(){
+  $scope.remind=function(description){
     $http({
       method: 'POST',
       url:'/api/reminder',
-      data: {user:Username.user}
+      data: {user:JSON.parse(localStorage.getItem("com.corgi")).username,
+      eventName: description}
     }).then(function(res){
       console.log('number', res.data)
 
@@ -41,7 +42,7 @@ angular.module('lunchCorgi.events', [])
 
   $scope.joinEvent = function(evt) {
     $scope.event = evt;
-    var userToken = $window.localStorage.getItem('com.corgi');
+    var userToken = JSON.parse(localStorage.getItem('com.corgi')).token;
     Events.joinEvent(evt, userToken);
   }
 
@@ -53,7 +54,7 @@ angular.module('lunchCorgi.events', [])
         $scope.newEvent.datetime !== "" ) {
 
           $scope.invalid = false
-          var userToken = $window.localStorage.getItem('com.corgi');
+          var userToken = JSON.parse(localStorage.getItem('com.corgi')).token;
 
           Events.addEvent($scope.newEvent, userToken)
           .then(function(newEvent) {
@@ -85,7 +86,7 @@ angular.module('lunchCorgi.events', [])
   $scope.viewAllEvents = function() {
     // send request to services.js, which in turn sends the actual http request to events-controller in the server.
 
-    if ($window.localStorage.getItem('com.corgi')) {
+    if (JSON.parse(localStorage.getItem('com.corgi')).token) {
       Events.getEvents($scope.pageNumber)
       .then(function(data) {
         // set $scope.eventsList equal to the data we get back from our http request - that's how we 
