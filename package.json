@@ -2,7 +2,7 @@
   "name": "LunchCorgi",
   "private": true,
   "version": "0.0.0",
-  "description": "As sweet as your favorite dog.",
+  "description": "As short and sweet as your favorite dog.",
   "repository": "https://github.com/awkwardalpacas/awkwardalpacas.git",
   "devDependencies": {
     "karma": "~0.10",
