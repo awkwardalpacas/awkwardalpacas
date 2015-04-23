@@ -3,14 +3,15 @@ var mongo = require('mongodb').MongoClient,
     mongoose = require('mongoose'),
     path = require('path'),
     bodyParser  = require('body-parser'),
-    plivo = require('plivo-node'),
+    // plivo = require('plivo-node'),
+    text = require('mtextbelt'),
     CronJob = require('cron').CronJob,
     DB;
 
-var api = plivo.RestAPI({
-  authId: process.env.authId,
-  authToken: process.env.authToken
-});
+// var api = plivo.RestAPI({
+//   authId: process.env.authId,
+//   authToken: process.env.authToken
+// });
 
 
 mongo.connect(process.env.MONGOLAB_URI || 'mongodb://localhost:27017/corgi', function(err, db) {
@@ -42,27 +43,25 @@ app.post('/api/reminder', function(req,res){
 
     var job = new CronJob(cronTime, function() {
       console.log(phoneNumber)
-      var params = {
-        'src': '19192751649', // Caller Id
-        'dst' : '1' + phoneNumber, // User Number to Call
-        'text' : "Reminder: your event '"+eventname+"' is starting in one hour!",
-        'type' : "sms"
-      };
+      // var params = {
+      //   'src': '19192751649', // Caller Id
+      //   'dst' : '1' + phoneNumber, // User Number to Call
+      //   'text' : "Reminder: your event '"+eventname+"' is starting in one hour!",
+      //   'type' : "sms"
+      // };
 
-      api.send_message(params, function (status, response) {
-        console.log('Status: ', status);
-        console.log('API Response:\n', response);
+      // api.send_message(params, function (status, response) {
+      //   console.log('Status: ', status);
+      //   console.log('API Response:\n', response);
+      // });
+
+      text.send(phoneNumber, "Reminder: your event '"+eventname+"' is starting in one hour!", function(err) {
+        if (err) console.log(err);
       });
 
-      }, 
-      null,
-      true, // Start the job right now 
-      "America/Chicago" // Time zone of this job. 
-    );
-
+    }, null, true, "America/Chicago"); // Time zone of this job. 
   })
-
- })
+})
 
 require('./middleware.js')(app, express);
 
