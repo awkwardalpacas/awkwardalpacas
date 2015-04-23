@@ -4,7 +4,7 @@ var jwt  = require('jwt-simple');
 
 var DB;
 
-mongo.connect('mongodb://localhost:27017/corgi', function(err, db) {
+mongo.connect('mongodb://heroku_app36102509:m3ei2epf1460981rpihk0egjsd@ds041377.mongolab.com:41377/heroku_app36102509', function(err, db) {
   if (err) throw err;
   // when the connection occurs, we store the connection 'object' (or whatever it is) in a global variable so we can use it elsewhere.
   DB = db
@@ -27,17 +27,15 @@ module.exports ={
 console.log("no error")
  },
  postchats:function(req,res){
+  console.log(req.body)
   var eventID = req.body.event._id;
   var userToken = req.body.token;
-  var username = jwt.decode(userToken, 'secret');  getChats.on('data',function (room){
-    console.log('working')
-    res.end(room.chat);
-  })
+  var username = jwt.decode(userToken, 'secret');
   var foundUser = DB.collection('corgiuser').find( {name: username} );
   foundUser.on('data',function (user){
-    console.log('passed user')
-  // var chat = {username:user.name,message:req.body.message}
-  //   DB.collection('eventChat').find({_id: ObjectID(eventID)},{$push:{chat:chat}})
+  var chat = {username:user.name, messagekey:req.body.message}
+    DB.collection('corgievent').update({_id: ObjectID(eventID)},{$addToSet:{chat:chat}})
+    console.log('got user data',user.name)
     res.end('posted chats')
   })
 
