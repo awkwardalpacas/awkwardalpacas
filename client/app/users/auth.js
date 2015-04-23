@@ -2,7 +2,7 @@
 
 angular.module('lunchCorgi.signup', ['ngRoute', ])
 
-.controller('SignUpCtrl', function ($scope, $window, $location, $sce, Users, Events, Username) {
+.controller('SignUpCtrl', function ($scope, $window, $location, $sce, Users, Events) {
   $scope.user = {};
 
   $scope.signedIn = function() {
@@ -10,7 +10,7 @@ angular.module('lunchCorgi.signup', ['ngRoute', ])
   };
 
   $scope.signin = function () {
-    Username.user = $scope.user.username
+    //Username.user = $scope.user.username
     $window.localStorage.setItem('username', $scope.user.username)
     Users.signin($scope.user)
       // .then(function(){
@@ -33,7 +33,7 @@ angular.module('lunchCorgi.signup', ['ngRoute', ])
   };
 
   $scope.signup = function() {
-    Username.user=$scope.user.username
+    //Username.user=$scope.user.username
     $window.localStorage.setItem('username', $scope.user.username)
     Users.signup($scope.user)
       .then(function(token){
