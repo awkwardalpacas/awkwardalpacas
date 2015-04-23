@@ -14,7 +14,7 @@ angular.module('lunchCorgi.event', [])
   $scope.loadEvent();
 // test comment
 })
-.controller('chatCtrl',function($scope,Event){
+.controller('chatCtrl',function($scope,$window,Event){
   $scope.test = "works"
   $scope.chats=[{messagekey:'test',username:'vis'}];
   $scope.loadchats = function(){
