@@ -27,6 +27,7 @@ module.exports ={
 console.log("no error")
  },
  postchats:function(req,res){
+  console.log(req.body)
   var eventID = req.body.event._id;
   var userToken = req.body.token;
   var username = jwt.decode(userToken, 'secret');
