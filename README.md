@@ -33,6 +33,5 @@ Unless the project is upgraded to be used with Gulp or Grunt, the Mongo server m
 
 Start the Node.js server with 'npm start' or with 'nodemon server/server.js'.
  
-##Views
-
-Sign up, sign in, events view.  There are no users' views, but this is an excellent area for expansion.
+ 
+http://lunchmeet.herokuapp.com/#/signin
