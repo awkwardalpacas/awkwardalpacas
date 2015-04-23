@@ -7,11 +7,10 @@ angular.module('lunchCorgi.services', [])
   // e.getEvents(1)
    var location = {};
   // this function finds events with time greater than now (that's what Date.now is)...
-  var getEvents = function(pageNum) {
+  var getEvents = function() {
     return $http({
       method: 'GET',
-      url: '/api/events',
-      params: {pageNum: pageNum}
+      url: '/api/events'
     })
     .then(function(res) {
       return res.data
