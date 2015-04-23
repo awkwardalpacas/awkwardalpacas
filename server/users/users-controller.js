@@ -91,17 +91,21 @@ module.exports = {
     var found = DB.collection('corgiuser').find({name: username})
 
     found.on('data', function(user){
+      console.log(user)
       var events = []
-      user.eventIDs.map(function(evID) {
-       var find = DB.collection('corgievent').find({"_id" : ObjectID(evID)})
-       find.on('data', function(ev){
-        events.push(ev);
-        //console.log(events)
-        if(events.length === user.eventIDs.length){
-          res.send(events)
-        }
-       })
-      })
+      if(user.eventIDs){
+        user.eventIDs.map(function(evID) {
+         var find = DB.collection('corgievent').find({"_id" : ObjectID(evID)})
+         find.on('data', function(ev){
+          events.push(ev);
+          //console.log(events)
+          if(events.length === user.eventIDs.length){
+            res.send(events)
+          }
+         })
+        })
+      }
+      
     })        
 		// var eventIDs = db.users.find({ name: req.data.user.username }).eventIDs
 		// var events = []
