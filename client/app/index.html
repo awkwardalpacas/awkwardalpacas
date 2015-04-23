@@ -36,16 +36,19 @@
 </head>
 
 <body> <!-- ng-cloak removed from body tag until the page is actually working - saf - 04/15/2015 -->
-  <div class="container-fluid">
-  <ul class="menu" ng-controller="SignUpCtrl">
-    <li><a href="#/signin">Sign In</a></li>
-    <li><a href="#/signup">Sign Up</a></li>
-    <li ng-if="signedIn()" ng-click="signout()"><a href="#/">Sign Out</a></li>
-  </ul>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <ul class="menu" ng-controller="SignUpCtrl">
+        <li><a href="#/signin">Sign In</a></li>
+        <li><a href="#/signup">Sign Up</a></li>
+        <li ng-if="signedIn()" ng-click="signout()"><a href="#/">Sign Out</a></li>
+      </ul>
+    </div> <!-- end of container-fluid -->
+  </nav>
 
   <div ng-view></div>
 
   <div class="lc-footer">LunchCorgi App v.0.1 2015<!--<span app-version></span>--></div>
-  </div> <!-- end of container -->
+
 </body>
 </html>
