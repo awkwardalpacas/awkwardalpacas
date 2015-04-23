@@ -60,7 +60,7 @@ angular.module('lunchCorgi.events', [])
     //$scope.newEvent.description = ''
     //$scope.newEvent.location = ''
     $scope.newEvent.time = (new Date()).toTimeString().substr(0,5)
-    $scope.newEvent.date = new Date(new Date() + new Date().getTimezoneOffset()*60000).toISOString().substr(0,10)
+    $scope.newEvent.date = new Date().toISOString().substr(0,10)
     Events.getLocation($scope);
   }
 
