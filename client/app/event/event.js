@@ -30,7 +30,6 @@ angular.module('lunchCorgi.event', [])
 
     Event.getChat(
       function(value){$scope.chats =value.data;
-        console.log($scope.chats);
     });
 
   }
