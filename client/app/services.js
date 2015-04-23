@@ -5,7 +5,7 @@ angular.module('lunchCorgi.services', [])
   // var e = angular.element(document.body).injector().get('Events'); -> because the name of the factory is 'Events'
   // e.addEvent(newEv)
   // e.getEvents(1)
-  
+   var location = {};
   // this function finds events with time greater than now (that's what Date.now is)...
   var getEvents = function(pageNum) {
     return $http({
@@ -19,20 +19,29 @@ angular.module('lunchCorgi.services', [])
 
   };
 
-  var joinEvent = function(event, userToken) {
+  var joinEvent = function(event, userToken, cb) {
+  //var joinEvent = function(event, userToken) {
       return $http({
         method: 'PUT',
-        url: '/api/events', 
+        url: '/api/events',
         data: {event: event, token: userToken}
       })
       .then(function (resp) {
         //probably superfluous, but maybe handy for debugging for now - 04/16/2015 - saf
-        alert("You were added to event ", event.description)
-        return resp.statusCode; 
+        //alert("You were added to event ", event.description)
+        cb();
+        return resp.statusCode;
       });
-  }  
+  }
+  var getLocation = function($scope){
+    google.maps.event.addListener($scope.marker, 'dragend', function(evt){
+      location.lat = this.position.lat();
+      location.lng = this.position.lng();
+    });
+  }
 
   var addEvent = function(event, userToken) {
+    console.log('event in addEvent', event)
       var datetime = new Date(event.date + ' ' + event.time);
       var gmt = datetime.toISOString();
       event.datetime = gmt;
@@ -46,13 +55,56 @@ angular.module('lunchCorgi.services', [])
       });
   }
 
+  var getLatAndLong = function($scope) {
+    $scope.newEvent.lat = location.lat;
+    $scope.newEvent.lng = location.lng;
+  }
+
   // return all of our methods as an object, so we can use them in our controllers
   return {
     getEvents : getEvents,
     joinEvent: joinEvent,
-    addEvent : addEvent
+    addEvent : addEvent,
+    getLatAndLong: getLatAndLong,
+    getLocation: getLocation
   }
 
+})
+.factory('Event', function($http){
+  var event;
+  var mapOptions = {
+    zoom: 10,
+    center: {}
+  }
+
+  var eventDetails = function(evt){
+    event = evt;
+  }
+
+  var loadEvent = function($scope){
+    $scope.event = event;
+  }
+
+  var createMap = function(latitude, longitude, divId, $scope){
+    if (divId === 'map-canvas' && !$scope.event.lat) {
+      return
+    }
+    var coords = new google.maps.LatLng(latitude, longitude);
+    mapOptions.center = coords;
+    var map = new google.maps.Map(document.getElementById(divId), mapOptions);
+
+    if (divId === 'map-submit'){
+      $scope.marker = new google.maps.Marker({position: coords, map: map, draggable: true});
+    } else {
+      $scope.marker = new google.maps.Marker({position: coords, map: map});
+    }
+  }
+
+  return {
+    eventDetails: eventDetails,
+    loadEvent: loadEvent,
+    createMap: createMap
+  }
 })
 .factory('Users', function($http){
   var signup = function(user){
@@ -72,7 +124,7 @@ angular.module('lunchCorgi.services', [])
       data: user
     }).then(function (resp) {
       return resp.data.token;
-    });    
+    });
   }
 
   return {

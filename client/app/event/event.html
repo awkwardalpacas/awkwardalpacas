@@ -1,0 +1,22 @@
+<h1>{{event.description}}</h1>
+<p>Organized by {{event.creator}}</p>
+
+<p>It's happening on {{event.datetime | date : 'MM/dd/yyyy @ h:mma'}}</p>
+<p>That's {{event.datetime | fromNow}}, so get ready!</p>
+
+<div class='attendee-list'>
+  <h2>These people are coming!</h2>
+  <div class='attendee' ng-repeat="attendee in event.attendeeIDs">{{attendee.username}}</div>
+</div>
+
+<div>
+  <div id="map-canvas" class="map"></div>
+</div>
+
+<div>
+  <h2>Chat with other people who are coming</h2>
+  <div class="chat">[chat area]</div>
+</div>
+
+ <button ng-click='loadEvents()'>Back to Events Page</button>
+ <p>{{event}}</p>

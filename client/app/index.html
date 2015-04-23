@@ -16,12 +16,14 @@
   <script src ='/client/app/app.js'></script>
   <script src ='/client/app/services.js'></script>
   <script src ='/client/app/users/auth.js'></script>
+  <script src ='/client/app/event/event.js'></script>
   <script src ='/client/app/events/events.js'></script>
   <script src ='/client/app/components/version/version.js'></script>
   <script src ='/client/app/components/version/version-directive.js'></script>
   <script src ='/client/app/components/version/interpolate-filter.js'></script>
   <script src ='//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js'></script>
   <script src ='//cdnjs.cloudflare.com/ajax/libs/angular-moment/0.10.0/angular-moment.min.js'></script>
+  <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js"></script>
 
 
   <title>LunchCorgi App</title>
@@ -39,7 +41,7 @@
 
   <div ng-view></div>
 
-  <div>LunchCorgi App v.0.1 2015<span app-version></span></div>
+  <div class="lc-footer">LunchCorgi App v.0.1 2015<!--<span app-version></span>--></div>
 
 </body>
 </html>
