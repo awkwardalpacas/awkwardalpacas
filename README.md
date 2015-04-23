@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/Glamorous-Gerbils/awkwardalpacas.svg)](https://travis-ci.org/Glamorous-Gerbils/awkwardalpacas)
+
 ![lunchcorgi](/client/assets/lunchcorgi.jpg)
 
 awkwardalpacas - LunchCorgi
