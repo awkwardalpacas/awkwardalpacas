@@ -137,7 +137,7 @@ form input[type='time'] {
 
 .location:hover{
   font-weight:bold;
-
+  color: #A70DAE;
 }
 
 .logo {
@@ -233,9 +233,6 @@ form input[type='time'] {
   body {
     max-width: 75%;
   }
-  .events{
-    margin-left:2em; 
-  }
 }
 
 @media screen and (max-width: 830px) {
@@ -256,5 +253,9 @@ form input[type='time'] {
   .event,
   .events {
     padding: 0;
+  }
+
+  .events{
+    margin-left: 7em;
   }
 }

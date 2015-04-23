@@ -7,7 +7,7 @@ angular.module('lunchCorgi.events', [])
   $scope.event = {}
 
   //if $scope.invalid is true, it will display an error message in the view
-  $scope.invalid = false
+  // $scope.invalid = false
 
   $scope.remind=function(description){
     $http({
@@ -51,7 +51,8 @@ angular.module('lunchCorgi.events', [])
   $scope.addEvent = function() {
     if ($scope.newEvent.description !== "" &&
         $scope.newEvent.location !== "" &&
-        $scope.newEvent.datetime !== "" ) {
+        $scope.newEvent.date !== "" &&
+        $scope.newEvent.time !== "" ) {
 
           $scope.invalid = false;
           var userToken = JSON.parse(localStorage.getItem('com.corgi')).token;
