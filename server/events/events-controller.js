@@ -29,18 +29,16 @@ module.exports = {
     iso = iso.toISOString();
 
     // ...for testing, we're just fetching everything.
-    var options = { 'sort' : {'datetime': 1}, 'limit': 10}
+    var options = { 'sort' : {'datetime': 1}}
     var getEvents = DB.collection('corgievent').find({ 'datetime': { $gt: iso}})
     // var getEvents = DB.collection('corgievent').find({ 'datetime': { $gt: iso}},options)
       // then sort time by ascending so we can get the events happening next...
       .sort({ datetime: 1 })
       // then limit the response to only ten.
-      .limit( 10 )
       // If there is an argument passed from events.js, it's to specify the "page,"
       // so we might skip over some events to look at the next ten, for example.
       // get requests require passing stuff using the params header, so we have to parse the page number here.
-      .skip ( 10*(+req.query.pageNum) )
-      // Results are streamed.
+     // Results are streamed.
       .stream();
 
     // number of items returned; used in if statement further down.
