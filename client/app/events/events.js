@@ -112,6 +112,15 @@ angular.module('lunchCorgi.events', [])
     }
   };
 
+  $scope.calulateReminderTime = function(){
+    //create date object
+    var date = new date()
+    
+    //set date object to the event time and date
+    //get reminder notice time from user
+    //calculate reminder time and send to cron job
+  }
+
   $scope.renderMap = function(location){
     $scope.map = $sce.trustAsHtml('<iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q='+location+'&key=AIzaSyDLun535FCG-VEepOE94GqSvWZqsBMw0zM"></iframe>')
     console.log(location)
