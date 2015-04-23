@@ -117,6 +117,9 @@ angular.module('lunchCorgi.services', [])
     }
     var coords = new google.maps.LatLng(latitude, longitude);
     mapOptions.center = coords;
+    if (divId === "map-canvas") {
+      mapOptions.zoom = 15;
+    }
     var map = new google.maps.Map(document.getElementById(divId), mapOptions);
 
     if (divId === 'map-submit'){
