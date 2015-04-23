@@ -4,6 +4,7 @@ angular.module('lunchCorgi.events', [])
 
   $scope.event = {}
 
+
   $scope.createMap = function(){
     return Event.createMap(30.2958, -97.8101, "map-submit", $scope)
   }()
@@ -23,12 +24,6 @@ angular.module('lunchCorgi.events', [])
     $location.path('/event');
   }
 
-  $scope.getLocation = function(){
-    google.maps.event.addListener($scope.marker, 'dragend', function(evt){
-      $scope.newEvent.lat = this.position.lat();
-      $scope.newEvent.lng = this.position.lng();
-    });
-  }
 
   $scope.addEvent = function() {
     // check that all fields in the events.html form are filled out
@@ -38,10 +33,9 @@ angular.module('lunchCorgi.events', [])
         $scope.newEvent.datetime !== "" &&
         $scope.newEvent.lat !== "" &&
         $scope.newEvent.lng !== "") {
-
           $scope.invalid = false
           var userToken = $window.localStorage.getItem('com.corgi');
-
+          Events.getLatAndLong($scope);
           Events.addEvent($scope.newEvent, userToken)
           .then(function(newEvent) {
             // need a better way to notify people, but this is simple for now
@@ -67,7 +61,7 @@ angular.module('lunchCorgi.events', [])
     //$scope.newEvent.location = ''
     $scope.newEvent.time = (new Date()).toTimeString().substr(0,5)
     $scope.newEvent.date = new Date(new Date() + new Date().getTimezoneOffset()*60000).toISOString().substr(0,10)
-    $scope.getLocation();
+    Events.getLocation($scope);
   }
 
   $scope.viewAllEvents = function() {

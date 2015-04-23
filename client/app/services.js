@@ -5,7 +5,7 @@ angular.module('lunchCorgi.services', [])
   // var e = angular.element(document.body).injector().get('Events'); -> because the name of the factory is 'Events'
   // e.addEvent(newEv)
   // e.getEvents(1)
-
+   var location = {};
   // this function finds events with time greater than now (that's what Date.now is)...
   var getEvents = function(pageNum) {
     return $http({
@@ -20,7 +20,7 @@ angular.module('lunchCorgi.services', [])
   };
 
   var joinEvent = function(event, userToken, cb) {
-  //var joinEvent = function(event, userToken) {  
+  //var joinEvent = function(event, userToken) {
       return $http({
         method: 'PUT',
         url: '/api/events',
@@ -30,11 +30,18 @@ angular.module('lunchCorgi.services', [])
         //probably superfluous, but maybe handy for debugging for now - 04/16/2015 - saf
         //alert("You were added to event ", event.description)
         cb();
-        return resp.statusCode; 
+        return resp.statusCode;
       });
+  }
+  var getLocation = function($scope){
+    google.maps.event.addListener($scope.marker, 'dragend', function(evt){
+      location.lat = this.position.lat();
+      location.lng = this.position.lng();
+    });
   }
 
   var addEvent = function(event, userToken) {
+    console.log('event in addEvent', event)
       var datetime = new Date(event.date + ' ' + event.time);
       var gmt = datetime.toISOString();
       event.datetime = gmt;
@@ -48,11 +55,18 @@ angular.module('lunchCorgi.services', [])
       });
   }
 
+  var getLatAndLong = function($scope) {
+    $scope.newEvent.lat = location.lat;
+    $scope.newEvent.lng = location.lng;
+  }
+
   // return all of our methods as an object, so we can use them in our controllers
   return {
     getEvents : getEvents,
     joinEvent: joinEvent,
-    addEvent : addEvent
+    addEvent : addEvent,
+    getLatAndLong: getLatAndLong,
+    getLocation: getLocation
   }
 
 })
