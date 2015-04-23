@@ -5,7 +5,7 @@
 Glamorous-Gerbils - KaMealeon
 ===========================
 
-Contributers
+Contributors
 ------------
 
 Vishal Atmakuri [Vishal's Github profile] (https://github.com/vishalatmakuri)
