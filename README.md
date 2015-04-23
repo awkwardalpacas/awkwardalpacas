@@ -1,4 +1,6 @@
 
+http://lunchmeet.herokuapp.com/#/signin
+
 ##Contributors
 
   - __Product Owner__: [samuelfullerthomas](https://github.com/samuelfullerthomas)
@@ -33,5 +35,3 @@ Unless the project is upgraded to be used with Gulp or Grunt, the Mongo server m
 
 Start the Node.js server with 'npm start' or with 'nodemon server/server.js'.
  
- 
-http://lunchmeet.herokuapp.com/#/signin
