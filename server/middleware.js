@@ -18,9 +18,11 @@ module.exports = function (app, express) {
   app.use('/api/events', eventsRouter); // user link router for link request
   // app.use(helpers.errorLogger);
   // app.use(helpers.errorHandler);
+  
 
   // inject our routers into their respective route files
   require('./users/users-routes.js')(userRouter);
   require('./events/events-routes.js')(eventsRouter);
 };
+
 

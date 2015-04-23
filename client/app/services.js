@@ -1,11 +1,15 @@
 angular.module('lunchCorgi.services', [])
 
+.factory('Username', function(){
+  return {}
+})
+
 .factory('Events', function($http) {
   // these factory functions can be tested in the console with the following syntax (and similar stuff):
   // var e = angular.element(document.body).injector().get('Events'); -> because the name of the factory is 'Events'
   // e.addEvent(newEv)
   // e.getEvents(1)
-  
+ 
   // this function finds events with time greater than now (that's what Date.now is)...
   var getEvents = function(pageNum) {
     return $http({
@@ -74,10 +78,20 @@ angular.module('lunchCorgi.services', [])
       return resp.data.token;
     });    
   }
+  var getProfile = function(user) {
+    return $http({
+      method: 'POST',
+      url: '/api/users/profile',
+      data: user
+    }).then(function (resp) {
+      return resp.data;
+    });    
+  }
 
   return {
     signup: signup,
-    signin: signin
+    signin: signin,
+    getProfile: getProfile
   }
 })
 /* This custom Angular filter should produce our datetime object in the "from now" format
