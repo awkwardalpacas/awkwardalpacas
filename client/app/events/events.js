@@ -1,15 +1,48 @@
 angular.module('lunchCorgi.events', [])
 
-.controller('EventsController', function ($scope, $window, $location, Events) {
+.controller('EventsController', function ($scope, $window, $location, $sce, Events, $http) {
 
   $scope.event = {}
 
   //if $scope.invalid is true, it will display an error message in the view
   $scope.invalid = false
 
+  $scope.remind=function(description){
+    $http({
+      method: 'POST',
+      url:'/api/reminder',
+      data: {user:JSON.parse(localStorage.getItem("com.corgi")).username,
+      eventName: description}
+    }).then(function(res){
+      console.log('number', res.data)
+
+      // $http.post('https://api.plivo.com/v1/Account/MANJQ3NDMYZGIWZTCZNG/Message/', {
+      //   src: '13303823056',
+      //   dst: '1'+res.data,
+      //   text:'Your event is happening blahblah'
+      // })
+      // .then(function(data, status, headers, config) {
+      //   // this callback will be called asynchronously
+      //   // when the response is available
+      //   console.log('HOORAY sent.')
+      // })
+
+      // $http({
+      //   method: 'POST',
+      //   url: 'https://api.plivo.com/v1/Account/MANJQ3NDMYZGIWZTCZNG/Message/',
+      //   data: {
+      //     src: '13303823056',
+      //     dst: '1'+res.data,
+      //     text:'Your event is happening blahblah'
+      //   }
+      // })
+   })
+    
+  }
+
   $scope.joinEvent = function(evt) {
     $scope.event = evt;
-    var userToken = $window.localStorage.getItem('com.corgi');
+    var userToken = JSON.parse(localStorage.getItem('com.corgi')).token;
     Events.joinEvent(evt, userToken);
   }
 
@@ -21,7 +54,7 @@ angular.module('lunchCorgi.events', [])
         $scope.newEvent.datetime !== "" ) {
 
           $scope.invalid = false
-          var userToken = $window.localStorage.getItem('com.corgi');
+          var userToken = JSON.parse(localStorage.getItem('com.corgi')).token;
 
           Events.addEvent($scope.newEvent, userToken)
           .then(function(newEvent) {
@@ -29,31 +62,31 @@ angular.module('lunchCorgi.events', [])
             alert('Your event has been created: ', newEvent.description);
             // return to defaults
             $scope.viewAllEvents();
-            $scope.initNewEventForm()
+            $scope.initNewEventForm();
           });
         } else {
-          $scope.invalid = true
+          $scope.invalid = true;
         }     
   }
 
   // first page of events is page number 0; when more events are viewed, the page number is increased
-  $scope.pageNumber = 0
+  $scope.pageNumber = 0;
 
   // eventsList is an array used in the template (with ng-repeat) to populate the list of events.
-  $scope.eventsList = {}
+  $scope.eventsList = {};
 
   $scope.initNewEventForm = function() {
-    $scope.newEvent = {}
-    $scope.newEvent.description = 'Describe the event.'
-    $scope.newEvent.location = 'Where is the event?'
-    $scope.newEvent.time = (new Date()).toTimeString().substr(0,5)
-    $scope.newEvent.date = new Date(new Date() + new Date().getTimezoneOffset()*60000).toISOString().substr(0,10)    
+    $scope.newEvent = {};
+    $scope.newEvent.description = '';
+    $scope.newEvent.location = '';
+    $scope.newEvent.time = '';
+    $scope.newEvent.date = '';
   }
 
   $scope.viewAllEvents = function() {
     // send request to services.js, which in turn sends the actual http request to events-controller in the server.
 
-    if ( $window.localStorage.getItem('com.corgi') ) {
+    if (JSON.parse(localStorage.getItem('com.corgi')).token) {
       Events.getEvents($scope.pageNumber)
       .then(function(data) {
         // set $scope.eventsList equal to the data we get back from our http request - that's how we 
@@ -78,6 +111,11 @@ angular.module('lunchCorgi.events', [])
       $scope.pageNumber--
       $scope.viewAllEvents()
     }
+  };
+
+  $scope.renderMap = function(location){
+    $scope.map = $sce.trustAsHtml('<iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q='+location+'&key=AIzaSyDLun535FCG-VEepOE94GqSvWZqsBMw0zM"></iframe>')
+    console.log(location)
   };
   
   // show events when the page is first loaded.

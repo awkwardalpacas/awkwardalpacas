@@ -1,4 +1,119 @@
 /* app css stylesheet */
+a {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.addevent button {
+  background: url('/client/assets/lettuce-button.png');
+  height: 1.7em;
+  width: 5em;
+}
+
+.addevent form {
+  margin: 0 auto;
+  text-align: center;
+  width: 80%;
+}
+
+body {
+  font-family: 'Roboto Slab', courier;
+  max-width: 50%;
+  margin: 0 auto;
+}
+
+.description {
+  font-weight: bold;
+}
+
+.error {
+  background-color: pink;
+  margin: 0 auto;
+  max-width: 75%;
+  padding: 1em;
+}
+
+.event {
+  margin-bottom: 1em;
+  padding-left: 66px;
+}
+
+.events {
+  list-style-type: none;
+}
+
+form {
+  margin: 1em 0;
+}
+
+#signin form input,
+#signup form input,
+#signin form button,
+#signup form button {
+  display: block;
+  margin: 0.5em auto;
+}
+
+form button {
+  background: url('/client/assets/spam-button.png');
+  background-position: 10px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 1.2em;
+  font-weight: bold;
+  height: 1.8em;
+  width: 7em;
+}
+
+form input {
+  border-radius: 3px;
+  height: 1.8em;
+  padding: 0 0.5em;
+}
+
+form input[type='date'] {
+  width: 9em;
+}
+
+form input[type='time'] {
+  width: 7.5em;
+}
+
+.form-line-1 input {
+  margin-bottom: 0.5em;
+  width: 76%;
+}
+
+.join {
+  background: url('/client/assets/tomato.png');
+  background-position: -43px 0;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  float: left;
+  font-weight: bold;
+  height: 1.7em;
+  margin-right: 1em;
+  margin-top: 4px;
+  width: 4em;
+}
+
+.location {
+  text-decoration: underline;
+}
+
+.logo {
+  background: url('/client/assets/lunchmeet.png') no-repeat;
+  background-position: 20px -70px;
+  height: 200px;
+  margin: 0 auto;
+  width: 400px;
+}
+
+#map {
+  margin: auto;
+}
 
 .menu {
   list-style: none;
@@ -28,9 +143,30 @@
   content: "";
   padding: 0;
 }
-.events {
 
+#signin,
+#signup {
+  text-align: center;
 }
-.addevent {
-  float: right;
+
+.small {
+  font-size: 0.9em;
+}
+
+.title {
+  color: #E22A38;
+  font-size: 2.2em;
+  font-weight: bold;
+  margin: 1em 0;
+  text-align: center;
+}
+
+.version {
+  color: #666;
+  font-size: small;
+  margin-top: 9em;
+}
+
+::-webkit-input-placeholder {
+  text-align: center;
 }
