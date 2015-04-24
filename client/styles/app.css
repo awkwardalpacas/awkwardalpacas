@@ -142,11 +142,13 @@ ul.events {
 }
 .people{
   display: inline;
+  margin-left: auto;
+  margin-right: -50%;
 }
 .peopleholder{
   width: 50%;
   height: 10vh;
-  overflow-y: scroll;
+  overflow-y: none;
   text-align: left;
 }
 
@@ -157,4 +159,8 @@ ul.events {
 {
     -webkit-box-shadow: inset 0 0 6px rgba(0,0,20,0.3);
     background-color: #F5F5F5;
+}
+.margenbottom{
+  margin-bottom: 1%;
+  margin-top: 1%;
 }
