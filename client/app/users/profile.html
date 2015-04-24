@@ -3,20 +3,24 @@
     <li class='event' ng-repeat="event in userEventsList | orderBy:'datetime'">
       <!-- <img src='./assets/redirect_icon.png'/> -->
       <div class='eventInfo'>
-        <!-- <div class='creator'>{{event.creator}}</div> -->
-        <div class="event-line1">
-          <span class='description'>{{ event.description }}</span>
-          <span class='location'>at {{ event.location }}</span>
-          <span class='time'>{{ event.datetime | fromNow }}</span>
-        </div>
-        <div class="event-line2">
-          <span class='time'>{{ event.datetime | date : 'MM/dd/yyyy @ h:mma' }}</span>        
-          <span class='attendee-list'>
-            Attendees
-            <span class='attendee' ng-repeat="attendee in event.attendeeIDs">{{ attendee.username }}</span>
-          </span>
-          <button ng-click='renderMap(event.location)'>Map</button>
-        </div>
+              <!-- <div class='creator'>{{event.creator}}</div> -->
+              <div class="event-line1">
+                <span class='description'>{{ event.description }}</span>
+                <span class="at" ng-click='renderMap(event.location)'> at 
+                  <span class='location'>{{ event.location }}</span>
+                </span>
+                <span class='fromNow'>{{ event.datetime | fromNow }}</span>
+              </div>
+              <div class="event-line2">
+                <span class='time'>{{ event.datetime | date : 'MM/dd/yyyy @ h:mma' }}</span>
+
+              </div>
+                <span ng-click="attendees=!attendees" class='attendee-list'>
+                  -- Attendees --
+                </span>
+                
+                <div class='attendee' ng-hide="attendees" ng-repeat="attendee in event.attendeeIDs">{{ attendee.username }}
+                </div>
         <!-- <button ng-click='remind()'>REMIND!</button> -->
 
       </div>
