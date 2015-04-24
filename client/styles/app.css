@@ -268,9 +268,10 @@ form input[type='time'] {
   left:0;
   width:100%;
   height:100%;
-  background-color:#000000;
-  opacity: 0.8;
+  background-color:#40e0d0;
+  opacity: 0.5;
 }
+
 .ng-modal-dialog {
   /* A centered div above the overlay with a box shadow. */
   z-index:10000;
