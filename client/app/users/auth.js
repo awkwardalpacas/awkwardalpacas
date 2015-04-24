@@ -10,45 +10,41 @@ angular.module('lunchCorgi.signup', ['ngRoute'])
   };
 
   $scope.signin = function () {
-    //Username.user = $scope.user.username
-    $window.localStorage.setItem('username', $scope.user.username)
+    localStorage.setItem('username', $scope.user.username)
     Users.signin($scope.user)
-      // .then(function(){
-      //   Username.user=$scope.user.username
-      // })
-      .then(function (token) {
-        var obj={
-          token: token,
-          username: $scope.user.username
-        }
-        localStorage.setItem('com.corgi', JSON.stringify(obj));
-        $location.path('/');
-      })
-      .catch(function (error) {
-        if (error.status === 401) {
-          $scope.loginError = true;
-        }
-        console.error(error);
-      });
+    .then(function (token) {
+      var obj={
+        token: token,
+        username: $scope.user.username
+      }
+      localStorage.setItem('com.corgi', JSON.stringify(obj));
+      $location.path('/');
+    })
+    .catch(function (error) {
+      if (error.status === 401) {
+        $scope.loginError = true;
+      }
+      console.error(error);
+    });
   };
 
   $scope.signup = function() {
-    //Username.user=$scope.user.username
-    $window.localStorage.setItem('username', $scope.user.username)
+    
+    localStorage.setItem('username', $scope.user.username)
     Users.signup($scope.user)
-      .then(function(token){
-        var obj={
-          token: token,
-          username: $scope.user.username
-        }
-        localStorage.setItem('com.corgi', JSON.stringify(obj));
-        $location.path('/');
-      })
-      .catch(function (error) {
-        if (error.status === 401) {
-          $scope.signupError = true;
-        }
-        console.error(error);
+    .then(function(token){
+      var obj={
+        token: token,
+        username: $scope.user.username
+      }
+      localStorage.setItem('com.corgi', JSON.stringify(obj));
+      $location.path('/');
+    })
+    .catch(function (error) {
+      if (error.status === 401) {
+        $scope.signupError = true;
+      }
+      console.error(error);
     });
   };
 
@@ -58,13 +54,14 @@ angular.module('lunchCorgi.signup', ['ngRoute'])
   }
 
   $scope.profile = function() {
-    var user = {user : $window.localStorage.getItem('username')}
+    var user = {user : localStorage.getItem('username')}
     Users.getProfile(JSON.stringify(user))
-      .then(function(data){
-        $scope.userEventsList = data;
-        $scope.username = user.user;
-      })
+    .then(function(data){
+      $scope.userEventsList = data;
+      $scope.username = user.user;
+    })
   }
+
   $scope.renderMap = function(location){
     $scope.map = $sce.trustAsHtml('<iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q='+location+'&key=AIzaSyDLun535FCG-VEepOE94GqSvWZqsBMw0zM"></iframe>')
   };
