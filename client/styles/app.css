@@ -38,7 +38,7 @@ form[name="eventForm"] input {
   margin-top: -1.6%;
 }
 .customfrontinner{
-  height: 20vh;   
+  height: 20vh;
 }
 
 li.event {
@@ -54,6 +54,47 @@ li.event {
   margin-bottom: 20px;
 }
 
+.navbar-fixed-top {
+  margin-bottom: 50px;
+}
+
 ul.events {
   padding: 0px;
+}
+
+/*==========  Media Queries  ==========*/
+
+/* Custom, iPhone Retina */
+@media only screen and (min-width : 320px) {
+  .addevent {
+    position: relative;
+  }
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
+  .addevent {
+    position: relative;
+  }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+  .addevent {
+    position: fixed;
+  }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+  .addevent {
+    position: fixed;
+  }
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+  .addevent {
+    position: fixed;
+  }
 }
