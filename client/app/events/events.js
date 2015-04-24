@@ -57,7 +57,7 @@ angular.module('lunchCorgi.events', [])
 
   $scope.joinEvent = function(evt) {
     $scope.event = evt;
-    var userToken = JSON.parse(localStorage.getItem('com.corgi')).token;
+    var userToken = localStorage.getItem('token');
     Events.joinEvent(evt, userToken);
   }
 

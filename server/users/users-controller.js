@@ -88,10 +88,11 @@ module.exports = {
             }
           });
         });
-      } else {
-        // silently end response for users with no saved events
-        res.end();
       }
+       //else {
+      //   // silently end response for users with no saved events
+      //   // res.end();
+      // }
     });       
 	}
 

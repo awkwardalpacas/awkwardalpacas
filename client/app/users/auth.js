@@ -35,7 +35,7 @@ angular.module('lunchCorgi.signup', ['ngRoute'])
   $scope.user = {};
 
   $scope.signedIn = function() {
-    return !!localStorage['com.corgi']
+    return !!localStorage['token']
   };
 
   $scope.signin = function () {
