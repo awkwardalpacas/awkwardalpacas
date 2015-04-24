@@ -32,7 +32,8 @@ form[name="eventForm"] input {
 
 .chatwindow {
   height: 300px;
-  border: 1px solid red;
+  background-color: rgba(255, 255,255, 0.20);
+  overflow-y: scroll;
 }
 
 .event-page {
@@ -45,10 +46,6 @@ form[name="eventForm"] input {
    url('../images/chameleon.jpg');
     background-repeat:no-repeat;
     background-size: 100%;
-}
-
-.events {
-
 }
 
 .customfront{
@@ -127,4 +124,32 @@ ul.events {
 }
 .chatholder{
   color:white;
+}
+
+.chats{
+  opacity: 1;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  margin-top: 1px;
+  margin-bottom: 1px;
+  width: 100%;
+  display: block;
+  border-bottom:1px solid rgba(100,100,255,0.80);
+}
+.names {
+  display: inline-block;
+  margin:0px;
+}
+.people{
+    width: 50%;
+  height: 10vh;
+  overflow-y: scroll;
+}
+.soft{
+  border-radius: 10%;
+}
+:-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,20,0.3);
+    background-color: #F5F5F5;
 }
