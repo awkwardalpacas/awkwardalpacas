@@ -35,7 +35,7 @@ angular.module('lunchCorgi.event', [])
   }
   $scope.init =function(){
     $scope.loadchats()
-    setInterval($scope.loadchats,20000)
+    setInterval($scope.loadchats,5000)
   }
   $scope.sendmessage =function(){
     var text =$scope.textinput
