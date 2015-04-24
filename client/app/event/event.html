@@ -1,6 +1,6 @@
 
-<div class = "container event-page">
-  <div class = "col-md-8">
+<div class = "bg-info container event-page">
+  <div class = "col-md-8 eventheading">
     <h1>{{event.description}}</h1>
     <p>Organized by {{event.creator}}</p>
     <p>It's happening on {{event.datetime | date : 'MM/dd/yyyy @ h:mma'}}</p>
@@ -14,7 +14,7 @@
     <h2>Meet us at {{event.location}}!</h2>
     <div id="map-canvas" class="map"></div>
   </div>
-  <div class = "col-md-4">
+  <div class = "col-md-4 chatholder">
     <h2>Chat with other people who are coming</h2>
     <div class="chat" ng-controller='chatCtrl'>
       <div class = "chatwindow">
@@ -26,6 +26,6 @@
       <button type="button" ng-click='sendmessage()'>Send</button><br>
     </div>
     <button ng-click='loadEvents()'>Back to Events Page</button>
-    <div class="fb-send" data-href="http://corgi.herokuapp.com/" data-colorscheme="dark">share our page</div>
+    <div class="fb-send" data-href="http://corgi.herokuapp.com/" data-colorscheme="dark"></div>
   </div>
 </div>

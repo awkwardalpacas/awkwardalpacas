@@ -36,7 +36,15 @@ form[name="eventForm"] input {
 }
 
 .event-page {
-  background-image: url('../images/chameleon.jpg');
+   height:110vh;
+   width: 100%;
+   background: linear-gradient(
+      rgba(20, 0, 70, 0.50), 
+      rgba(0, 0, 50, 0.80)
+    ),
+   url('../images/chameleon.jpg');
+    background-repeat:no-repeat;
+    background-size: 100%;
 }
 
 .events {
@@ -112,4 +120,11 @@ ul.events {
   .addevent {
     position: fixed;
   }
+}
+
+.eventheading{
+  color:white;
+}
+.chatholder{
+  color:white;
 }
