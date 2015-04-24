@@ -7,7 +7,7 @@
 }
 
 body {
-  padding-top: 50px;
+  padding-top: 45px;
   background-color: #FDFAF9
 }
 
@@ -40,7 +40,7 @@ form[name="eventForm"] input {
    height:110vh;
    width: 100%;
    background: linear-gradient(
-      rgba(20, 0, 70, 0.50), 
+      rgba(20, 0, 70, 0.50),
       rgba(0, 0, 50, 0.80)
     ),
    url('../images/chameleon.jpg');
@@ -69,9 +69,9 @@ li.event {
 }
 
 .map {
-  height: 400px;
+  height: 200px;
   width: 400px;
-  margin-bottom: 20px;
+  margin-bottom: 10px;
 }
 
 .navbar-fixed-top {
