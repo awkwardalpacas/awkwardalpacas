@@ -1,13 +1,13 @@
 /* app css stylesheet */
 
 .addevent input {
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   max-width: 400px;
   max-width: 100%;
 }
 
 body {
-  padding-top: 70px;
+  padding-top: 50px;
   background-color: #FDFAF9
 }
 
