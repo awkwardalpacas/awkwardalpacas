@@ -141,10 +141,15 @@ ul.events {
   margin:0px;
 }
 .people{
-    width: 50%;
+  display: inline;
+}
+.peopleholder{
+  width: 50%;
   height: 10vh;
   overflow-y: scroll;
+  text-align: left;
 }
+
 .soft{
   border-radius: 10%;
 }

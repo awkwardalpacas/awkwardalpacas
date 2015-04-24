@@ -7,9 +7,9 @@
     <p>That's {{event.datetime | fromNow}}, so get ready!</p>
     <div class='attendee-list'>
       <h2>These people are coming!</h2>
-      <div class='people'>
+      <div class='peopleholder'>
         <div class='attendee' ng-repeat="attendee in event.attendeeIDs">
-          <div >{{attendee.username}}</div>
+          <div class="people" >{{attendee.username}}</div>
         </div>
       </div>
     </div>
