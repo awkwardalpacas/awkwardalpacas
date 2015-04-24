@@ -24,4 +24,6 @@ From within the root directory:
 
 npm install
 
+##Contributing
+Please follow our guidelines for [contributing] (https://github.com/VivaciousViscachas/awkwardalpacas/blob/master/_CONTRIBUTING.md)
 
