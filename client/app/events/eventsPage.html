@@ -17,7 +17,6 @@
   <div class="title">Events</div>
   <ul class='events'>
     <li class='event' ng-repeat="event in eventsList | orderBy:'datetime'">
-      <!-- <img src='./assets/redirect_icon.png'/> -->
       <div class='eventInfo'>
         <!-- <div class='creator'>{{event.creator}}</div> -->
         <button class="join" ng-click='joinEvent(event); remind(event)'>Attend</button>
