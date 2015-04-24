@@ -1,36 +1,59 @@
 /* app css stylesheet */
 
-.menu {
+.addevent input {
+  margin-bottom: 20px;
+  max-width: 400px;
+  max-width: 100%;
+}
+
+.event-buttons {
+  margin-top: 20px;
+}
+
+.event-section h4, h2 {
+  margin-bottom: 0px;
+}
+
+form[name="eventForm"] input {
+  max-width: 400px;
+}
+
+.lc-footer {
+  text-align: center;
+  margin: 20px;
+}
+
+
+.chatwindow {
+  height: 300px;
+  border: 1px solid red;
+}
+
+.event-page {
+  background-image: url('../images/chameleon.jpg');
+}
+
+.customfront{
+   height:80vh;
+  margin-top: -1.6%;
+}
+.customfrontinner{
+  height: 20vh;   
+}
+
+li.event {
   list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.5em;
+  margin: 0px 0px 20px 0px;
+  padding: 0px 0px 20px 0px;
+  border-bottom: 1px solid #EBEBEB;
 }
 
-.menu:before {
-  content: "[";
+.map {
+  height: 400px;
+  width: 400px;
+  margin-bottom: 20px;
 }
 
-.menu:after {
-  content: "]";
-}
-
-.menu > li {
-  display: inline;
-}
-
-.menu > li:before {
-  content: "|";
-  padding-right: 0.3em;
-}
-
-.menu > li:nth-child(1):before {
-  content: "";
-  padding: 0;
-}
-.events {
-
-}
-.addevent {
-  float: right;
+ul.events {
+  padding: 0px;
 }
