@@ -315,6 +315,10 @@ form input[type='time'] {
     margin-left: 0;
   }
 
+  .logo {
+    background-position: 0 -70px;
+  }
+
   .map iframe {
     max-width: 24em;
   }
