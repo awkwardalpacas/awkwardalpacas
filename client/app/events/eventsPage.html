@@ -1,47 +1,67 @@
-  <div class='addevent'>
-    <form name="eventForm">
-      <input type= "text" ng-model = "newEvent.location" placeholder="Event Location" value="">
-      <input type= "text" ng-model = "newEvent.description" placeholder="Event Description" value="">
-      <input type= "date" ng-model = "newEvent.date">
-      <input type= "time" ng-model = "newEvent.time">
-      <div id="map-submit" class="map"></div>
-      <button type="button" ng-click="addEvent()" prevent-default>Submit</button>
-      <h1 ng-if="invalid">
-        Please fill in all of the fields.
-      </h1>
-    </form>
-  </div>
-<div id='container'>
-  <p> CHOOSE AN EVENT HERE: </p>
- <!-- removed controller since ng-app in index.html already loads the controller, so we were previously loading it twice. -->
- <ul class='events'>
-    <li class = 'event' ng-repeat="event in eventsList | orderBy:'datetime'">
-      <!-- <img src='./assets/redirect_icon.png'/> -->
-      <div class='eventInfo'>
-        <div class='creator'>{{event.creator}}</div>
-        <div class='description'>{{event.description}}</div>
-        <div class='location'>{{event.location}}</div>
-        <div class='date'>{{event.date}}</div>
-        <div class='time'>{{event.time}}</div>
-        <div class='time'>{{event.datetime | date : 'MM/dd/yyyy @ h:mma' }}</div>
-        <div class='time'>{{event.datetime | fromNow }}</div>
-        <div class='attendee-list'>
-          Who's Going?:
-          <div class='attendee' ng-repeat="attendee in event.attendeeIDs">{{attendee.username}}</div>
-        </div>
-        <button type='button' ng-click='joinEvent(event);$event.preventDefault(); $event.stopPropagation();' prevent-default>Join this event!</button>
-        <button type='button' ng-click='eventDetails(event)' prevent-default>More Details</button>
-        <!-- <a href='{{link.base_url}}/api/links/{{link.code}}'>{{link.base_url}}/{{link.code}}</a> -->
+
+<div class='container-fluid'>
+  <div class="row">
+
+    <div class="col-xs-12 col-sm-6 col-sm-push-6 col-md-4 col-md-push-6 col-md-offset-1 col-lg-4 col-lg-push-6 col-lg-offset-1">
+      <div class='addevent'>
+        <h1>Make an event!</h1>
+        <form name="eventForm">
+          <input class="form-control"type= "text" ng-model = "newEvent.location" placeholder="Where do you want to meet?" value="">
+          <input class="form-control" type= "text" ng-model = "newEvent.description" placeholder="What do you want to do?" value="">
+          <input class="form-control" type= "date" ng-model = "newEvent.date">
+          <input class="form-control" type= "time" ng-model = "newEvent.time">
+          <p>Drag the marker to set a location.</p>
+          <div id="map-submit" class="map"></div>
+          <button class="btn btn-default"type="button" ng-click="addEvent()" prevent-default>Submit</button>
+          <h1 ng-if="invalid">
+            Please fill in all of the fields.
+          </h1>
+        </form>
       </div>
-    </li>
-  </ul>
-  <!-- <button class="prevPage" style="float: left" ng-click="prevPage()">Previous Page</button> -->
-  <!-- <button class="nextPage" style="float: right" ng-click="nextPage()">Next Page</button> -->
+    </div>
 
+    <div class="col-xs-12 col-sm-6 col-sm-pull-6 col-md-4 col-md-pull-4 col-lg-4 col-lg-pull-4">
+      <div class="events">
+        <h1>Events</h1>
+        <!-- removed controller since ng-app in index.html already loads the controller, so we were previously loading it twice. -->
+        <ul class='events'>
+          <li class = 'event' ng-repeat="event in eventsList | orderBy:'datetime'">
+            <!-- <img src='./assets/redirect_icon.png'/> -->
+            <div class='eventInfo'>
 
+              <div class='event-section'>
+                <h2>{{event.description}}</h2>
+                <p>Organized by {{event.creator}}</p>
+              </div>
+              <div class='event-section'>
+                <h4>Where?</h4>
+                <p>{{event.location}}</p>
+              </div>
+              <div class='event-section'>
+                <h4>When?</h4>
+                <p>{{event.datetime | date : 'MM/dd/yyyy @ h:mma' }} ({{event.datetime | fromNow }})
+                </p>
+              </div>
+              <div class="event-section">
+                <h4>Who's Going?</h4>
+                <div class='attendee-list'>
+                  <div class='attendee' ng-repeat="attendee in event.attendeeIDs">{{attendee.username}}</div>
+                </div>
+              </div>
+              <div class="event-buttons">
+                <button class="btn btn-default" type='button' ng-click='joinEvent(event);$event.preventDefault(); $event.stopPropagation();' prevent-default>Join this event!</button>
+                <button class="btn btn-default" type='button' ng-click='eventDetails(event)' prevent-default>More Details</button>
+              </div>
+              <!-- <a href='{{link.base_url}}/api/links/{{link.code}}'>{{link.base_url}}/{{link.code}}</a> -->
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
 
-</div>
-</div>
+  </div> <!-- end of row -->
+</div> <!-- end of container-fluid -->
+
 
 
 

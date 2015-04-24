@@ -1,28 +1,26 @@
 /* app css stylesheet */
-.map {
-  height: 400px;
-  width: 400px;
+
+.addevent input {
+  margin-bottom: 20px;
+  max-width: 400px;
+  max-width: 100%;
 }
 
-.events {
-
+.event-buttons {
+  margin-top: 20px;
 }
 
-.addevent {
-  float: right;
+.event-section h4, h2 {
+  margin-bottom: 0px;
 }
 
-html body {
-  padding-right: 16px;
-  padding-left: 16px;
-  padding-top: 8px;
-  padding-bottom: 0px;
+form[name="eventForm"] input {
+  max-width: 400px;
 }
 
 .lc-footer {
-  width:100%;
-  bottom:2px;
   text-align: center;
+  margin: 20px;
 }
 
 
@@ -41,4 +39,21 @@ html body {
 }
 .customfrontinner{
   height: 20vh;   
+}
+
+li.event {
+  list-style: none;
+  margin: 0px 0px 20px 0px;
+  padding: 0px 0px 20px 0px;
+  border-bottom: 1px solid #EBEBEB;
+}
+
+.map {
+  height: 400px;
+  width: 400px;
+  margin-bottom: 20px;
+}
+
+ul.events {
+  padding: 0px;
 }
