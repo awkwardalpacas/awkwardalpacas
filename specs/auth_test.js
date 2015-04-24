@@ -1,16 +1,27 @@
 'use strict';
 
-describe('myApp.view1 module', function() {
+describe('KaMealeon auth.js tests',function(){
 
-  beforeEach(module('myApp.view1'));
+  beforeEach(module('lunchCorgi.signup','ngRoute'));
 
-  describe('view1 controller', function(){
+  describe('SignUpCtrl',function(){
+    
+    it('signedIn function is defined',function(){
+      expect('signedIn').toBeDefined();
+    });
 
-    it('should ....', inject(function($controller) {
-      //spec body
-      var view1Ctrl = $controller('View1Ctrl');
-      expect(view1Ctrl).toBeDefined();
-    }));
+    it('signin function is defined',function(){
+      expect('signin').toBeDefined();
+    });
+
+    it('signup function is defined',function(){
+      expect('signup').toBeDefined();
+    });
+
+    it('signout function is defined',function(){
+      expect('signout').toBeDefined();
+    });
 
   });
+
 });

@@ -2,7 +2,7 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema,
     autoIncrement = require('mongoose-auto-increment');
 
-var db = mongoose.createConnection("mongodb://localhost/corgi"); //connects to database called corgi
+var db = mongoose.createConnection(process.env.MONGOLAB_URI); //connects to database called corgi
 
 autoIncrement.initialize(connection);  // required to get the tables to auto-increment for each new record (user or event)
 
@@ -13,7 +13,9 @@ var EventSchema = new Schema ({
 	location : String,
 	datetime: Date,
 	creatorID : Number,
-	attendeeIDs : []
+	attendeeIDs : [],
+  lat: Double,
+  lng: Double
 });
 
 EventSchema.plugin(autoIncrement.plugin, 'eventID');  // extends the EventSchema to include the auto-increment

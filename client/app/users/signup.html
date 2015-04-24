@@ -1,17 +1,15 @@
- <div id='signup' ng-controller = "SignUpCtrl">
-   <h1>Signup to start finding new lunch companions now!</h1>
-   <h2>If you already have an account, <a href="#/signin">sign in <strong>here!</strong>
+ <div class = "form-inline text-center bg-primary customfront"  ng-controller = "SignUpCtrl">
+   <p class= "customfrontinner"></p>
+   <h1>Signup to start finding fellow KaMealeons now!</h1>
+   <h2>If you already have an account, <a style="color:#CCEBFF" href="#/signin">sign in <strong>here!</strong>
    </a></h2>
-   <form name="signupForm" ng-submit="signup()">
-    <input type='text' ng-model='user.username' required>
-    <input type='password' ng-model='user.password' required>
-    <!--
-    <input type="radio" name="gender" value="Male" ng-model='user.username'>
-    <input type="radio" name="gender" value="Female" ng-model='user.username'>
-    <input type="radio" name="gender" value="Nonconforming" ng-model='user.username'>
-    // commenting out this property for now since it's not currently part of our model
-    // also, is it something we want to include in the app?
-    -->
-    <button class="signup">Sign Up</button>
+   <form name="signupForm text-center " class="form-horizontal" ng-submit="signup()">
+    <p class = 'myleft'>
+    Username <input class="form-control" type='text' ng-model='user.username' required>
+   </p>
+   <p class = "myleft">
+     Password <input class="form-control" type='password' ng-model='user.password' required>
+   </p>
+    <button class="btn btn-default">Sign Up</button>
    </form>
  </div>

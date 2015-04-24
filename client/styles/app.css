@@ -1,36 +1,190 @@
 /* app css stylesheet */
 
-.menu {
+.addevent input {
+  margin-bottom: 5px;
+  max-width: 400px;
+  max-width: 100%;
+}
+
+body {
+  padding-top: 50px;
+  background-color: #85A2EA;
+  color:white;
+}
+b{
+  padding: 5px;
+}
+.event-buttons {
+  margin-top: 20px;
+}
+.eventinfo{
+  background-color: rgba(255, 255,255, 0.10);
+  width: 50%
+}
+.eventheading h1 {
+  text-align: left;
+
+}
+.event-section h4, h2 {
+  margin-bottom: 0px;
+  margin-top: 0px;
+  padding-top: 10px;
+}
+
+form[name="eventForm"] input {
+  max-width: 400px;
+}
+
+.lc-footer {
+  text-align: center;
+  margin: 20px;
+}
+.chat{
+  margin-top: 5%;
+}
+.chatwindow {
+  height: 300px;
+  background-color: rgba(255, 255,255, 0.20);
+  overflow-y: scroll;
+}
+
+.event-page {
+   height:120vh;
+   width: 100%;
+   background: linear-gradient(
+      rgba(20, 0, 70, 0.20),
+      rgba(0, 0, 50, 0.40)
+    ),
+   url('../images/kam.gif');
+    background-repeat:no-repeat;
+    background-size: 100%;
+}
+
+.customfront{
+   height:80vh;
+  margin-top: -1.6%;
+}
+.customfrontinner{
+  height: 20vh;
+}
+
+h1 {
+  text-align: center;
+}
+
+li.event {
   list-style: none;
-  border-bottom: 0.1em solid black;
-  margin-bottom: 2em;
-  padding: 0 0 0.5em;
+  margin: 0px 0px 20px 5px;
+  padding: 0px 0px 20px 20px;
+  background-color: #337ab7;
+  color: white;
 }
 
-.menu:before {
-  content: "[";
+.map {
+  height: 200px;
+  width: 400px;
+  margin-bottom: 10px;
 }
 
-.menu:after {
-  content: "]";
+.small-map {
+  height: 100px;
+  width: 100px;
+  position: absolute;
+  top: -55px;
+  right: 20px;
 }
 
-.menu > li {
+.navbar-fixed-top {
+  margin-bottom: 50px;
+}
+
+ul.events {
+  padding: 0px;
+}
+
+/*==========  Media Queries  ==========*/
+
+/* Custom, iPhone Retina */
+@media only screen and (min-width : 320px) {
+  .addevent {
+    position: relative;
+  }
+}
+
+/* Extra Small Devices, Phones */
+@media only screen and (min-width : 480px) {
+  .addevent {
+    position: relative;
+  }
+}
+
+/* Small Devices, Tablets */
+@media only screen and (min-width : 768px) {
+  .addevent {
+    position: fixed;
+  }
+}
+
+/* Medium Devices, Desktops */
+@media only screen and (min-width : 992px) {
+  .addevent {
+    position: fixed;
+  }
+}
+
+/* Large Devices, Wide Screens */
+@media only screen and (min-width : 1200px) {
+  .addevent {
+    position: fixed;
+  }
+}
+
+.eventheading{
+  color:white;
+}
+.chatholder{
+  color:white;
+}
+
+.chats{
+  opacity: 1;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  margin-top: 1px;
+  margin-bottom: 1px;
+  width: 100%;
+  display: block;
+  border-bottom:1px solid rgba(100,100,255,0.80);
+}
+.names {
+  display: inline-block;
+  margin:0px;
+}
+.people{
   display: inline;
+  margin-left: auto;
+  margin-right: -50%;
+}
+.peopleholder{
+  width: 50%;
+  height: 11vh;
+  overflow-y: scroll;
 }
 
-.menu > li:before {
-  content: "|";
-  padding-right: 0.3em;
+.soft{
+  border-radius: 10%;
+}
+:-webkit-scrollbar-track
+{
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,20,0.3);
+    background-color: #F5F5F5;
+}
+.margenbottom{
+  display: inline;
+  margin-bottom: 1%;
+  margin-top: 1%;
 }
 
-.menu > li:nth-child(1):before {
-  content: "";
-  padding: 0;
-}
-.events {
-
-}
-.addevent {
-  float: right;
+.where {
+  position: relative;
 }
