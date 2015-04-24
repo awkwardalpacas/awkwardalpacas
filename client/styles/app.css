@@ -7,14 +7,24 @@
 }
 
 body {
-  padding-top: 45px;
-  background-color: #FDFAF9
+  padding-top: 50px;
+  background-color: #85A2EA;
+  color:white;
 }
-
+b{
+  padding: 5px;
+}
 .event-buttons {
   margin-top: 20px;
 }
+.eventinfo{
+  background-color: rgba(255, 255,255, 0.10);
+  width: 50%
+}
+.eventheading h1 {
+  text-align: left;
 
+}
 .event-section h4, h2 {
   margin-bottom: 0px;
   margin-top: 0px;
@@ -29,7 +39,9 @@ form[name="eventForm"] input {
   text-align: center;
   margin: 20px;
 }
-
+.chat{
+  margin-top: 5%;
+}
 .chatwindow {
   height: 300px;
   background-color: rgba(255, 255,255, 0.20);
@@ -37,7 +49,7 @@ form[name="eventForm"] input {
 }
 
 .event-page {
-   height:110vh;
+   height:120vh;
    width: 100%;
    background: linear-gradient(
       rgba(20, 0, 70, 0.50),
@@ -147,9 +159,8 @@ ul.events {
 }
 .peopleholder{
   width: 50%;
-  height: 10vh;
-  overflow-y: none;
-  text-align: left;
+  height: 11vh;
+  overflow-y: scroll;
 }
 
 .soft{
