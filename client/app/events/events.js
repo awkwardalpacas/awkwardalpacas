@@ -99,3 +99,6 @@ angular.module('lunchCorgi.events', [])
   // populate new event form with default values
   $scope.initNewEventForm()
 })
+.directive('smallMap', function () {
+  Event.createMap($scope.event)
+})

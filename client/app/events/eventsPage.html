@@ -48,6 +48,7 @@
                   <div class='attendee' ng-repeat="attendee in event.attendeeIDs">{{attendee.username}}</div>
                 </div>
               </div>
+              <div id="map-canvas" class = "map" small-map><div>
               <div class="event-buttons">
                 <button class="btn btn-default" type='button' ng-click='joinEvent(event);$event.preventDefault(); $event.stopPropagation();' prevent-default>Join this event!</button>
                 <button class="btn btn-default" type='button' ng-click='eventDetails(event)' prevent-default>More Details</button>
