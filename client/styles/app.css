@@ -6,8 +6,12 @@
   max-width: 100%;
 }
 
-.events {
+.event-buttons {
+  margin-top: 20px;
+}
 
+.event-section h4, h2 {
+  margin-bottom: 0px;
 }
 
 form[name="eventForm"] input {
@@ -39,8 +43,8 @@ form[name="eventForm"] input {
 
 li.event {
   list-style: none;
-  margin: 20px 0px 20px 0px;
-  padding: 20px 0px 20px 0px;
+  margin: 0px 0px 20px 0px;
+  padding: 0px 0px 20px 0px;
   border-bottom: 1px solid #EBEBEB;
 }
 

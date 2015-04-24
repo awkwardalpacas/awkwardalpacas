@@ -28,19 +28,30 @@
           <li class = 'event' ng-repeat="event in eventsList | orderBy:'datetime'">
             <!-- <img src='./assets/redirect_icon.png'/> -->
             <div class='eventInfo'>
-              <div class='creator'>{{event.creator}}</div>
-              <div class='description'>{{event.description}}</div>
-              <div class='location'>{{event.location}}</div>
-              <div class='date'>{{event.date}}</div>
-              <div class='time'>{{event.time}}</div>
-              <div class='time'>{{event.datetime | date : 'MM/dd/yyyy @ h:mma' }}</div>
-              <div class='time'>{{event.datetime | fromNow }}</div>
-              <div class='attendee-list'>
-                Who's Going?:
-                <div class='attendee' ng-repeat="attendee in event.attendeeIDs">{{attendee.username}}</div>
+
+              <div class='event-section'>
+                <h2>{{event.description}}</h2>
+                <p>Organized by {{event.creator}}</p>
               </div>
-              <button class="btn btn-default" type='button' ng-click='joinEvent(event);$event.preventDefault(); $event.stopPropagation();' prevent-default>Join this event!</button>
-              <button class="btn btn-default" type='button' ng-click='eventDetails(event)' prevent-default>More Details</button>
+              <div class='event-section'>
+                <h4>Where?</h4>
+                <p>{{event.location}}</p>
+              </div>
+              <div class='event-section'>
+                <h4>When?</h4>
+                <p>{{event.datetime | date : 'MM/dd/yyyy @ h:mma' }} ({{event.datetime | fromNow }})
+                </p>
+              </div>
+              <div class="event-section">
+                <h4>Who's Going?</h4>
+                <div class='attendee-list'>
+                  <div class='attendee' ng-repeat="attendee in event.attendeeIDs">{{attendee.username}}</div>
+                </div>
+              </div>
+              <div class="event-buttons">
+                <button class="btn btn-default" type='button' ng-click='joinEvent(event);$event.preventDefault(); $event.stopPropagation();' prevent-default>Join this event!</button>
+                <button class="btn btn-default" type='button' ng-click='eventDetails(event)' prevent-default>More Details</button>
+              </div>
               <!-- <a href='{{link.base_url}}/api/links/{{link.code}}'>{{link.base_url}}/{{link.code}}</a> -->
             </div>
           </li>
