@@ -10,6 +10,7 @@ http://lunchmeet.herokuapp.com/#/signin
 - Text reminders 1 hour before chosen events
 - Maps for every event location
 - Ability to view other event atendees
+- Mobile friendly responsive design
 
 ##Contributors
 
