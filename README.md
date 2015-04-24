@@ -1,8 +1,14 @@
 ##Welcome to LunchMeet!
 
 http://lunchmeet.herokuapp.com/#/signin
-
 ![alt tag](https://raw.github.com/VivaciousViscachas/awkwardalpacas/master/client/assets/lunchmeet.png)
+
+LunchMeet is a web/mobile friendly app that allows users to create and join events happening in their community. 
+
+##Features
+- Unique user profiles 
+- Ability to create events / RSVP to events you wish to attend
+- Text reminders 1 hour before chosen events
 
 ##Contributors
 
