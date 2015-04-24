@@ -14,9 +14,8 @@ mongo.connect(process.env.MONGOLAB_URI || 'mongodb://localhost:27017/corgi', fun
 module.exports = {
   signin: function(req, res) {
     var username = req.body.username,
-        password = req.body.password;
-
-    var foundUser = DB.collection('corgiuser').find({name: username});
+        password = req.body.password,
+        foundUser = DB.collection('corgiuser').find({name: username});
 
     foundUser.count(function(err,user) {
       if(!user) {
@@ -72,8 +71,8 @@ module.exports = {
   },
 
 	userEvents: function(req, res) {
-    var username = req.body.user;
-    var found = DB.collection('corgiuser').find({name: username});
+    var username = req.body.user,
+        found = DB.collection('corgiuser').find({name: username});
 
     found.on('data', function(user){
       console.log(user);

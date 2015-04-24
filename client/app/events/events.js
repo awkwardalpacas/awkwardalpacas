@@ -27,10 +27,16 @@ angular.module('lunchCorgi.events', [])
   $scope.attendees = true;
   $scope.event = {}
   $scope.modalShown = false;
+  $scope.button = [];
+
+  $scope.changeAttendingButton = function(index){
+    $scope.button[index] = $scope.button[index];
+    $scope.button[index] = $scope.button[index] == 'unattending'? '':'unattending'
+  }
 
   $scope.toggleModal = function() {
     $scope.modalShown = !$scope.modalShown;
-  };
+  }
   //if $scope.invalid is true, it will display an error message in the view
   // $scope.invalid = false
 
@@ -56,6 +62,7 @@ angular.module('lunchCorgi.events', [])
   }
 
   $scope.joinEvent = function(evt) {
+    evt.attending = !evt.attending
     $scope.event = evt;
     var userToken = localStorage.getItem('token');
     Events.joinEvent(evt, userToken);
@@ -95,6 +102,10 @@ angular.module('lunchCorgi.events', [])
     if (localStorage.getItem('token')) {
       Events.getEvents($scope.pageNumber)
       .then(function(data) {
+        // var username = localStorage.getItem('username')
+        // data.forEach(function(event){
+        //   event.attending = (event.attendeeIDs.filter(function(e){ return e.username === username;}).length > 0)
+        // })
         $scope.eventsList = data;
       });
     } else {
