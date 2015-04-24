@@ -9,7 +9,7 @@ http://lunchmeet.herokuapp.com/#/signin
 - Ability to create events / RSVP to events you wish to attend
 - Text reminders 1 hour before chosen events
 - Maps for every event location
-- Ability to view other event atendees
+- Ability to view other event attendees
 - Mobile friendly responsive design
 
 ##Contributors
