@@ -94,7 +94,7 @@ angular.module('lunchCorgi.services', [])
     })
   };
   var sendChat =function(userToken,message,cb){
-
+      
       $http({
         method: 'POST',
         url: '/api/event/chats',

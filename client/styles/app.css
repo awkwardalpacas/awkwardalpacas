@@ -52,10 +52,10 @@ form[name="eventForm"] input {
    height:120vh;
    width: 100%;
    background: linear-gradient(
-      rgba(20, 0, 70, 0.50),
-      rgba(0, 0, 50, 0.80)
+      rgba(20, 0, 70, 0.20),
+      rgba(0, 0, 50, 0.40)
     ),
-   url('../images/chameleon.jpg');
+   url('../images/kam.gif');
     background-repeat:no-repeat;
     background-size: 100%;
 }
