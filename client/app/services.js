@@ -80,7 +80,8 @@ angular.module('lunchCorgi.services', [])
   var event;
   var mapOptions = {
     zoom: 10,
-    center: {}
+    center: {},
+    disableDefaultUI: true
   }
 
   var eventDetails = function(evt){
@@ -102,7 +103,7 @@ angular.module('lunchCorgi.services', [])
     })
   };
   var sendChat =function(userToken,message,cb){
-      
+
       $http({
         method: 'POST',
         url: '/api/event/chats',
