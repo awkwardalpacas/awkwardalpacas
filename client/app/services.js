@@ -130,6 +130,7 @@ angular.module('lunchCorgi.services', [])
       mapOptions.zoom = 15;
     }
     var mapDiv = element ? element.children()[0] : document.getElementById(divId);
+    mapOptions.disableDefaultUI = element ? true : false;
     console.log('element',element)
     var map = new google.maps.Map(mapDiv, mapOptions);
 
