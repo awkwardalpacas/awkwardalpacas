@@ -89,6 +89,9 @@ li.event {
 .small-map {
   height: 100px;
   width: 100px;
+  position: absolute;
+  top: -55px;
+  right: 20px;
 }
 
 .navbar-fixed-top {
@@ -180,4 +183,8 @@ ul.events {
   display: inline;
   margin-bottom: 1%;
   margin-top: 1%;
+}
+
+.where {
+  position: relative;
 }

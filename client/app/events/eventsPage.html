@@ -32,9 +32,10 @@
                 <h2>{{event.description}}</h2>
                 <p>Organized by {{event.creator}}</p>
               </div>
-              <div class='event-section'>
+              <div class='event-section where'>
                 <h4>Where?</h4>
                 <p>{{event.location}}</p>
+                <div small-map></div>
               </div>
               <div class='event-section'>
                 <h4>When?</h4>
@@ -47,7 +48,7 @@
                   <div class='attendee' ng-repeat="attendee in event.attendeeIDs">{{attendee.username}}</div>
                 </div>
               </div>
-              <div small-map></div>
+
               <div class="event-buttons">
                 <button class="btn btn-default" type='button' ng-click='joinEvent(event);$event.preventDefault(); $event.stopPropagation();' prevent-default>Join this event!</button>
                 <button class="btn btn-default" type='button' ng-click='eventDetails(event)' prevent-default>More Details</button>
