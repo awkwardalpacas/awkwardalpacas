@@ -25,6 +25,7 @@ html body {
   text-align: center;
 }
 
+
 .chatwindow {
   height: 300px;
   border: 1px solid red;
@@ -32,4 +33,12 @@ html body {
 
 .event-page {
   background-image: url('../images/chameleon.jpg');
+}
+
+.customfront{
+   height:80vh;
+  margin-top: -1.6%;
+}
+.customfrontinner{
+  height: 20vh;   
 }
