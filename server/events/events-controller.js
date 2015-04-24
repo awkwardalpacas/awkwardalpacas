@@ -74,8 +74,16 @@ module.exports = {
         foundUser = DB.collection('corgiuser').find( {name: username} );
 
     foundUser.on('data', function (user) {
-      DB.collection('corgievent').update({_id: ObjectID(eventID)}, { $addToSet: {attendeeIDs: {username: user.name} } });      
-      DB.collection('corgiuser').update({name: username}, { $addToSet: {eventIDs: eventID} });
+      console.log('user: ', user);
+
+      if (user.eventIDs && user.eventIDs.indexOf(eventID) > -1){ //if user eventID's include 
+        DB.collection('corgiuser').update({name: username}, 
+          { $pull: {eventIDs: eventID} } )
+          console.log('removing event')
+      } else {
+        DB.collection('corgievent').update({_id: ObjectID(eventID)}, { $addToSet: {attendeeIDs: {username: user.name} } });      
+        DB.collection('corgiuser').update({name: username}, { $addToSet: {eventIDs: eventID} });
+      }     
       res.end();
     });
   }
