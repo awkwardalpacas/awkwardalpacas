@@ -1,5 +1,4 @@
 'use strict';
-
 angular.module('lunchCorgi.signup', ['ngRoute'])
 
 .directive('modalDialog2', function() {
@@ -26,9 +25,7 @@ angular.module('lunchCorgi.signup', ['ngRoute'])
 
 .controller('SignUpCtrl', function ($scope, $window, $location, $sce, Users, Events) {
   $scope.attendees = true;
-
   $scope.event = {}
-
   $scope.modalShown = false;
 
   $scope.toggleModal = function() {
@@ -38,18 +35,14 @@ angular.module('lunchCorgi.signup', ['ngRoute'])
   $scope.user = {};
 
   $scope.signedIn = function() {
-    return !!$window.localStorage['com.corgi']
+    return !!localStorage['com.corgi']
   };
 
   $scope.signin = function () {
     localStorage.setItem('username', $scope.user.username)
     Users.signin($scope.user)
     .then(function (token) {
-      var obj={
-        token: token,
-        username: $scope.user.username
-      }
-      localStorage.setItem('com.corgi', JSON.stringify(obj));
+      localStorage.setItem('token', token);
       $location.path('/');
     })
     .catch(function (error) {
@@ -61,27 +54,20 @@ angular.module('lunchCorgi.signup', ['ngRoute'])
   };
 
   $scope.signup = function() {
-    
     localStorage.setItem('username', $scope.user.username)
     Users.signup($scope.user)
     .then(function(token){
-      var obj={
-        token: token,
-        username: $scope.user.username
-      }
-      localStorage.setItem('com.corgi', JSON.stringify(obj));
+      localStorage.setItem('token', token);
       $location.path('/');
     })
     .catch(function (error) {
-      if (error.status === 401) {
-        $scope.signupError = true;
-      }
+      if (error.status === 401) { $scope.signupError = true }
       console.error(error);
     });
   };
 
   $scope.signout = function() {
-    localStorage.removeItem('com.corgi');
+    localStorage.removeItem('token');
     $location.path('/signin');
   }
 
