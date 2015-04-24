@@ -4,7 +4,7 @@ var jwt  = require('jwt-simple');
 
 var DB;
 
-mongo.connect(process.env.MONGOLAB.URI, function(err, db) {
+mongo.connect(process.env.MONGOLAB_URI, function(err, db) {
   if (err) throw err;
   // when the connection occurs, we store the connection 'object' (or whatever it is) in a global variable so we can use it elsewhere.
   DB = db

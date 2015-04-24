@@ -5,7 +5,7 @@ var mongoose = require('mongoose'),
     Q = require('q'),
     jwt  = require('jwt-simple');
 
-var db = mongoose.createConnection(process.env.MONGOLAB.URI); //connects to database called corgi
+var db = mongoose.createConnection(process.env.MONGOLAB_URI); //connects to database called corgi
 
 autoIncrement.initialize(db);  // required to get the tables to auto-increment for each new record (user or event)
 
