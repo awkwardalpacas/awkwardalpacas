@@ -8,6 +8,7 @@
 
 body {
   padding-top: 70px;
+  background-color: #FDFAF9
 }
 
 .event-buttons {
@@ -16,6 +17,8 @@ body {
 
 .event-section h4, h2 {
   margin-bottom: 0px;
+  margin-top: 0px;
+  padding-top: 10px;
 }
 
 form[name="eventForm"] input {
@@ -27,7 +30,6 @@ form[name="eventForm"] input {
   margin: 20px;
 }
 
-
 .chatwindow {
   height: 300px;
   border: 1px solid red;
@@ -35,6 +37,10 @@ form[name="eventForm"] input {
 
 .event-page {
   background-image: url('../images/chameleon.jpg');
+}
+
+.events {
+
 }
 
 .customfront{
@@ -45,11 +51,16 @@ form[name="eventForm"] input {
   height: 20vh;
 }
 
+h1 {
+  text-align: center;
+}
+
 li.event {
   list-style: none;
-  margin: 0px 0px 20px 0px;
-  padding: 0px 0px 20px 0px;
-  border-bottom: 1px solid #EBEBEB;
+  margin: 0px 0px 20px 5px;
+  padding: 0px 0px 20px 20px;
+  background-color: #337ab7;
+  color: white;
 }
 
 .map {
