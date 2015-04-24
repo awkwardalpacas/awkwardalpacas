@@ -23,7 +23,7 @@
         <button class="join" ng-click='joinEvent(event); remind(event)'>Attend</button>
         <div class="event-line1">
           <span class='description'>{{ event.description }}</span>
-          <span class="at" ng-click='renderMap(event.location)'> at 
+          <span class="at" ng-click='renderMap(event.location); toggleModal()'> at 
             <span class='location'>{{ event.location }}</span>
           </span>
           <span class='fromNow'>{{ event.datetime | fromNow }}</span>
@@ -42,8 +42,12 @@
 
       </div>
     </li>
-    <div class = "map" ng-bind-html='map'>{{ map }}</div>
-    
+
+    <modal-dialog show='modalShown' width="600" height="450">
+      <div class = "map" ng-bind-html='map'>{{ map }}</div>
+    </modal-dialog>
+
+
   </ul>
   <!-- <button class="prevPage" style="float: left" ng-click="prevPage()">Previous Page</button> -->
   <!-- <button class="nextPage" style="float: right" ng-click="nextPage()">Next Page</button> -->

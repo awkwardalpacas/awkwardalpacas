@@ -1,11 +1,38 @@
 angular.module('lunchCorgi.events', [])
 
+.directive('modalDialog', function() {
+  return {
+    restrict: 'E',
+    scope: {
+      show: '='
+    },
+    replace: true, // Replace with the template below
+    transclude: true, // we want to insert custom content inside the directive
+    link: function(scope, element, attrs) {
+      scope.dialogStyle = {};
+      if (attrs.width)
+        scope.dialogStyle.width = attrs.width;
+      if (attrs.height)
+        scope.dialogStyle.height = attrs.height;
+      scope.hideModal = function() {
+        scope.show = false;
+      };
+    },
+    template: "<div class='ng-modal' ng-show='show'><div class='ng-modal-overlay' ng-click='hideModal()'></div><div class='ng-modal-dialog' ng-style='dialogStyle'><div class='ng-modal-close' ng-click='hideModal()'>X</div><div class='ng-modal-dialog-content' ng-transclude></div></div></div>"
+  };
+})
+
 .controller('EventsController', function ($scope, $window, $location, $sce, Events, $http) {
 
   $scope.attendees = true;
 
   $scope.event = {}
 
+  $scope.modalShown = false;
+
+  $scope.toggleModal = function() {
+    $scope.modalShown = !$scope.modalShown;
+  };
   //if $scope.invalid is true, it will display an error message in the view
   // $scope.invalid = false
 
