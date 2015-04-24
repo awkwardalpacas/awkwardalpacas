@@ -73,25 +73,27 @@ module.exports = {
 
 	userEvents: function(req, res) {
     var username = req.body.user;
-    var found = DB.collection('corgiuser').find({name: username})
+    var found = DB.collection('corgiuser').find({name: username});
 
     found.on('data', function(user){
-      console.log(user)
-      var events = []
+      console.log(user);
+      var events = [];
       if(user.eventIDs){
         user.eventIDs.map(function(evID) {
-         var find = DB.collection('corgievent').find({"_id" : ObjectID(evID)})
-         find.on('data', function(ev){
-          events.push(ev);
-          //console.log(events)
-          if(events.length === user.eventIDs.length){
-            res.send(events)
-          }
-         })
-        })
+          var find = DB.collection('corgievent').find({"_id" : ObjectID(evID)});
+          find.on('data', function(ev){
+            events.push(ev);
+            if(events.length === user.eventIDs.length){
+              res.send(events)
+            }
+          });
+        });
       }
-    })        
+      // silently end response for users with no saved events
+      res.end();
+    });       
 	}
+
 }
 
 
