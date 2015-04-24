@@ -8,7 +8,7 @@
     <div class='attendee-list'>
       <h2>These people are coming!</h2>
       <div class='peopleholder'>
-        <div class='attendee' ng-repeat="attendee in event.attendeeIDs">
+        <div class='attendee' ng-repeat="attendee in event.attendeeIDs ">
           <div class="people" >{{attendee.username}}</div>
         </div>
       </div>
@@ -23,10 +23,10 @@
           <p class="bg-primary chats"><b>{{chat.username}} </b>: {{chat.messagekey}}</p>
         </div>
       </div>
-      <input class="form-control" type="text" ng-model = "textinput">
-      <button class="btn btn-info" type="button" ng-click='sendmessage()'>Send</button><br>
+      <input class="form-control  marginbottom" type="text" ng-model = "textinput">
+      <button class="btn btn-info marginbottom" type="button" ng-click='sendmessage()'>Send</button><br>
     </div>
-    <button class="btn btn-default" ng-click='loadEvents()'>Back to Events Page</button>
+    <button class="btn btn-default  marginbottom" ng-click='loadEvents()'>Back to Events Page</button>
     <div class="fb-send" data-href="http://corgi.herokuapp.com/" data-colorscheme="dark"></div>
   </div>
 </div>
