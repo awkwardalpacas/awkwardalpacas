@@ -30,9 +30,7 @@ http://lunchmeet.herokuapp.com/#/signin
 Mongo, Express, Angular, Node
 
 ##Installing Dependancies
-From within the root directory:
-
-npm install
+From within root directory:  npm install
 
 ##Contributing
 Please follow our guidelines for [contributing] (https://github.com/VivaciousViscachas/awkwardalpacas/blob/master/_CONTRIBUTING.md)
