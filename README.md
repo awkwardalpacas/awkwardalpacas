@@ -1,6 +1,7 @@
 ##Welcome to LunchMeet!
 
 http://lunchmeet.herokuapp.com/#/signin
+
 ![alt tag](https://raw.github.com/VivaciousViscachas/awkwardalpacas/master/client/assets/lunchmeet.png)
 
 ##Contributors
