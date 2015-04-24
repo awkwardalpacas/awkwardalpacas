@@ -172,6 +172,7 @@ ul.events {
     background-color: #F5F5F5;
 }
 .margenbottom{
+  display: inline;
   margin-bottom: 1%;
   margin-top: 1%;
 }
