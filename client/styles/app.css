@@ -131,6 +131,15 @@ form input[type='time'] {
   width: 4em;
 }
 
+.join.unattending {
+  background: url('/client/assets/spam-button.png');
+}
+
+.unattending span {
+  display:none;
+  
+}
+
 .location {
   text-decoration: underline;
 }

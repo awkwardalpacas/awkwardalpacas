@@ -19,7 +19,9 @@
       <li class='event' ng-repeat="event in eventsList | orderBy:'datetime'">
         <div class='eventInfo'>
           <!-- <div class='creator'>{{event.creator}}</div> -->
-          <button class="join" ng-click='joinEvent(event); remind(event)'>Attend</button>
+          <button class="join" ng-click='joinEvent(event); remind(event); changeAttendingButton($index)' ng-class='button[$index]'><span class='theText'>Attend</span></button>
+       <!--    <button class="join unattend" ng-click='joinEvent(event)'>Leave</button>
+ -->
           <div class="event-line1">
             <span class='description'>{{ event.description }}</span>
             <span class="at" ng-click='renderMap(event.location); toggleModal()'> at 
