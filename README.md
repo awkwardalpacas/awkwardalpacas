@@ -1,5 +1,7 @@
+##Welcome to LunchMeet!
 
 http://lunchmeet.herokuapp.com/#/signin
+(https://github.com/VivaciousViscachas/awkwardalpacas/blob/master/_CONTRIBUTING.md)
 
 ##Contributors
 
