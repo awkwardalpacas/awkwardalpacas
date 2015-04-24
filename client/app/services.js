@@ -6,6 +6,7 @@ angular.module('lunchCorgi.services', [])
   // e.addEvent(newEv)
   // e.getEvents(1)
    var location = {};
+   var mapCounter = 0;
   // this function finds events with time greater than now (that's what Date.now is)...
   var getEvents = function() {
     return $http({
@@ -58,13 +59,20 @@ angular.module('lunchCorgi.services', [])
     $scope.newEvent.lng = location.lng;
   }
 
+   var incrementMap = function () {
+    mapCounter++;
+    return mapCounter;
+  }
+
+
   // return all of our methods as an object, so we can use them in our controllers
   return {
     getEvents : getEvents,
     joinEvent: joinEvent,
     addEvent : addEvent,
     getLatAndLong: getLatAndLong,
-    getLocation: getLocation
+    getLocation: getLocation,
+    incrementMap: incrementMap
   }
 
 })
@@ -108,10 +116,10 @@ angular.module('lunchCorgi.services', [])
 
 
 
-
   ////////////////////////
 
-  var createMap = function(latitude, longitude, divId, $scope){
+  var createMap = function(latitude, longitude, divId, $scope, element){
+
     if (divId === 'map-canvas' && !$scope.event.lat) {
       return
     }
@@ -120,7 +128,9 @@ angular.module('lunchCorgi.services', [])
     if (divId === "map-canvas") {
       mapOptions.zoom = 15;
     }
-    var map = new google.maps.Map(document.getElementById(divId), mapOptions);
+    var mapDiv = element ? element.children()[0] : document.getElementById(divId);
+    console.log('element',element)
+    var map = new google.maps.Map(mapDiv, mapOptions);
 
     if (divId === 'map-submit'){
       $scope.marker = new google.maps.Marker({position: coords, map: map, draggable: true});
