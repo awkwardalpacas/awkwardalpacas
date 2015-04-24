@@ -136,6 +136,7 @@ form input[type='time'] {
 }
 
 .location:hover{
+  cursor: pointer;
   font-weight:bold;
   color: #A70DAE;
 }
