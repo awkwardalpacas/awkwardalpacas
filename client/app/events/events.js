@@ -25,9 +25,7 @@ angular.module('lunchCorgi.events', [])
 .controller('EventsController', function ($scope, $window, $location, $sce, Events, $http) {
 
   $scope.attendees = true;
-
   $scope.event = {}
-
   $scope.modalShown = false;
 
   $scope.toggleModal = function() {
@@ -54,10 +52,7 @@ angular.module('lunchCorgi.events', [])
       url:'/api/reminder',
       data: {user:JSON.parse(localStorage.getItem("com.corgi")).username,
       eventName: description, cronTime: cronTime}
-    }).then(function(res){
-      console.log('post results in events.js : ', res.data)
-   })
-    
+    }).then(function(res){ console.log('post results : ', res.data) })  
   }
 
   $scope.joinEvent = function(evt) {
@@ -67,29 +62,23 @@ angular.module('lunchCorgi.events', [])
   }
 
   $scope.addEvent = function() {
-    if ($scope.newEvent.description !== "" &&
-        $scope.newEvent.location !== "" &&
-        $scope.newEvent.date !== "" &&
-        $scope.newEvent.time !== "" ) {
+    if ($scope.newEvent.description !== "" && $scope.newEvent.location !== "" && $scope.newEvent.date !== "" && $scope.newEvent.time !== "" ){
+      $scope.invalid = false;
+      var userToken = JSON.parse(localStorage.getItem('com.corgi')).token;
 
-          $scope.invalid = false;
-          var userToken = JSON.parse(localStorage.getItem('com.corgi')).token;
-
-          Events.addEvent($scope.newEvent, userToken)
-          .then(function(newEvent) {
-            $scope.valid = true;
-            // return to defaults
-            $scope.viewAllEvents();
-            $scope.initNewEventForm();
-          });
-        } else {
-          $scope.invalid = true;
-        }     
+      Events.addEvent($scope.newEvent, userToken)
+      .then(function(newEvent) {
+        $scope.valid = true;
+        $scope.viewAllEvents();
+        $scope.initNewEventForm();
+      });
+    } else {
+      $scope.invalid = true;
+    }     
   }
 
   // first page of events is page number 0; when more events are viewed, the page number is increased
   $scope.pageNumber = 0;
-
   // eventsList is an array used in the template (with ng-repeat) to populate the list of events.
   $scope.eventsList = {};
 
@@ -102,8 +91,6 @@ angular.module('lunchCorgi.events', [])
   }
 
   $scope.viewAllEvents = function() {
-    // send request to services.js, which in turn sends the actual http request to events-controller in the server.
-
     if (localStorage.getItem('com.corgi')) {
       Events.getEvents($scope.pageNumber)
       .then(function(data) {

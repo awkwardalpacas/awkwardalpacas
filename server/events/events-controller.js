@@ -31,8 +31,6 @@ module.exports = {
     })
 
     getEvents.on('data', function(doc) {
-      // we need another smaller stream to find the corresponding user from the corgiuser collection, using this event's 
-
       // creator ID - so there should only be one result
       var foundUser = DB.collection('corgiuser').find({ _id: ObjectID(doc.creatorID) }).stream()
       foundUser.on('data', function(user) {
