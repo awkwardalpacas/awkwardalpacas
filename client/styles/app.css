@@ -6,6 +6,10 @@
   max-width: 100%;
 }
 
+body {
+  padding-top: 70px;
+}
+
 .event-buttons {
   margin-top: 20px;
 }
