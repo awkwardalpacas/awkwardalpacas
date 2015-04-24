@@ -5,6 +5,7 @@ var lunchCorgi = angular.module('lunchCorgi', [
   'ngRoute',
   'lunchCorgi.services',
   'lunchCorgi.events',
+  'lunchCorgi.event',
   'lunchCorgi.signup'
   ]).
 config(['$routeProvider', function($routeProvider) {
@@ -20,6 +21,10 @@ config(['$routeProvider', function($routeProvider) {
       when('/signin', {
         templateUrl: 'client/app/users/signin.html',
         controller: 'SignUpCtrl'
+    }).
+      when('/event', {
+        templateUrl: 'client/app/event/event.html',
+        controller: 'eventController'
     }).otherwise({
         redirectTo: '/'
     });
