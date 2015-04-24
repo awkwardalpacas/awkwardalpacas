@@ -50,7 +50,7 @@ angular.module('lunchCorgi.events', [])
     $http({
       method: 'POST',
       url:'/api/reminder',
-      data: {user:JSON.parse(localStorage.getItem("com.corgi")).username,
+      data: {user:localStorage.getItem("username"),
       eventName: description, cronTime: cronTime}
     }).then(function(res){ console.log('post results : ', res.data) })  
   }
@@ -64,7 +64,7 @@ angular.module('lunchCorgi.events', [])
   $scope.addEvent = function() {
     if ($scope.newEvent.description !== "" && $scope.newEvent.location !== "" && $scope.newEvent.date !== "" && $scope.newEvent.time !== "" ){
       $scope.invalid = false;
-      var userToken = JSON.parse(localStorage.getItem('com.corgi')).token;
+      var userToken = localStorage.getItem('token');
 
       Events.addEvent($scope.newEvent, userToken)
       .then(function(newEvent) {
@@ -91,7 +91,7 @@ angular.module('lunchCorgi.events', [])
   }
 
   $scope.viewAllEvents = function() {
-    if (localStorage.getItem('com.corgi')) {
+    if (localStorage.getItem('token')) {
       Events.getEvents($scope.pageNumber)
       .then(function(data) {
         $scope.eventsList = data;
