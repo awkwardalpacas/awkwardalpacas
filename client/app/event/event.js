@@ -38,8 +38,10 @@ angular.module('lunchCorgi.event', [])
     setInterval($scope.loadchats,20000)
   }
   $scope.sendmessage =function(){
+    var text =$scope.textinput
+    $scope.textinput =""
     var userToken = $window.localStorage.getItem('com.corgi')
-    Event.sendChat(userToken,$scope.textinput,function(){
+    Event.sendChat(userToken,text,function(){
       $scope.loadchats();
     })
   }
