@@ -41,15 +41,13 @@ angular.module('lunchCorgi.events', [])
         date = new Date(),
         orig_time = new Date(event.datetime),        
         newTime = new Date(orig_time.setHours(orig_time.getHours()-1)),
-        cronTime = '0 ';
-
-    var month = newTime.getMonth(),
+        cronTime = '0 ',
+        month = newTime.getMonth(),
         day = newTime.getDate(),
         hours = newTime.getHours(),
         min = newTime.getMinutes();
 
-        cronTime += min + ' ' + hours + ' ' + day + ' ' + month + ' *'
-        //console.log(cronTime);
+    cronTime += min + ' ' + hours + ' ' + day + ' ' + month + ' *'
 
     $http({
       method: 'POST',
@@ -58,27 +56,6 @@ angular.module('lunchCorgi.events', [])
       eventName: description, cronTime: cronTime}
     }).then(function(res){
       console.log('post results in events.js : ', res.data)
-
-      // $http.post('https://api.plivo.com/v1/Account/MANJQ3NDMYZGIWZTCZNG/Message/', {
-      //   src: '13303823056',
-      //   dst: '1'+res.data,
-      //   text:'Your event is happening blahblah'
-      // })
-      // .then(function(data, status, headers, config) {
-      //   // this callback will be called asynchronously
-      //   // when the response is available
-      //   console.log('HOORAY sent.')
-      // })
-
-      // $http({
-      //   method: 'POST',
-      //   url: 'https://api.plivo.com/v1/Account/MANJQ3NDMYZGIWZTCZNG/Message/',
-      //   data: {
-      //     src: '13303823056',
-      //     dst: '1'+res.data,
-      //     text:'Your event is happening blahblah'
-      //   }
-      // })
    })
     
   }
@@ -130,8 +107,6 @@ angular.module('lunchCorgi.events', [])
     if (localStorage.getItem('com.corgi')) {
       Events.getEvents($scope.pageNumber)
       .then(function(data) {
-        // set $scope.eventsList equal to the data we get back from our http request - that's how we 
-        // populate the actual event views in the template.
         $scope.eventsList = data;
       });
     } else {
@@ -140,14 +115,11 @@ angular.module('lunchCorgi.events', [])
   };
 
   $scope.nextPage = function() {
-    // need some way to limit how many pages people can go forward; it seems to get messed up if people 
-    // navigate past where there are no more results to show.
     $scope.pageNumber++
     $scope.viewAllEvents()
   };
   
   $scope.prevPage = function() {
-    // only go back a page if the page number is greater than 0
     if ($scope.pageNumber > 0) {
       $scope.pageNumber--
       $scope.viewAllEvents()
