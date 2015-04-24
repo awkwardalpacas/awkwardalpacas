@@ -5,6 +5,7 @@ angular.module('lunchCorgi.events', [])
   $scope.event = {}
 
 
+
   $scope.createMap = function(){
     return Event.createMap(30.2958, -97.8101, "map-submit", $scope)
   }()
@@ -99,6 +100,22 @@ angular.module('lunchCorgi.events', [])
   // populate new event form with default values
   $scope.initNewEventForm()
 })
-.directive('smallMap', function () {
-  Event.createMap($scope.event)
+
+.directive('smallMap', function (Event, Events)  {
+  return{
+
+    template:'<div class = "small-map" id="map-canvas{{count}}"></div>',
+    compile: function(element, attr) {
+      return{
+        pre: function preLink($scope, element, attr) {
+          Events.incrementMap($scope);
+        },
+
+        post: function postLink($scope, element, attr) {
+          var divID = 'map-canvas'+ $scope.count
+          Event.createMap($scope.event.lat, $scope.event.lng, divID, $scope, element);
+        }
+      }
+    }
+  }
 })

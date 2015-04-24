@@ -86,6 +86,11 @@ li.event {
   margin-bottom: 10px;
 }
 
+.small-map {
+  height: 100px;
+  width: 100px;
+}
+
 .navbar-fixed-top {
   margin-bottom: 50px;
 }
