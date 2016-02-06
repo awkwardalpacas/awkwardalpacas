@@ -1,4 +1,170 @@
 /* app css stylesheet */
+a {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.at{
+  margin-left:.25em;
+}
+
+.addevent {
+  margin: 0 auto;
+  max-width: 75%;
+}
+
+.addevent button {
+  background: url('/client/assets/lettuce-button.png');
+  height: 1.7em;
+  width: 5em;
+}
+
+.addevent form {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.attendee {
+  text-align: left;
+  margin-left: 5em;
+}
+
+.attendee-list {
+  color: rgb(197, 96, 12);
+  margin-left:5em;
+}
+
+.attendee-list:hover {
+  cursor: pointer;
+}
+
+.attendee-list {
+  color: rgb(197, 96, 12);
+}
+
+.attendee-list:hover {
+  cursor: pointer;
+}
+
+body {
+  font-family: 'Roboto Slab', courier;
+  max-width: 60%;
+  margin: 0 auto;
+}
+
+.description {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+.error {
+  background-color: pink;
+  margin: 0 auto;
+  max-width: 75%;
+  padding: 1em;
+}
+
+.event {
+  margin-bottom: 1em;
+  padding-left: 66px;
+}
+
+.events {
+  list-style-type: none;
+  margin-left:2em;
+}
+
+form {
+  margin: 1em 0;
+}
+
+#signin form input,
+#signup form input,
+#signin form button,
+#signup form button {
+  display: block;
+  margin: 0.5em auto;
+}
+
+form button {
+  background: url('/client/assets/spam-button.png');
+  background-position: 10px;
+  border: none;
+  border-radius: 5px;
+  color: white;
+  font-size: 1.2em;
+  font-weight: bold;
+  height: 1.8em;
+  width: 7em;
+}
+
+form input {
+  border-radius: 3px;
+  height: 1.8em;
+  padding: 0 0.5em;
+}
+
+form input[type='date'] {
+  width: 9em;
+}
+
+form input[type='time'] {
+  width: 7.5em;
+}
+
+.form-line-1 input {
+  margin-bottom: 0.5em;
+  width: 45%;
+}
+
+.join {
+  background: url('/client/assets/tomato.png');
+  background-position: -43px 0;
+  border: none;
+  border-radius: 4px;
+  color: white;
+  float: left;
+  font-weight: bold;
+  height: 1.7em;
+  margin-right: 1em;
+  margin-top: 4px;
+  width: 4em;
+}
+
+.join.unattending {
+  background: url('/client/assets/spam-button.png');
+}
+
+.unattending span {
+  display:none;
+  
+}
+
+.location {
+  text-decoration: underline;
+}
+
+.location:hover{
+  cursor: pointer;
+  font-weight:bold;
+  color: #A70DAE;
+}
+
+.logo {
+  background: url('/client/assets/lunchmeet.png') no-repeat;
+  background-position: 20px -70px;
+  height: 200px;
+  margin: 0 auto;
+  width: 400px;
+}
+
+#main {
+  padding: 0 1em;
+}
+
+#map {
+  margin: auto;
+}
 
 .menu {
   list-style: none;
@@ -28,9 +194,141 @@
   content: "";
   padding: 0;
 }
-.events {
 
+.message {
+  color: #E22A38;
+  font-size: 1.1em;
+  font-weight: bold;
 }
-.addevent {
-  float: right;
+
+.ng-modal-overlay {
+  /* A dark translucent div that covers the whole screen */
+  position:fixed;
+  z-index:9999;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background-color:#40e0d0;
+  opacity: 0.5;
+}
+
+.ng-modal-dialog {
+  /* A centered div above the overlay with a box shadow. */
+  z-index:10000;
+  position: fixed;
+  /*width: 50%;  Default */
+
+  /* Center the dialog */
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+  -moz-transform: translate(-50%, -50%);
+
+  background-color: #fff;
+  box-shadow: 4px 4px 80px #000;
+}
+.ng-modal-dialog-content {
+  padding:10px;
+  text-align: left;
+}
+.ng-modal-close {
+  position: absolute;
+  top: 3px;
+  right: 5px;
+  padding: 5px;
+  cursor: pointer;
+  font-size: 120%;
+  display: inline-block;
+  font-weight: bold;
+  font-family: 'arial', 'sans-serif';
+}
+
+#signin,
+#signup {
+  text-align: center;
+}
+
+.small {
+  font-size: 0.9em;
+}
+
+.success {
+  background-color: lightgreen;
+  margin: 0 auto;
+  max-width: 75%;
+  padding: 1em;
+}
+
+.time{
+  margin-left:5em;
+}
+
+.title {
+  color: #E22A38;
+  font-size: 2.2em;
+  font-weight: bold;
+  margin: 1em 0;
+  text-align: center;
+}
+
+.version {
+  color: #666;
+  font-size: small;
+  margin-top: 9em;
+}
+
+::-webkit-input-placeholder {
+  text-align: center;
+}
+
+@media screen and (max-width: 1080px) {
+  body {
+    max-width: 75%;
+  }
+}
+
+@media screen and (max-width: 830px) {
+  .addevent button {
+    margin-top: 0.5em;
+  }
+
+  .addevent input {
+    display: block;
+    margin-bottom: 0.5em;
+    width: 100% !important;
+  }
+
+  body {
+    max-width: 100%;
+  }
+
+  .event,
+  .events {
+    padding: 0;
+  }
+
+  .events{
+    margin-left: 7em;
+  }
+}
+
+@media screen and (max-width: 460px) {
+  .addevent,
+  .addevent input {
+    max-width: 95%;
+  }
+
+  .events {
+    margin-left: 0;
+  }
+
+  .logo {
+    background-position: 0 -70px;
+  }
+
+  .map iframe {
+    max-width: 24em;
+  }
 }

@@ -2,14 +2,20 @@
 <!--[if gt IE 8]><!--> <html lang="en" ng-app="lunchCorgi" class="no-js"> <!--<![endif]-->
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no">
+  <link href='https://fonts.googleapis.com/css?family=Roboto+Slab:300,700,400' rel='stylesheet' type='text/css'>
   <link rel="stylesheet" href="../../bower_components/html5-boilerplate/css/normalize.css">
   <link rel="stylesheet" href="../../bower_components/html5-boilerplate/css/main.css">
+  <link rel="icon" type="image/png" sizes="32x32" href="/client/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/client/favicon-16x16.png">
+  <link rel="shortcut icon" href="/client/favicon.ico">
+  <!--<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">-->
   <style>
-/* comment this until the page is actually working - saf - 04/14/2015
-      [ng-cloak] {
+    [ng-cloak] {
       display: none;
-    }*/
+    }
   </style>
+
   <script src ="../../bower_components/html5-boilerplate/js/vendor/modernizr-2.6.2.min.js"></script>
   <script src ='../../bower_components/angular/angular.js'></script>
   <script src ='../../bower_components/angular-route/angular-route.js'></script>
@@ -23,23 +29,27 @@
   <script src ='//cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js'></script>
   <script src ='//cdnjs.cloudflare.com/ajax/libs/angular-moment/0.10.0/angular-moment.min.js'></script>
 
-
-  <title>LunchCorgi App</title>
-
+  <title>LunchMeet</title>
   <link rel="stylesheet" href="/client/styles/app.css">
 
 </head>
 
-<body> <!-- ng-cloak removed from body tag until the page is actually working - saf - 04/15/2015 -->
+
+<body ng-cloak>
   <ul class="menu" ng-controller="SignUpCtrl">
-    <li><a href="#/signin">Sign In</a></li>
-    <li><a href="#/signup">Sign Up</a></li>
+    <li ng-if="!signedIn()"><a href="#/signin">Sign In</a></li>
+    <li ng-if="!signedIn()"><a href="#/signup">Sign Up</a></li>
     <li ng-if="signedIn()" ng-click="signout()"><a href="#/">Sign Out</a></li>
+    <li ng-if="signedIn()"><a href='#/'>All events</a></li>
+    <li ng-if="signedIn()" ng-click="profile()"><a href='#/profile'>My events</a></li>
+
   </ul>
-
-  <div ng-view></div>
-
-  <div>LunchCorgi App v.0.1 2015<span app-version></span></div>
+  <div class="logo"></div>
+  <div id="main" ng-view></div>
+  <div class="version">LunchMeet v.2.0 2015<span app-version></span></div>
 
 </body>
 </html>
+
+
+

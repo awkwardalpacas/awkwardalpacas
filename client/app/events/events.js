@@ -1,63 +1,111 @@
 angular.module('lunchCorgi.events', [])
 
-.controller('EventsController', function ($scope, $window, $location, Events) {
+.directive('modalDialog', function() {
+  return {
+    restrict: 'E',
+    scope: {
+      show: '='
+    },
+    replace: true, // Replace with the template below
+    transclude: true, // we want to insert custom content inside the directive
+    link: function(scope, element, attrs) {
+      scope.dialogStyle = {};
+      if (attrs.width)
+        scope.dialogStyle.width = attrs.width;
+      if (attrs.height)
+        scope.dialogStyle.height = attrs.height;
+      scope.hideModal = function() {
+        scope.show = false;
+      };
+    },
+    template: "<div class='ng-modal' ng-show='show'><div class='ng-modal-overlay' ng-click='hideModal()'></div><div class='ng-modal-dialog' ng-style='dialogStyle'><div class='ng-modal-close' ng-click='hideModal()'>X</div><div class='ng-modal-dialog-content' ng-transclude></div></div></div>"
+  };
+})
 
+.controller('EventsController', function ($scope, $window, $location, $sce, Events, $http) {
+
+  $scope.attendees = true;
   $scope.event = {}
+  $scope.modalShown = false;
+  $scope.button = [];
 
+  $scope.changeAttendingButton = function(index){
+    $scope.button[index] = $scope.button[index];
+    $scope.button[index] = $scope.button[index] == 'unattending'? '':'unattending'
+  }
+
+  $scope.toggleModal = function() {
+    $scope.modalShown = !$scope.modalShown;
+  }
   //if $scope.invalid is true, it will display an error message in the view
-  $scope.invalid = false
+  // $scope.invalid = false
+
+  $scope.remind=function(event){
+    var description = event.description,
+        date = new Date(),
+        orig_time = new Date(event.datetime),        
+        newTime = new Date(orig_time.setHours(orig_time.getHours()-1)),
+        cronTime = '0 ',
+        month = newTime.getMonth(),
+        day = newTime.getDate(),
+        hours = newTime.getHours(),
+        min = newTime.getMinutes();
+
+    cronTime += min + ' ' + hours + ' ' + day + ' ' + month + ' *'
+
+    $http({
+      method: 'POST',
+      url:'/api/reminder',
+      data: {user:localStorage.getItem("username"),
+      eventName: description, cronTime: cronTime}
+    }).then(function(res){ console.log('post results : ', res.data) })  
+  }
 
   $scope.joinEvent = function(evt) {
+    evt.attending = !evt.attending
     $scope.event = evt;
-    var userToken = $window.localStorage.getItem('com.corgi');
+    var userToken = localStorage.getItem('token');
     Events.joinEvent(evt, userToken);
+    $scope.viewAllEvents();
   }
 
   $scope.addEvent = function() {
-    // check that all fields in the events.html form are filled out
-    // need to add a check to make sure user is logged in
-    if ($scope.newEvent.description !== "" &&
-        $scope.newEvent.location !== "" &&
-        $scope.newEvent.datetime !== "" ) {
+    if ($scope.newEvent.description !== "" && $scope.newEvent.location !== "" && $scope.newEvent.date !== "" && $scope.newEvent.time !== "" ){
+      $scope.invalid = false;
+      var userToken = localStorage.getItem('token');
 
-          $scope.invalid = false
-          var userToken = $window.localStorage.getItem('com.corgi');
-
-          Events.addEvent($scope.newEvent, userToken)
-          .then(function(newEvent) {
-            // need a better way to notify people, but this is simple for now
-            alert('Your event has been created: ', newEvent.description);
-            // return to defaults
-            $scope.viewAllEvents();
-            $scope.initNewEventForm()
-          });
-        } else {
-          $scope.invalid = true
-        }     
+      Events.addEvent($scope.newEvent, userToken)
+      .then(function(newEvent) {
+        $scope.valid = true;
+        $scope.viewAllEvents();
+        $scope.initNewEventForm();
+      });
+    } else {
+      $scope.invalid = true;
+    }     
   }
 
   // first page of events is page number 0; when more events are viewed, the page number is increased
-  $scope.pageNumber = 0
-
+  $scope.pageNumber = 0;
   // eventsList is an array used in the template (with ng-repeat) to populate the list of events.
-  $scope.eventsList = {}
+  $scope.eventsList = {};
 
   $scope.initNewEventForm = function() {
-    $scope.newEvent = {}
-    $scope.newEvent.description = 'Describe the event.'
-    $scope.newEvent.location = 'Where is the event?'
-    $scope.newEvent.time = (new Date()).toTimeString().substr(0,5)
-    $scope.newEvent.date = new Date(new Date() + new Date().getTimezoneOffset()*60000).toISOString().substr(0,10)    
+    $scope.newEvent = {};
+    $scope.newEvent.description = '';
+    $scope.newEvent.location = '';
+    $scope.newEvent.time = '';
+    $scope.newEvent.date = '';
   }
 
   $scope.viewAllEvents = function() {
-    // send request to services.js, which in turn sends the actual http request to events-controller in the server.
-
-    if ( $window.localStorage.getItem('com.corgi') ) {
+    if (localStorage.getItem('token')) {
       Events.getEvents($scope.pageNumber)
       .then(function(data) {
-        // set $scope.eventsList equal to the data we get back from our http request - that's how we 
-        // populate the actual event views in the template.
+        // var username = localStorage.getItem('username')
+        // data.forEach(function(event){
+        //   event.attending = (event.attendeeIDs.filter(function(e){ return e.username === username;}).length > 0)
+        // })
         $scope.eventsList = data;
       });
     } else {
@@ -66,18 +114,20 @@ angular.module('lunchCorgi.events', [])
   };
 
   $scope.nextPage = function() {
-    // need some way to limit how many pages people can go forward; it seems to get messed up if people 
-    // navigate past where there are no more results to show.
     $scope.pageNumber++
     $scope.viewAllEvents()
   };
   
   $scope.prevPage = function() {
-    // only go back a page if the page number is greater than 0
     if ($scope.pageNumber > 0) {
       $scope.pageNumber--
       $scope.viewAllEvents()
     }
+  };
+
+  $scope.renderMap = function(location){
+    $scope.map = $sce.trustAsHtml('<iframe width="600" height="450" frameborder="0" style="border:0" src="https://www.google.com/maps/embed/v1/place?q='+location+'&key=AIzaSyDLun535FCG-VEepOE94GqSvWZqsBMw0zM"></iframe>')
+    console.log(location)
   };
   
   // show events when the page is first loaded.
@@ -85,3 +135,8 @@ angular.module('lunchCorgi.events', [])
   // populate new event form with default values
   $scope.initNewEventForm()
 })
+
+
+
+
+
